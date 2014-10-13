@@ -83,6 +83,15 @@ footer > .container,
 	margin-right: auto;
 }
 
+.author-row {
+	cursor: pointer;
+}
+
+.author-row td:hover {
+	color: #428bca;
+}
+
+
 /** Panel */
 .panel {
 	border-radius: 0;
@@ -114,4 +123,8 @@ footer .footer-copyright {
 	padding-top: 15px;
 	background: #181818;
 	color: #fff;
+}
+
+.wrap {
+	margin-bottom: 15px;
 }

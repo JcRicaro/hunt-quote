@@ -12,7 +12,6 @@
 					<li> Quote of the Day </li>
 					<li> Pictures </li>
 					<li> Professions </li>
-					<li> Birthdays </li>
 				</ul>
 
 			</div>
@@ -21,7 +20,7 @@
 
 	<div class="footer-copyright">	
 		<p class="text-center">
-			Copyright &copy; 2014 - {{ date('Y') }}
+			Copyright &copy; 2014 - {{ date('Y') }} HuntQuote.
 		</p>
 	</div>
 </footer>

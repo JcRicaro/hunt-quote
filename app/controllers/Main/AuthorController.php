@@ -34,8 +34,23 @@ class AuthorController extends \BaseController {
 	{
 		$author = $this->author->find($id);
 
-		return \View::make('main.authors.index')
+		return \View::make('main.authors.show')
 			->with('author', $author);
+	}
+
+	/**
+	 * [alpha description]
+	 * @param  [type] $character [description]
+	 * @return [type]            [description]
+	 */
+	public function alpha($character)
+	{
+		$character = strtolower($character);
+		$authors = $this->author->getByCharacterPaginated($character);
+
+		return \View::make('main.authors.alpha')
+			->with('authors', $authors)
+			->with('character', $character);
 	}
 
 }

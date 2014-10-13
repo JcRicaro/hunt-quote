@@ -10,5 +10,12 @@ interface Quote extends AbstractInterface {
 	 * @return [type]         [description]
 	 */
 	public function getWithPhotos($count = 10);
+
+	/**
+	 * Get quotes with photos
+	 * @param  integer $count [description]
+	 * @return [type]         [description]
+	 */
+	public function getWithPhotosPaginated($count = 10);
 	
 }

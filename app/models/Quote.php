@@ -46,4 +46,16 @@ class Quote extends Eloquent {
 		return $this->belongsToMany('Tag');
 	}
 
+	/**
+	 * {s-e}
+	 * @return [type] [description]
+	 */
+	public function getPreviewAttribute()
+	{
+		return sprintf("%s by %s",
+			substr($this->content, 0, 50) . '...',
+			$this->author->name
+		);
+	}
+
 }

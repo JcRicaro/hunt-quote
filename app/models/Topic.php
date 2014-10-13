@@ -18,4 +18,24 @@ class Topic extends Eloquent {
 		return $this->hasMany('Quote');
 	}
 
+	/**
+	 * 
+	 * @return [type] [description]
+	 */
+	public function getHitsAttributes()
+	{
+		$redis = App::make('redis');
+		return $redis->zScore('topic-hits', $this->id);
+	}
+
+	/**
+	 * {}
+	 * @return void
+	 */
+	public function incrementHits()
+	{
+		$redis = App::make('redis');
+		$redis->zIncrBy('topic-hits', 1, $this->id);
+	}
+
 }

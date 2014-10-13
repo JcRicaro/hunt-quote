@@ -1,6 +1,6 @@
 @extends('_tpls.main.tpl')
 
-@section('title') Professions @stop
+@section('title') Quotes @stop
 @section('meta') @stop
 
 @section('content')
@@ -10,9 +10,6 @@
 	<p> Can't think of the author's name but know their occupation? Our collection of authors by profession to find quotes by your favorite writer, president, poet, philosopher, musician and more. </p>
 
 
-	<ul class="list-unstyled">
-	@foreach($professions as $profession)
-		<li> <a href="{{ route('professions.show', $profession->id) }}">{{ $profession->name }} </a> </li>
+	@foreach($quotes as $quote)
 	@endforeach
-	</ul>
 @stop

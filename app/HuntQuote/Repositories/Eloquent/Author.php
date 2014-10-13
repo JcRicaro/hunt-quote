@@ -51,5 +51,29 @@ class Author extends AbstractEloquent implements AuthorInterface {
 			->groupBy('substr(name, 1, 1)')
 			->get();
 	}
+
+	/**
+	 * {self-explanatory}
+	 * @return [type] [description]
+	 */
+	public function getByCharacter($character)
+	{
+		return $this->model
+			->where('name', 'LIKE', "$character%")
+			->get();
+	}
+
+	/**
+	 * {self-explanatory} / paginated
+	 * @param  [type] $character [description]
+	 * @param  [type] $perPage   [description]
+	 * @return [type]            [description]
+	 */
+	public function getByCharacterPaginated($character, $perPage = 30)
+	{
+		return $this->model
+			->where('name', 'LIKE', "$character%")
+			->paginate($perPage);
+	}
 	
 }

@@ -19,7 +19,7 @@ class ProfessionController extends \BaseController {
 	 */
 	public function index()
 	{
-		$professions = $this->author->paginate(10);
+		$professions = $this->profession->all();
 
 		return \View::make('main.professions.index')
 			->with('professions', $professions);
@@ -32,7 +32,7 @@ class ProfessionController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$author = $this->author->find($id);
+		$author = $this->profession->find($id);
 
 		return \View::make('main.professions.index')
 			->with('profession', $profession);

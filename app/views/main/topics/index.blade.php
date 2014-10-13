@@ -17,7 +17,7 @@
 						<ul class="list-unstyled">
 				@endif
 
-					<li> <a href="#"> Age </a> </li>
+					<li> <a href="#"> {{ $topic->name }} </a> </li>
 
 				@if ( $index + 1 % 16 == 0 || $index == count($topics) - 1 )
 						</ul>

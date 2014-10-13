@@ -30,4 +30,24 @@ class Author extends Eloquent {
 		return $this->hasMany('Quote');
 	}
 
+	/**
+	 * 
+	 * @return [type] [description]
+	 */
+	public function getHitsAttributes()
+	{
+		$redis = App::make('redis');
+		return $redis->zScore('author-hits', $this->id);
+	}
+
+	/**
+	 * {}
+	 * @return void
+	 */
+	public function incrementHits()
+	{
+		$redis = App::make('redis');
+		$redis->zIncrBy('author-hits', 1, $this->id);
+	}
+
 }

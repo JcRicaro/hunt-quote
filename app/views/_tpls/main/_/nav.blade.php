@@ -10,7 +10,7 @@
         <li class="{{ activeOn('authors') }}"><a href="{{ url('authors') }}">Authors</a></li>
         <li class="{{ activeOn('topics') }}"><a href="{{ url('topics') }}">Topics</a></li>
         <li class="{{ activeOn('topics') }}"><a href="#">Quote of the Day</a></li>
-        <li class="{{ activeOn('topics') }}"><a href="#">Pictures</a></li>
+        <li class="{{ activeOn('quotes/photos', false) }}"><a href="{{ route('quotes.photos') }}">Pictures</a></li>
       </ul>
     </div>
   </div>

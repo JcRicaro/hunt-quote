@@ -23,5 +23,17 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 			->take($count)
 			->get();
 	}
+
+	/**
+	 * Get quotes with photos
+	 * @param  integer $count [description]
+	 * @return [type]         [description]
+	 */
+	public function getWithPhotosPaginated($count = 10)
+	{
+		return $this->model
+			->where('photo', '!=', '')
+			->paginate($count);
+	}
 	
 }

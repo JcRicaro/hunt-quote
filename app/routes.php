@@ -13,6 +13,9 @@
 
 Route::get('/', 'Main\Controller@index');
 
+Route::get('{alpha}', 'Main\AuthorController@alpha')
+	->where('alpha', '[a-zA-Z]{0,1}');
+
 /**
  * @link quotes/*
  */
@@ -21,6 +24,11 @@ Route::group(['prefix' => 'quotes'], function()
 	Route::get('/', [
 		'as'   => 'quotes.index',
 		'uses' => 'Main\QuoteController@index'
+	]);
+
+	Route::get('photos', [
+		'as'   => 'quotes.photos',
+		'uses' => 'Main\QuoteController@photos'
 	]);
 
 	Route::get('{id}', [

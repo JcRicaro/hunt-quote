@@ -14,11 +14,13 @@
 	@include('_tpls.main._.nav')
 	@include('_tpls.main._.breadcrumbs')
 
-	<div class="container">
-		@yield('content')
-	</div>
+	<div class="wrap">
+		<div class="container">
+			@yield('content')
+		</div>
 
-	@include('_tpls.main._.footer')
+		@include('_tpls.main._.footer')
+	</div>
 
 	{{ HTML::script('vendor/jquery/dist/jquery.min.js') }}
 	{{ HTML::script('vendor/bootstrap/dist/js/bootstrap.min.js') }}

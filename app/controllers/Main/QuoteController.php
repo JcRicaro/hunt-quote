@@ -34,8 +34,20 @@ class QuoteController extends \BaseController {
 	{
 		$quote = $this->quote->find($id);
 
-		return \View::make('main.quotes.index')
+		return \View::make('main.quotes.show')
 			->with('quote', $quote);
+	}
+
+	/**
+	 * 
+	 * @return [type] [description]
+	 */
+	public function photos()
+	{
+		$quotes = $this->quote->getWithPhotosPaginated();
+
+		return \View::make('main.quotes.photos')
+			->with('quotes', $quotes);
 	}
 
 }
