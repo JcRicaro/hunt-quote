@@ -3,12 +3,14 @@
 use HuntQuote\Common\Repository\AbstractEloquent;
 use HuntQuote\Repositories\Author as AuthorInterface;
 use Author as AuthorModel;
+use Illuminate\Database\DatabaseManager as DB;
 
 class Author extends AbstractEloquent implements AuthorInterface {
 
-	public function __construct(AuthorModel $author)
+	public function __construct(AuthorModel $author, DB $db)
 	{
 		$this->model = $author;
+		$this->db = $db;
 	}
 
 	/**
@@ -43,8 +45,9 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	{
 		// $query = "substr(autname, 1, 1) as alpha, count(*)";
 
-		return $this->model
-			->whereRaw($query)
+		return $this->db
+			->table('authors')
+			->select('substr(name, 1, 1) as letter, count(id) as index')
 			->groupBy('substr(name, 1, 1)')
 			->get();
 	}
