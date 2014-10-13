@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuoteTopicsTable extends Migration {
+class CreateQuoteTopicRelation extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateQuoteTopicsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('topics', function(Blueprint $table)
+		Schema::create('topic_quote', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name');
-			$table->timestamps();
+			$table->integer('topic_id');
+			$table->integer('quote_id');
 		});
 	}
 
@@ -27,7 +27,6 @@ class CreateQuoteTopicsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('topics');
+		Schema::dropIfExists('topic_quote');
 	}
-
 }

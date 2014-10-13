@@ -6,7 +6,7 @@ class Topic extends Eloquent {
 	 * Table used by the model
 	 * @var string
 	 */
-	public $table = 'quote_topics';
+	public $table = 'topics';
 
 	/**
 	 * hasMany relationship with the Quote model
