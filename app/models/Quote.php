@@ -28,4 +28,13 @@ class Quote extends Eloquent {
 		return $this->belongsTo('Topic');
 	}
 
+	/**
+	 * belongsToMany relationship with the Tag model
+	 * @return Tag
+	 */
+	public function tag()
+	{
+		return $this->belongsToMany('Tag');
+	}
+
 }

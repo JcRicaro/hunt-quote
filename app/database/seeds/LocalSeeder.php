@@ -25,6 +25,8 @@ class LocalSeeder extends Seeder {
 		$this->professions();
 		$this->quotes();
 		$this->topics();
+		$this->tags();
+		$this->quote_tag();
 	}
 
 	public function users($count = 2)
@@ -135,6 +137,40 @@ class LocalSeeder extends Seeder {
 			$db->insert([
 				'id'			=> $index,
 				'name'			=> ucfirst($f->word),
+				'created_at'	=> now(),
+				'updated_at'	=> now()
+			]);
+		}
+	}
+
+	public function tags($count = 4)
+	{
+		$f = $this->faker;
+		$db = DB::table('tags');
+		$db->truncate();
+
+		foreach(range(1, $count) as $index)
+		{
+			$db->insert([
+				'id'			=> $index,
+				'name'			=> $f->word,
+				'created_at'	=> now(),
+				'updated_at'	=> now()
+			]);
+		}
+	}
+
+	public function quote_tag($count = 4)
+	{
+		$db = DB::table('quote_tag');
+		$db->truncate();
+
+		foreach(range(1, $count) as $index)
+		{
+			$db->insert([
+				'id'			=> $index,
+				'quote_id'		=> $index,
+				'tag_id'		=> $index,
 				'created_at'	=> now(),
 				'updated_at'	=> now()
 			]);

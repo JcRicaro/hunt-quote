@@ -11,4 +11,7 @@
 |
 */
 
-Route::get('/', 'QuoteController@index');
+Route::get('/', function()
+{
+	return View::make('main.home');
+});
