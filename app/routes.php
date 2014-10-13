@@ -11,9 +11,11 @@
 |
 */
 
-// Route::get('/', function()
-// {
-// 	return View::make('main.home');
-// });
-
-Route::get('/', 'Dashboard\QuoteController@index');
+Route::group(['prefix' => 'dashboard'], function()
+{
+	Route::resource('Dashboard\Controller');
+	Route::resource('Dashboard\QuoteController');
+	Route::resource('Dashboard\ProfessionController');
+	Route::resource('Dashboard\AuthorController');
+	Route::resource('Dashboard\TopicController');
+});

@@ -20,7 +20,7 @@ class QuoteController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('dashboard.quote.index')
+		return \View::make('dashboard.quote.index')
 			->with('quotes', $this->quote->all());
 	}
 
