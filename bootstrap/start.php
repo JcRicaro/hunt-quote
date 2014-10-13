@@ -28,6 +28,8 @@ $env = $app->detectEnvironment(array(
 
 	'local' => array('homestead'),
 
+	'sr' => array('ubuntu', 'sr', 'kier'),
+
 ));
 
 /*
