@@ -11,11 +11,13 @@
 |
 */
 
+Route::get('/', 'Main\Controller@index');
+
 Route::group(['prefix' => 'dashboard'], function()
 {
-	Route::resource('Dashboard\Controller');
-	Route::resource('Dashboard\QuoteController');
-	Route::resource('Dashboard\ProfessionController');
-	Route::resource('Dashboard\AuthorController');
-	Route::resource('Dashboard\TopicController');
+	// Route::controller('/', Dashboard\Controller');
+	Route::resource('quotes', 'Dashboard\QuoteController');
+	// Route::resource('professions', Dashboard\ProfessionController');
+	// Route::resource('authors', Dashboard\AuthorController');
+	// Route::resource('topics', Dashboard\TopicController');
 });
