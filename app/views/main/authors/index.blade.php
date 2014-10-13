@@ -4,6 +4,9 @@
 @section('meta') @stop
 
 @section('content')
+	<pre>
+	{{ $authors}}
+	</pre>
 	@foreach($authors as $author)
 		{{ $author->name }}
 	@endforeach

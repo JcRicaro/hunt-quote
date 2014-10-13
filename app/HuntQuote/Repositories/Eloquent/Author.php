@@ -3,7 +3,7 @@
 use HuntQuote\Common\Repository\AbstractEloquent;
 use HuntQuote\Repositories\Author as AuthorInterface;
 use Author as AuthorModel;
-use Illuminate\Database\DatabaseManager as DB;
+use Illuminate\Support\Facades\DB;
 
 class Author extends AbstractEloquent implements AuthorInterface {
 
@@ -43,12 +43,13 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	 */
 	public function groupedAlphabetically()
 	{
-		// $query = "substr(autname, 1, 1) as alpha, count(*)";
 
-		return $this->db
-			->table('authors')
-			->select('substr(name, 1, 1) as letter, count(id) as index')
-			->groupBy('substr(name, 1, 1)')
+		return $this->model->select(DB::raw('
+				authors.name as name,
+				count(authors.name) as total,
+				substr(authors.name, 1, 1) as letter
+				'))
+			->groupBy('authors.id', DB::raw('substr(authors.name, 1, 1)'))
 			->get();
 	}
 	

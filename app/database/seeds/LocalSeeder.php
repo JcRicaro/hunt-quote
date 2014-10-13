@@ -48,7 +48,7 @@ class LocalSeeder extends Seeder {
 		}
 	}
 
-	public function authors($count = 5)
+	public function authors($count = 100)
 	{
 		$f = $this->faker;
 		$db = DB::table('authors');
@@ -69,7 +69,7 @@ class LocalSeeder extends Seeder {
 	}
 
 
-	public function professions($count = 4)
+	public function professions($count = 100)
 	{
 		$f = $this->faker;
 		$db = DB::table('author_professions');
@@ -106,7 +106,7 @@ class LocalSeeder extends Seeder {
 		}
 	}
 
-	public function quotes($count = 5)
+	public function quotes($count = 200)
 	{
 		$f = $this->faker;
 		$db = DB::table('quotes');
@@ -119,7 +119,6 @@ class LocalSeeder extends Seeder {
 			$db->insert([
 				'id'			=> $index,
 				'author_id'		=> $index % 4,
-				'topic_id'		=> $index % 4,
 				'content'		=> $f->paragraph($index % 3),
 				'photo'			=> $photo,
 				'created_at'	=> now(),
@@ -128,10 +127,10 @@ class LocalSeeder extends Seeder {
 		}
 	}
 
-	public function topics($count = 4)
+	public function topics($count = 60)
 	{
 		$f = $this->faker;
-		$db = DB::table('quote_topics');
+		$db = DB::table('topics');
 		$db->truncate();
 
 		foreach(range(1, $count) as $index)
@@ -145,7 +144,7 @@ class LocalSeeder extends Seeder {
 		}
 	}
 
-	public function tags($count = 4)
+	public function tags($count = 100)
 	{
 		$f = $this->faker;
 		$db = DB::table('tags');
@@ -162,7 +161,7 @@ class LocalSeeder extends Seeder {
 		}
 	}
 
-	public function quote_tag($count = 4)
+	public function quote_tag($count = 100)
 	{
 		$db = DB::table('quote_tag');
 		$db->truncate();

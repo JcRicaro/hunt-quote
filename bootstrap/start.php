@@ -26,10 +26,14 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('homestead'),
-
-	'sr' => array('ubuntu', 'sr', 'kier'),
-
+	'local' 		=> [
+						'ubuntu',
+						'sr',
+						'kier',
+						'ubuntudev'
+					],
+	'staging' 		=> [],
+	'production' 	=> []
 ));
 
 /*

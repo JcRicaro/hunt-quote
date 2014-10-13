@@ -16,7 +16,6 @@ class CreateQuotesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('author_id');
-			$table->integer('topic_id');
 			$table->text('content')->nullable();
 			$table->string('photo')->nullable();
 			$table->timestamps();
