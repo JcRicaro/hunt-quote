@@ -50,7 +50,7 @@
 			<hr>
 			<ul class="list-unstyled">
 				@foreach ($recentlyUpdatedAuthors as $author)
-					<li> {{ $author->birth_date }} - <a href="#"> {{ $author->name }} </a> </li>
+					<li> {{ date('Y', $author->birth_date->timestamp) }} - <a href="#"> {{ $author->name }} </a> </li>
 				@endforeach
 			</ul>
 

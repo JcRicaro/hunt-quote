@@ -19,7 +19,7 @@ class TopicController extends \BaseController {
 	 */
 	public function index()
 	{
-		$topics = $this->topic->paginate(10);
+		$topics = $this->topic->all();
 
 		return \View::make('main.topics.index')
 			->with('topics', $topics);
