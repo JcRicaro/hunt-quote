@@ -114,12 +114,14 @@ class LocalSeeder extends Seeder {
 
 		foreach(range(1, $count) as $index)
 		{
+			$photo = $index % 2 == 0 ? 'default.jpg': '';
+
 			$db->insert([
 				'id'			=> $index,
 				'author_id'		=> $index % 4,
 				'topic_id'		=> $index % 4,
 				'content'		=> $f->paragraph($index % 3),
-				'photo'			=> 'default.png',
+				'photo'			=> $photo,
 				'created_at'	=> now(),
 				'updated_at'	=> now()
 			]);

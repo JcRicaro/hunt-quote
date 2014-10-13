@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="container">
-		@include('_tpls.main._.nav');
+		@include('_tpls.main._.nav')
 
 		<div class="panel panel-default">
 			<div class="panel-body">

@@ -1,23 +1,44 @@
 <?php namespace Main;
 
+use HuntQuote\Repositories\Author;
+use HuntQuote\Repositories\Topic;
+use HuntQuote\Repositories\Quote;
+
 class Controller extends \BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
+	/**
+	 * Class constructor
+	 */
+	public function __construct(
+		Author $author,
+		Topic $topic,
+		Quote $quote
+	)
+	{
+		$this->author = $author;
+		$this->topic = $topic;
+		$this->quote = $quote;
+	}
 
+	/**
+	 * Homepage
+	 * 
+	 * @return Response
+	 */
 	public function index()
 	{
-		return \View::make('main.home');
+		$popularAuthors = $this->author->get();
+		$popularTopics = $this->topic->get();
+		$pictureQuotes = $this->quote->getWithPhotos();
+		$recentlyUpdatedAuthors = $this->author->getRecentlyUpdated();
+		$authorsWithBirthdays = $this->author->getWithBirthdaysToday();
+
+		return \View::make('main.home')
+			->with( 'recentlyUpdatedAuthors', $recentlyUpdatedAuthors )
+			->with( 'authorsWithBirthdays', $authorsWithBirthdays )
+			->with( 'popularAuthors', $popularAuthors )
+			->with( 'popularTopics', $popularTopics )
+			->with( 'pictureQuotes', $pictureQuotes );
 	}
 
 }

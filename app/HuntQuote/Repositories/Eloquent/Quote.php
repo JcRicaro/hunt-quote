@@ -10,5 +10,18 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 	{
 		$this->model = $quote;
 	}
+
+	/**
+	 * Get quotes with photos
+	 * @param  integer $count [description]
+	 * @return [type]         [description]
+	 */
+	public function getWithPhotos($count = 10)
+	{
+		return $this->model
+			->where('photo', '!=', '')
+			->take($count)
+			->get();
+	}
 	
 }

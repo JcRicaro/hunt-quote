@@ -9,6 +9,15 @@ class Quote extends Eloquent {
 	public $table = 'quotes';
 
 	/**
+	 * [getPogiAttribute description]
+	 * @return [type] [description]
+	 */
+	public function getPhotoURLAttribute()
+	{
+		return asset("uploads/quotes/{$this->photo}");
+	}
+
+	/**
 	 * belongsTo relationship with the Author model
 	 * 
 	 * @return Quote

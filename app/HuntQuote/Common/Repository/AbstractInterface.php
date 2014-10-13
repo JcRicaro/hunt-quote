@@ -12,7 +12,7 @@ interface AbstractInterface {
 	 * Fetch all records
 	 * @return Collection
 	 */
-	public function all($orderRow = 'id', $orderBy = 'asc');
+	public function all($orderRow = 'id', $orderBy = 'desc');
 
 	/**
 	 * Fetches all record, paginated
@@ -20,7 +20,7 @@ interface AbstractInterface {
 	 * @param  int $perPage
 	 * @return Paginate
 	 */
-	public function paginate($perPage, $orderRow = 'id', $orderBy = 'asc');
+	public function paginate($perPage, $orderRow = 'id', $orderBy = 'desc');
 
 	/**
 	 * Delete resoruce of given id
@@ -52,5 +52,12 @@ interface AbstractInterface {
 	 * @return [type]     [description]
 	 */
 	public function model($id);
+
+	/**
+	 * A collection of counted models
+	 * @param  integer $count [description]
+	 * @return [type]         [description]
+	 */
+	public function get($count = 10);
 
 }

@@ -28,7 +28,7 @@ abstract class AbstractEloquent {
 	 * @param  int $perPage
 	 * @return Paginate
 	 */
-	public function paginate($perPage, $orderRow = 'id', $orderBy = 'asc')
+	public function paginate($perPage, $orderRow = 'id', $orderBy = 'desc')
 	{
 		return $this->model
 			->orderBy($orderRow, $orderBy)
@@ -82,6 +82,27 @@ abstract class AbstractEloquent {
 	public function model($id)
 	{
 		return $this->model->newInstance();
+	}
+
+	/**
+	 * A collection of counted models
+	 * @param  integer $count [description]
+	 * @return [type]         [description]
+	 */
+	public function get($count = 10)
+	{
+		return $this->orderBy()->get();
+	}
+
+	/**
+	 * orderBy shorthand
+	 * @param  string $orderRow [description]
+	 * @param  string $orderBy  [description]
+	 * @return [type]           [description]
+	 */
+	protected function orderBy($orderRow = 'id', $orderBy = 'desc')
+	{
+		return $this->model->orderBy($orderRow, $orderBy);
 	}
 
 }
