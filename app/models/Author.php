@@ -8,6 +8,8 @@ class Author extends Eloquent {
 	 */
 	public $table = 'authors';
 
+	public $dates = ['birth_date', 'death_date'];
+
 	/**
 	 * belongsTo relationship with the Profession model
 	 * 

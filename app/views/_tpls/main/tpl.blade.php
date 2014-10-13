@@ -5,20 +5,20 @@
 	<meta charset="utf-8">
 	@yield('meta')
 
+	<link href="http://fonts.googleapis.com/css?family=Ruda" rel="stylesheet">
 	{{ HTML::style('vendor/bootstrap/dist/css/bootstrap.min.css') }}
 	{{ HTML::style('assets/css/stylesheet.css') }}
 	@yield('styles')
 </head>
 <body>
-	<div class="container">
-		@include('_tpls.main._.nav')
+	@include('_tpls.main._.nav')
+	@include('_tpls.main._.breadcrumbs')
 
-		<div class="panel panel-default">
-			<div class="panel-body">
-				@yield('content')
-			</div>
-		</div>
+	<div class="container">
+		@yield('content')
 	</div>
+
+	@include('_tpls.main._.footer')
 
 	{{ HTML::script('vendor/jquery/dist/jquery.min.js') }}
 	{{ HTML::script('vendor/bootstrap/dist/js/bootstrap.min.js') }}
