@@ -30,7 +30,7 @@ abstract class AbstractValidation {
 
 		if ( $validation->fails() )
 		{
-			throw new ValidationException;
+			throw new ValidationException( $validation->messages() );
 		}
 	}
 
@@ -47,7 +47,7 @@ abstract class AbstractValidation {
 
 		if ( $validation->fails() )
 		{
-			throw new ValidationException;
+			throw new ValidationException( $validation->messages() );
 		}
 	}
 }
