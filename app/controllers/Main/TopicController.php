@@ -20,13 +20,13 @@ class TopicController extends \BaseController {
 	public function index()
 	{
 		$topics = $this->topic->allWithoutHolidays();
-		$holiday = $this->topic->allHolidays();
-		$tags = $topics->tags;
+		$holidays = $this->topic->allHolidays();
+		// $tags = $topics->tags;
 
 		return \View::make('main.topics.index')
 			->with('topics', $topics)
-			->with('holiday', $holiday)
-			->with('tags', $tags);
+			->with('holidays', $holidays);
+			// ->with('tags', $tags);
 	}
 
 	/**
@@ -38,7 +38,7 @@ class TopicController extends \BaseController {
 	{
 		$topic = $this->topic->find($id);
 
-		return \View::make('main.topics.index')
+		return \View::make('main.topics.show')
 			->with('topic', $topic);
 	}
 

@@ -32,9 +32,9 @@ class Quote extends Eloquent {
 	 * 
 	 * @return Quote
 	 */
-	public function topic()
+	public function topics()
 	{
-		return $this->belongsTo('Topic');
+		return $this->belongsToMany('Topic', 'topic_quote');
 	}
 
 	/**

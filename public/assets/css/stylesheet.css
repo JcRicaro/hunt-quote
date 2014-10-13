@@ -125,6 +125,24 @@ footer .footer-copyright {
 	color: #fff;
 }
 
+.quote-panel {
+	position: relative;
+}
+
+.yagab-icon {
+	position: absolute;
+}
+
+.yagab-before {
+	display: block;
+	content: "&lasquo;";
+	opacity: 0.3;
+	font-size: 32px;
+	height: auto;
+	left: 25px;
+	top: 5px;
+}
+
 .wrap {
 	margin-bottom: 15px;
 }

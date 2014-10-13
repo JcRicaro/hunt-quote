@@ -26,6 +26,7 @@ class LocalSeeder extends Seeder {
 		$this->quotes();
 		$this->topics();
 		$this->tags();
+		$this->quote_topic();
 		$this->quote_tag();
 	}
 
@@ -135,9 +136,11 @@ class LocalSeeder extends Seeder {
 
 		foreach(range(1, $count) as $index)
 		{
+			$holiday = ($index % 10 == 0) ? true : false;
 			$db->insert([
 				'id'			=> $index,
 				'name'			=> ucfirst($f->word),
+				'is_holiday'	=> $holiday,
 				'created_at'	=> now(),
 				'updated_at'	=> now()
 			]);
@@ -160,6 +163,23 @@ class LocalSeeder extends Seeder {
 			]);
 		}
 	}
+
+	public function quote_topic($count = 100)
+	{
+		$db = DB::table('topic_quote');
+		$db->truncate();
+
+		foreach(range(1, $count) as $index)
+		{
+			$db->insert([
+				'id'			=> $index,
+				'quote_id'		=> $index,
+				'topic_id'		=> ($index % 10) + 1
+			]);
+		}
+	}
+
+
 
 	public function quote_tag($count = 100)
 	{

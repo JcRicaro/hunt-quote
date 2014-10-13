@@ -19,8 +19,8 @@ class Topic extends AbstractEloquent implements TopicInterface {
 	 */
 	public function allWithoutHolidays($orderCol = 'name', $orderBy = 'asc')
 	{
-		$this->orderBy($orderCol, $orderBy)
-			->where('is_holiday', false)
+		return $this->orderBy($orderCol, $orderBy)
+			->where('is_holiday', '0')
 			->get();
 	}
 
@@ -32,8 +32,8 @@ class Topic extends AbstractEloquent implements TopicInterface {
 	 */
 	public function allHolidays($orderCol = 'name', $orderBy = 'asc')
 	{
-		$this->orderBy($orderCol, $orderBy)
-			->where('is_holiday', true)
+		return $this->orderBy($orderCol, $orderBy)
+			->where('is_holiday', '1')
 			->get();
 	}
 

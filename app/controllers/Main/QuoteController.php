@@ -33,9 +33,15 @@ class QuoteController extends \BaseController {
 	public function show($id)
 	{
 		$quote = $this->quote->find($id);
+		$author = $quote->author;
+		$profession = $author->profession;
+		$topics = $quote->topics;
 
 		return \View::make('main.quotes.show')
-			->with('quote', $quote);
+			->with('quote', $quote)
+			->with('author', $author)
+			->with('profession', $profession)
+			->with('topics', $topics);
 	}
 
 	/**

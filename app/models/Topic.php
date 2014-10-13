@@ -15,7 +15,7 @@ class Topic extends Eloquent {
 	 */
 	public function quotes()
 	{
-		return $this->hasMany('Quote');
+		return $this->belongsToMany('Quote', 'topic_quote');
 	}
 
 	/**

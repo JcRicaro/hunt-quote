@@ -25,7 +25,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'huntquote',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => $_ENV['mysql_password'],
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
