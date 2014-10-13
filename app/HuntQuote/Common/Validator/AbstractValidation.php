@@ -40,7 +40,7 @@ abstract class AbstractValidation {
 	 * @throws ValidationException if validation was unsuccessful
 	 *  @return  void
 	 */
-	public functipon forUpdate(array $data = array())
+	public function forUpdate(array $data = array())
 	{
 		$rules = $this->updateRules;
 		$validation = $this->validator->make($data, $rules);
