@@ -1,4 +1,4 @@
-<?php
+<?php namespace Dashboard;
 
 use HuntQuote\Repositories\Quote;
 
@@ -20,7 +20,8 @@ class QuoteController extends \BaseController {
 	 */
 	public function index()
 	{
-		dd($this->quote->all());
+		return View::make('dashboard.quote.index')
+			->with('quotes', $this->quote->all());
 	}
 
 

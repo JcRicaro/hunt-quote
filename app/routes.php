@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('main.home');
-});
+// Route::get('/', function()
+// {
+// 	return View::make('main.home');
+// });
+
+Route::get('/', 'Dashboard\QuoteController@index');
