@@ -1,6 +1,6 @@
 <?php namespace HuntQuote\Validators;
 
-use HuntQuote\Common\Validation\AbstractValidation;
+use HuntQuote\Common\Validator\AbstractValidation;
 
 
 class Author extends AbstractValidation {

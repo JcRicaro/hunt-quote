@@ -1,4 +1,4 @@
-<?php namespace HuntQuote\Common\Repositories;
+<?php namespace HuntQuote\Common\Repository;
 
 abstract class AbstractEloquent {
 
@@ -15,11 +15,11 @@ abstract class AbstractEloquent {
 	 * Fetch all records
 	 * @return Collection
 	 */
-	public function all($orderRow = 'id', $orderBy = 'asc')
+	public function all($orderRow = 'id', $orderBy = 'desc')
 	{
 		return $this->model
 			->orderBy($orderRow, $orderBy)
-			->all();
+			->get();
 	}
 
 	/**

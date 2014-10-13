@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class Topic extends Eloquent {
 
