@@ -43,4 +43,23 @@ class Topic extends AbstractEloquent implements TopicInterface {
 		return $this->zRange();
 	}
 
+	/**
+	 * [getRandomSet description]
+	 * @param  [type] $limit    [description]
+	 * @param  [type] $orderCol [description]
+	 * @param  [type] $orderBy  [description]
+	 * @return [type]           [description]
+	 */
+	public function getRandomSet($limit = 10)
+	{
+		return $this->model
+			->orderByRaw('RAND()')
+			->take($limit)
+			->get()
+			->sortBy(function($set)
+			{
+				return $set->name;
+			});
+	}
+
 }

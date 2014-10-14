@@ -20,4 +20,15 @@ interface Topic extends AbstractInterface {
 	 */
 	public function allHolidays($orderCol = 'name', $orderBy = 'asc');
 
+	public function getByMostHits($count);
+
+	/**
+	 * [getRandomSet description]
+	 * @param  [type] $limit    [description]
+	 * @param  [type] $orderCol [description]
+	 * @param  [type] $orderBy  [description]
+	 * @return [type]           [description]
+	 */
+	public function getRandomSet($limit = 10);
+
 }

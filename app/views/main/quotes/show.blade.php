@@ -6,10 +6,16 @@
 @section('content')
 	<div class="row">
 		<div class="panel panel-default col-md-8 quote-panel">
+			@if ( $quote->hasPhoto() )
+				<div class="panel-thumbnail" style="background-image: url({{ $quote->photoURL }});"></div>
+			@endif
 			<div class="panel-body">
 				<h2> {{ $quote->content }} </h2>
 				<h4> &mdash; <a href="{{ route('authors.show', $author->id) }}"> {{ $author->name }}  </a> </h4>
-				<span class="yagab-icon yagab-before glyphicon glyphicon-pushpin"></span>
+
+				@if ( $quote->hasPhoto() )
+					<span class="yagab-icon yagab-before glyphicon glyphicon-pushpin"></span>
+				@endif
 			</div>
 		</div>
 	</div>

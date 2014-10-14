@@ -4,14 +4,18 @@
 @section('meta') @stop
 
 @section('content')
-	<h3> {{ $topic->name }} Quotes </h3>
-	<hr>
 
-	<div class="row">
-		<div class="col-md-8">
-			@if ( $photos->count() )
-				@include('main.topics.show.carousel')
-			@endif
+	@if ( $quotes->count() )
+
+		<h3> {{ $topic->name }} Quotes </h3>
+		<hr>
+
+		@if ( $photos->count() )
+			@include('main.topics.show.carousel')
+		@endif
+
+		<div class="row">
+			<div class="col-md-8">
 
 			{{ $quotes->links() }}
 
@@ -30,6 +34,14 @@
 					</li>
 				@endforeach
 			</ul>
+
+			</div>
 		</div>
-	</div>
+
+	@else
+		<h4> No quotes posted under {{ $topic->name }} </h4>
+		<hr>
+		<h5> Return to <a href="{{ route('authors.index') }}">List</a>.
+		<div class="placeholder-div"></div>
+	@endif
 @stop

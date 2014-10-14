@@ -46,5 +46,14 @@ interface Author extends AbstractInterface {
 	 * @return [type]            [description]
 	 */
 	public function getRelated($id, $limit = 10, $orderCol = 'name', $orderBy = 'asc');
+
+	/**
+	 * [getRandomSet description]
+	 * @param  [type] $limit    [description]
+	 * @param  [type] $orderCol [description]
+	 * @param  [type] $orderBy  [description]
+	 * @return [type]           [description]
+	 */
+	public function getRandomSet($limit = 10);
 	
 }

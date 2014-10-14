@@ -6,12 +6,12 @@
 				<hr>
 
 				<ul class="list-unstyled footer-navigation">
-					<li> Home </li>
-					<li> Authors </li>
-					<li> Topics </li>
-					<li> Quote of the Day </li>
-					<li> Pictures </li>
-					<li> Professions </li>
+					<li> <a href="{{ url('/') }}"> Home </a> </li>
+					<li> <a href="{{ route('authors.index') }}"> Authors </a> </li>
+					<li> <a href="{{ route('topics.index') }}"> Topics </a> </li>
+					<li> <a href="{{ url('/') }}"> Quote of the Day </a> </li>
+					<li> <a href="{{ route('quotes.photos') }}"> Pictures </a> </li>
+					<li> <a href="{{ route('professions.index') }}"> Professions </a> </li>
 				</ul>
 
 			</div>

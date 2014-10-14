@@ -33,6 +33,8 @@ class Controller extends \BaseController {
 		$recentlyUpdatedAuthors = $this->author->getRecentlyUpdated();
 		$authorsWithBirthdays = $this->author->getWithBirthdaysToday();
 		$quote = $this->quote->getRandomly();
+		$topicsToExplore = $this->topic->getRandomSet();
+		$authorsToExplore = $this->author->getRandomSet();
 
 		return \View::make('main.home')
 			->with( 'recentlyUpdatedAuthors', $recentlyUpdatedAuthors )
@@ -40,7 +42,9 @@ class Controller extends \BaseController {
 			->with( 'popularAuthors', $popularAuthors )
 			->with( 'popularTopics', $popularTopics )
 			->with( 'pictureQuotes', $pictureQuotes )
-			->with( 'featuredQuote', $quote );
+			->with( 'featuredQuote', $quote )
+			->with( 'authorsToExplore', $authorsToExplore )
+			->With( 'topicsToExplore', $topicsToExplore );
 	}
 
 }

@@ -38,8 +38,29 @@
 				@endforeach
 			</div>
 
-			<h3> Authors to Explore </h3>
-			<hr>
+			<div class="row">				
+				<div class="col-md-6">
+					<h3> Authors to Explore </h3>
+					<hr>
+
+					<ul class="list-unstyled">
+						@foreach($authorsToExplore as $author)
+							<li> <a href="{{ route('authors.show', $author->id) }}"> {{ $author->name }} </a> </li>
+						@endforeach
+					</ul>
+				</div>
+
+				<div class="col-md-6">
+					<h3> Topics to Explore </h3>
+					<hr>
+
+					<ul class="list-unstyled">
+						@foreach($topicsToExplore as $topic)
+							<li> <a href="{{ route('topics.show', $topic->id) }}"> {{ $topic->name }} </a> </li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
 		</div>
 
 		<div class="col-md-4">

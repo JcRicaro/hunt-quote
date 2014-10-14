@@ -18,9 +18,9 @@
 		<div class="container">
 			@yield('content')
 		</div>
-
-		@include('_tpls.main._.footer')
 	</div>
+
+	@include('_tpls.main._.footer')
 
 	{{ HTML::script('vendor/jquery/dist/jquery.min.js') }}
 	{{ HTML::script('vendor/bootstrap/dist/js/bootstrap.min.js') }}
