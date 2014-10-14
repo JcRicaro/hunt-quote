@@ -1,7 +1,9 @@
 <nav class="navbar navbar-gaws" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">HuntQuote</a>
+      <a class="navbar-brand" href="#">
+        <img src="{{ asset('assets/img/banner.png') }}" width="150px" class="navbar-logo">
+      </a>
     </div>
 
     <div class="collapse navbar-collapse" id="main-nav">

@@ -27,7 +27,7 @@ class Controller extends \BaseController {
 	 */
 	public function index()
 	{
-		$popularAuthors = $this->author->get(20);
+		$popularAuthors = $this->author->get(10);
 		$popularTopics = $this->topic->get(10);
 		$pictureQuotes = $this->quote->getWithPhotos(2);
 		$recentlyUpdatedAuthors = $this->author->getRecentlyUpdated();

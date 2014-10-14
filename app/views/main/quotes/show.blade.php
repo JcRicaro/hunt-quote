@@ -13,7 +13,7 @@
 				<h2> {{ $quote->content }} </h2>
 				<h4> &mdash; <a href="{{ route('authors.show', $author->id) }}"> {{ $author->name }}  </a> </h4>
 
-				@if ( $quote->hasPhoto() )
+				@if ( !$quote->hasPhoto() )
 					<span class="yagab-icon yagab-before glyphicon glyphicon-pushpin"></span>
 				@endif
 			</div>

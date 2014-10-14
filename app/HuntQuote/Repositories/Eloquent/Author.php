@@ -49,12 +49,12 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	 */
 	public function groupedAlphabetically()
 	{
-		return $this->model->select(DB::raw('
-				substr(authors.name, 1, 1) as letter,
-				authors.name as name
-				'))
-			->orderBy('authors.name')
-			->get();
+		return $this->orderBy('name', 'asc')
+			->get()
+			->groupBy(function($author)
+			{
+				return substr($author->name, 0, 1);
+			});
 	}
 
 	/**

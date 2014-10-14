@@ -31,6 +31,16 @@ Route::group(['prefix' => 'quotes'], function()
 		'uses' => 'Main\QuoteController@photos'
 	]);
 
+	Route::get('submission', [
+		'as'   => 'quotes.submission',
+		'uses' => 'Main\QuoteController@submission'
+	]);
+
+	Route::post('submission', [
+		'as'   => 'quotes.submission.post',
+		'uses' => 'Main\QuoteController@submissionpost'
+	]);
+
 	Route::get('{id}', [
 		'as'   => 'quotes.show',
 		'uses' => 'Main\QuoteController@show'

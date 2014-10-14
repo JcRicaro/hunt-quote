@@ -60,4 +60,14 @@ class QuoteController extends \BaseController {
 			->with('quotes', $quotes);
 	}
 
+	public function submission()
+	{
+		return \View::make('main.quotes.submission');
+	}
+
+	public function submissionpost()
+	{
+		//
+	}
+
 }
