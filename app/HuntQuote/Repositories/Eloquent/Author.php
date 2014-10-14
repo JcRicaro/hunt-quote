@@ -3,13 +3,19 @@
 use HuntQuote\Common\Repository\AbstractEloquent;
 use HuntQuote\Repositories\Author as AuthorInterface;
 use Author as AuthorModel;
+use Profession as ProfessionModel;
 use Illuminate\Support\Facades\DB;
 
 class Author extends AbstractEloquent implements AuthorInterface {
 
-	public function __construct(AuthorModel $author, DB $db)
+	public function __construct(
+		AuthorModel $author,
+		DB $db,
+		ProfessionModel $profession
+	)
 	{
 		$this->model = $author;
+		$this->profession = $profession;
 		$this->db = $db;
 	}
 
@@ -73,6 +79,23 @@ class Author extends AbstractEloquent implements AuthorInterface {
 		return $this->model
 			->where('name', 'LIKE', "$character%")
 			->paginate($perPage);
+	}
+
+	/**
+	 * [getRelated description]
+	 * @param  [type]  $id       [description]
+	 * @param  integer $limit    [description]
+	 * @param  string  $orderCol [description]
+	 * @param  string  $orderBy  [description]
+	 * @return [type]            [description]
+	 */
+	public function getRelated($id, $limit = 10, $orderCol = 'name', $orderBy = 'asc')
+	{
+		return $this->model
+			->where('profession_id', $id)
+			->orderBy($orderCol, $orderBy)
+			->take($limit)
+			->get();
 	}
 	
 }

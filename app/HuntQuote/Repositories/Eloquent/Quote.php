@@ -19,7 +19,7 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 	public function getWithPhotos($count = 10)
 	{
 		return $this->model
-			->where('photo', '!=', '')
+			->withPhoto()
 			->take($count)
 			->get();
 	}
@@ -32,7 +32,7 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 	public function getWithPhotosPaginated($count = 10)
 	{
 		return $this->model
-			->where('photo', '!=', '')
+			->withPhoto()
 			->paginate($count);
 	}
 

@@ -33,9 +33,13 @@ class AuthorController extends \BaseController {
 	public function show($id)
 	{
 		$author = $this->author->find($id);
+		$photos = $author->quotes()->withPhoto()->take(10)->get();
+		$quotes = $author->quotes()->paginate(10);
 
 		return \View::make('main.authors.show')
-			->with('author', $author);
+			->with('author', $author)
+			->with('photos', $photos)
+			->With('quotes', $quotes);
 	}
 
 	/**

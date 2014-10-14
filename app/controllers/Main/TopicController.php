@@ -37,9 +37,14 @@ class TopicController extends \BaseController {
 	public function show($id)
 	{
 		$topic = $this->topic->find($id);
+		$topic->incrementHits();
+		$photos = $topic->quotes()->withPhoto()->take(10)->get();
+		$quotes = $topic->quotes()->paginate(10);
 
 		return \View::make('main.topics.show')
-			->with('topic', $topic);
+			->with('topic', $topic)
+			->with('photos', $photos)
+			->with('quotes', $quotes);
 	}
 
 }

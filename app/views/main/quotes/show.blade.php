@@ -26,7 +26,17 @@
 			<div>
 				Born: <a href="#"> {{ date('Y', $author->birth_date->timestamp) }} </a>
 			</div>
+		</div>
 
+		<div class="col-md-4">
+			<h3> Related Authors </h3>
+			<hr>
+
+			<ul class="list-unstyled">
+				@foreach($related as $author)
+					<li> <a href="{{ route('authors.show', $author->id) }}"> {{ $author->name }} </a> </li>
+				@endforeach
+			</ul>
 		</div>
 
 		<div class="col-md-4">

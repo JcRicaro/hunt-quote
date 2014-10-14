@@ -36,5 +36,15 @@ interface Author extends AbstractInterface {
 	 * @return [type]            [description]
 	 */
 	public function getByCharacterPaginated($character, $perPage = 30);
+
+	/**
+	 * [getRelated description]
+	 * @param  [type]  $id       [description]
+	 * @param  integer $limit    [description]
+	 * @param  string  $orderCol [description]
+	 * @param  string  $orderBy  [description]
+	 * @return [type]            [description]
+	 */
+	public function getRelated($id, $limit = 10, $orderCol = 'name', $orderBy = 'asc');
 	
 }

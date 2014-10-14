@@ -22,7 +22,7 @@ class Topic extends Eloquent {
 	 * 
 	 * @return [type] [description]
 	 */
-	public function getHitsAttributes()
+	public function getHitsAttribute()
 	{
 		$redis = App::make('redis');
 		return $redis->zScore('topic-hits', $this->id);

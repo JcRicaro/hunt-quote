@@ -37,4 +37,10 @@ class Topic extends AbstractEloquent implements TopicInterface {
 			->get();
 	}
 
+	public function getByMostHits($count)
+	{
+		$redis = Redis::connection();
+		return $this->zRange();
+	}
+
 }

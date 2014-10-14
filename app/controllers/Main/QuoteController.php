@@ -1,15 +1,17 @@
 <?php namespace Main;
 
 use HuntQuote\Repositories\Quote;
+use HuntQuote\Repositories\Author;
 
 class QuoteController extends \BaseController {
 
 	/**
 	 * Class constructor
 	 */
-	public function __construct(Quote $quote)
+	public function __construct(Quote $quote, Author $author)
 	{
 		$this->quote = $quote;
+		$this->author = $author;
 	}
 
 	/**
@@ -36,12 +38,14 @@ class QuoteController extends \BaseController {
 		$author = $quote->author;
 		$profession = $author->profession;
 		$topics = $quote->topics;
+		$related = $this->author->getRelated($profession->id, 5);
 
 		return \View::make('main.quotes.show')
 			->with('quote', $quote)
 			->with('author', $author)
 			->with('profession', $profession)
-			->with('topics', $topics);
+			->with('topics', $topics)
+			->with('related', $related);
 	}
 
 	/**

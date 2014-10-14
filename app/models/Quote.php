@@ -58,4 +58,24 @@ class Quote extends Eloquent {
 		);
 	}
 
+	/**
+	 * Quotes with photos
+	 * @param  [type] $query [description]
+	 * @return [type]        [description]
+	 */
+	public function scopeWithPhoto($query)
+	{
+		return $query->where('photo', '!=', '');
+	}
+
+	public function hasPhoto()
+	{
+		if ( $this->photo == '' )
+		{
+			return false;
+		}
+
+		return true;
+	}
+
 }
