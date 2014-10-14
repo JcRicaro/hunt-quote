@@ -83,11 +83,13 @@ footer > .container,
 	margin-right: auto;
 }
 
-.author-row {
+.author-row,
+.gaws-row {
 	cursor: pointer;
 }
 
-.author-row td:hover {
+.author-row td:hover,
+.gaws-row:hover {
 	color: #428bca;
 }
 
@@ -104,7 +106,7 @@ footer > .container,
 
 /** Footer */
 footer {
-	position: absolute;
+	position: relative;
 	bottom: 0;
 	color: #fff;
 	background: #f97d70;
@@ -145,4 +147,16 @@ footer .footer-copyright {
 
 .wrap {
 	margin-bottom: 15px;
+}
+
+.photo-quote-list .photo-quote-item {
+	margin-bottom: 25px;
+}
+
+.photo-quote-item .photo-quote {
+	width: 100%;
+	display: block;
+	height: 250px;
+	background-size: cover;
+	background-position: center center;
 }

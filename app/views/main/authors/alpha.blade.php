@@ -9,7 +9,7 @@
 		<h3> Quotes by '{{ strtoupper($character) }}' authors </h3>
 		<hr>
 
-		{{ $authors->links() }}
+		
 
 		<table class="table table-hover">
 			<thead>

@@ -50,7 +50,7 @@ class QuoteController extends \BaseController {
 	 */
 	public function photos()
 	{
-		$quotes = $this->quote->getWithPhotosPaginated();
+		$quotes = $this->quote->getWithPhotosPaginated(32);
 
 		return \View::make('main.quotes.photos')
 			->with('quotes', $quotes);

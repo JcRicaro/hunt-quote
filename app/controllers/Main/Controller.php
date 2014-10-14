@@ -27,18 +27,20 @@ class Controller extends \BaseController {
 	 */
 	public function index()
 	{
-		$popularAuthors = $this->author->get();
-		$popularTopics = $this->topic->get();
-		$pictureQuotes = $this->quote->getWithPhotos();
+		$popularAuthors = $this->author->get(20);
+		$popularTopics = $this->topic->get(10);
+		$pictureQuotes = $this->quote->getWithPhotos(2);
 		$recentlyUpdatedAuthors = $this->author->getRecentlyUpdated();
 		$authorsWithBirthdays = $this->author->getWithBirthdaysToday();
+		$quote = $this->quote->getRandomly();
 
 		return \View::make('main.home')
 			->with( 'recentlyUpdatedAuthors', $recentlyUpdatedAuthors )
 			->with( 'authorsWithBirthdays', $authorsWithBirthdays )
 			->with( 'popularAuthors', $popularAuthors )
 			->with( 'popularTopics', $popularTopics )
-			->with( 'pictureQuotes', $pictureQuotes );
+			->with( 'pictureQuotes', $pictureQuotes )
+			->with( 'featuredQuote', $quote );
 	}
 
 }

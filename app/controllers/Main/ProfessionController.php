@@ -32,10 +32,12 @@ class ProfessionController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$author = $this->profession->find($id);
+		$profession = $this->profession->find($id);
+		$authors = $profession->authors()->paginate(30);
 
-		return \View::make('main.professions.index')
-			->with('profession', $profession);
+		return \View::make('main.professions.show')
+			->with('profession', $profession)
+			->with('authors', $authors);
 	}
 
 }

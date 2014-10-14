@@ -59,7 +59,7 @@ class LocalSeeder extends Seeder {
 		{
 			$db->insert([
 				'id'			=> $index,
-				'profession_id'	=> $index % 3,
+				'profession_id'	=> ($index % 3) + 1,
 				'name'			=> $f->name,
 				'birth_date'	=> $f->dateTimeBetween(),
 				'death_Date'	=> $f->dateTimeBetween(),

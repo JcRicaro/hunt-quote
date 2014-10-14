@@ -13,7 +13,7 @@ class Profession extends Eloquent {
 	 * 
 	 * @return Quote
 	 */
-	public function author()
+	public function authors()
 	{
 		return $this->hasMany('Author');
 	}

@@ -35,5 +35,16 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 			->where('photo', '!=', '')
 			->paginate($count);
 	}
-	
+
+	/**
+	 * {self-e}
+	 * @return [type] [description]
+	 */
+	public function getRandomly()
+	{
+		return $this->model
+			->orderByRaw('RAND()')
+			->first();
+	}
+
 }

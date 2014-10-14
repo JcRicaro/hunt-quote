@@ -46,6 +46,17 @@
 			<h3> Quote of the Moment </h3>
 			<hr>
 
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<p> {{ $featuredQuote->content }} </p>
+
+					<h4>
+						&mdash;
+						<a href="{{ route('authors.show', $featuredQuote->author->id) }}"> {{ $featuredQuote->author->name }} </a>
+					</h4>
+				</div>
+			</div>
+
 			<h3> Today's Birthdays </h3>
 			<hr>
 			<ul class="list-unstyled">

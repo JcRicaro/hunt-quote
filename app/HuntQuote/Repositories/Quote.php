@@ -17,5 +17,11 @@ interface Quote extends AbstractInterface {
 	 * @return [type]         [description]
 	 */
 	public function getWithPhotosPaginated($count = 10);
+
+	/**
+	 * {self-e}
+	 * @return [type] [description]
+	 */
+	public function getRandomly();
 	
 }

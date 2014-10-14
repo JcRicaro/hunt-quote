@@ -91,7 +91,9 @@ abstract class AbstractEloquent {
 	 */
 	public function get($count = 10)
 	{
-		return $this->orderBy()->get();
+		return $this->orderBy()
+			->take($count)
+			->get();
 	}
 
 	/**
