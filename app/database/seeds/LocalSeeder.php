@@ -24,10 +24,12 @@ class LocalSeeder extends Seeder {
 		$this->authors();
 		$this->professions();
 		$this->quotes();
+		$this->citations();
 		$this->topics();
 		$this->tags();
 		$this->quote_topic();
 		$this->quote_tag();
+		$this->author_profession();
 	}
 
 	public function users($count = 2)
@@ -59,7 +61,6 @@ class LocalSeeder extends Seeder {
 		{
 			$db->insert([
 				'id'			=> $index,
-				'profession_id'	=> ($index % 3) + 1,
 				'name'			=> $f->name,
 				'birth_date'	=> $f->dateTimeBetween(),
 				'death_Date'	=> $f->dateTimeBetween(),
@@ -73,7 +74,7 @@ class LocalSeeder extends Seeder {
 	public function professions($count = 100)
 	{
 		$f = $this->faker;
-		$db = DB::table('author_professions');
+		$db = DB::table('professions');
 		$db->truncate();
 
 		$professions = [
@@ -120,11 +121,34 @@ class LocalSeeder extends Seeder {
 			$db->insert([
 				'id'			=> $index,
 				'author_id'		=> $index % 4,
-				'content'		=> $f->paragraph($index % 3),
+				'content'		=> $f->paragraph(rand(1,3)),
 				'photo'			=> $photo,
 				'created_at'	=> now(),
 				'updated_at'	=> now()
 			]);
+		}
+	}
+
+	public function citations()
+	{
+		$f = $this->faker;
+		$db = DB::table('citations');
+		$db->truncate();
+
+		$quotes = DB::table('quotes')->lists('id');
+
+		foreach($quotes as $quote)
+		{
+			foreach(range(0, rand(1,4)) as $index)
+			{
+				$db->insert([
+					'quote_id' => $quote,
+					'title' => ucfirst($f->sentence(rand(1,3))),
+					'text' => $f->paragraph(rand(1,3)),
+					'created_at' => now(),
+					'updated_at' => now()
+					]);
+			}
 		}
 	}
 
@@ -179,7 +203,38 @@ class LocalSeeder extends Seeder {
 		}
 	}
 
+	public function author_profession()
+	{
+		$db = DB::table('author_profession');
+		$db->truncate();
 
+		$authors = DB::table('authors')->lists('id');
+		$professions = DB::table('professions')->lists('id');
+
+		foreach($authors as $author)
+		{
+			$authorProfessions = array_rand($professions, rand(1, count($professions)));
+
+			if(is_array($authorProfessions))
+			{
+				foreach($authorProfessions as $authorProfession)
+				{
+					$db->insert([
+						'author_id' => $author,
+						'profession_id' => $authorProfession
+						]);
+				}	
+			}
+			else
+			{
+				$db->insert([
+					'author_id' => $author,
+					'profession_id' => $authorProfessions
+					]);
+			}
+			
+		}
+	}
 
 	public function quote_tag($count = 100)
 	{

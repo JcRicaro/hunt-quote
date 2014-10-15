@@ -54,7 +54,11 @@
 							{{ $author->name }}
 						</td>
 						<td>
-							{{ $author->profession->name }}
+							<ul class="list-unstyled">
+								@foreach($author->professions as $profession)
+								<li>{{ $profession->name }}</li>
+								@endforeach
+							</ul>
 						</td>
 						<td>
 							<a href="{{ URL::to('dashboard/authors/' . $author->id . '/edit') }}">

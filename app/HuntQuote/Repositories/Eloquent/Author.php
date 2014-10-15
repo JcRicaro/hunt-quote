@@ -12,7 +12,6 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	public function __construct(AuthorModel $author, DB $db)
 	{
 		$this->model = $author;
-		$this->profession = $profession;
 		$this->db = $db;
 	}
 

@@ -17,9 +17,9 @@ class Author extends Eloquent {
 	 * 
 	 * @return Quote
 	 */
-	public function profession()
+	public function professions()
 	{
-		return $this->belongsTo('Profession');
+		return $this->belongsToMany('Profession', 'author_profession');
 	}
 
 	/**

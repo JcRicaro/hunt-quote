@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorsTable extends Migration {
+class CreateProfessionAuthorRelation extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,11 @@ class CreateAuthorsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('authors', function(Blueprint $table)
+		Schema::create('author_profession', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name');
-			$table->timestamp('birth_date')->nullable();
-			$table->timestamp('death_date')->nullable();
-			$table->timestamps();
+			$table->integer('author_id');
+			$table->integer('profession_id');
 		});
 	}
 
@@ -29,7 +27,7 @@ class CreateAuthorsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('authors');
+		Schema::dropIfExists('author_profession');
 	}
 
 }
