@@ -8,11 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class Author extends AbstractEloquent implements AuthorInterface {
 
-	public function __construct(
-		AuthorModel $author,
-		DB $db,
-		ProfessionModel $profession
-	)
+
+	public function __construct(AuthorModel $author, DB $db)
 	{
 		$this->model = $author;
 		$this->profession = $profession;

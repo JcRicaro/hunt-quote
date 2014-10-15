@@ -79,7 +79,7 @@ abstract class AbstractEloquent {
 	 * @param  int $id
 	 * @return [type]     [description]
 	 */
-	public function model($id)
+	public function model()
 	{
 		return $this->model->newInstance();
 	}

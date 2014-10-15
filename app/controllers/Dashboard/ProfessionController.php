@@ -1,6 +1,14 @@
 <?php namespace Dashboard;
 
+use HuntQuote\Common\Validator\ValidationException;
+use HuntQuote\Repositories\Profession;
+
 class ProfessionController extends \BaseController {
+
+	public function __construct(Profession $profession)
+	{
+		$this->profession = $profession;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +17,8 @@ class ProfessionController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return \View::make('dashboard.professions.index')
+			->with('data', $this->profession->paginate(10));
 	}
 
 
@@ -20,7 +29,7 @@ class ProfessionController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return \View::make('dashboard.professions.create');
 	}
 
 
@@ -31,7 +40,16 @@ class ProfessionController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		try
+		{
+			$this->profession->create(\Input::only('name'));
+
+			return \Redirect::to('dashboard/professions')->withMessage('Profession created');
+		}
+		catch (ValidationException $e)
+		{
+			retur \Redirect::to('dashboard/professions/create')->withErrors($e->getMessage());
+		}
 	}
 
 
@@ -55,7 +73,8 @@ class ProfessionController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return \View:;make('dashboard.professions.edit')
+			->with('data', $this->profession->find($id));
 	}
 
 
@@ -67,7 +86,14 @@ class ProfessionController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		try
+		{
+			$this->profession->update($id, \Input::only(['name']));
+		}
+		catch (Exception $e)
+		{
+			return \Redirect::to('dashboard/professions/' . $id . '/edit')->withErrors($e->getMessage());
+		}
 	}
 
 

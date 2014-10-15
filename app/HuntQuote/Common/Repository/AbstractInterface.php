@@ -51,7 +51,7 @@ interface AbstractInterface {
 	 * @param  int $id
 	 * @return [type]     [description]
 	 */
-	public function model($id);
+	public function model();
 
 	/**
 	 * A collection of counted models

@@ -1,5 +1,5 @@
-<?php namespace HuntQuote\Common\Validation;
+<?php namespace HuntQuote\Common\Validator;
 
-class ValidationException extends Exception {
+class ValidationException extends \Exception {
 	// Nothing to override
 }
