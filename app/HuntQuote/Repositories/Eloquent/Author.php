@@ -4,13 +4,15 @@ use HuntQuote\Common\Repository\AbstractEloquent;
 use HuntQuote\Repositories\Author as AuthorInterface;
 use Author as AuthorModel;
 use Illuminate\Support\Facades\DB;
+use HuntQuote\Validators\Author as AuthorValidator;
 
 class Author extends AbstractEloquent implements AuthorInterface {
 
-	public function __construct(AuthorModel $author, DB $db)
+	public function __construct(AuthorModel $author, DB $db, AuthorValidator $validator)
 	{
 		$this->model = $author;
 		$this->db = $db;
+		$this->validate = $validator;
 	}
 
 	/**

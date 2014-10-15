@@ -1,6 +1,7 @@
-<?php namespace HuntQuote\Common\Validation;
+<?php namespace HuntQuote\Common\Validator;
 
-use HuntQuote\Common\Validation\ValidationException;
+use HuntQuote\Common\Validator\ValidationException;
+use Illuminate\Support\Facades\Validator;
 
 abstract class AbstractValidation {
 
@@ -26,7 +27,7 @@ abstract class AbstractValidation {
 	public function forCreation(array $data = array())
 	{
 		$rules = $this->creationRules;
-		$validation = $this->validator->make($data, $rules);
+		$validation = Validator::make($data, $rules);
 
 		if ( $validation->fails() )
 		{

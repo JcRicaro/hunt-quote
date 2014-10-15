@@ -1,6 +1,19 @@
 <?php namespace Dashboard;
 
+use HuntQuote\Repositories\Author;
+use HuntQuote\Common\Validator\ValidationException;
+
 class AuthorController extends \BaseController {
+	
+	/**
+	 * @var Author
+	 */
+	private $author;
+
+	public function __construct(Author $author)
+	{
+		$this->author = $author;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +22,8 @@ class AuthorController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return \View::make('dashboard.authors.index')
+			->with('data', $this->author->paginate(10));
 	}
 
 
@@ -20,7 +34,7 @@ class AuthorController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return \View::make('dashboard.authors.create');
 	}
 
 
@@ -31,7 +45,16 @@ class AuthorController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		try
+		{
+			$this->author->create(\Input::only(['profession_id', 'name', 'birth_date', 'death_date']));
+
+			return \Redirect::to('dashboard/authors')->withMessage('Author Created');
+		}
+		catch (ValidationException $e)
+		{
+			return \Redirect::to('dashboard/authors/create')->withErrors($e->getMessage());	
+		}
 	}
 
 
