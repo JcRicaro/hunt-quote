@@ -36,8 +36,8 @@
 			</div>
 
 			<div class="form-group">
-				{{ Form::label('occupation', 'Occupation') }}
-				{{ Form::text('profession_id', 1, ['class' => 'form-control']) }}
+				{{ Form::label('professions', 'Professions') }}
+				{{ Form::select('professions[]', $professions, null, ['class' => 'chosen-select form-control', 'multiple' => 'multiple']) }}
 			</div>
 		</div>
 		<div class="box-footer">
@@ -45,4 +45,19 @@
 		</div>
 		{{ Form::close() }}
 	</div>
+@stop
+
+@section('styles')
+	{{ HTML::style('assets/admin-lte/css/chosen/chosen.min.css') }}
+@stop
+
+@section('scripts')
+	{{ HTML::script('assets/admin-lte/js/plugins/chosen/chosen.jquery.min.js') }}
+
+	<script type="text/javascript">
+		jQuery(function($)
+		{
+			$(".chosen-select").chosen({max_selected_options: 5});		
+		})
+	</script>
 @stop

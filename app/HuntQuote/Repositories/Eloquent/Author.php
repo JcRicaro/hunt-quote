@@ -5,14 +5,38 @@ use HuntQuote\Repositories\Author as AuthorInterface;
 use Author as AuthorModel;
 use Profession as ProfessionModel;
 use Illuminate\Support\Facades\DB;
+use HuntQuote\Validators\Author as AuthorValidator;
 
 class Author extends AbstractEloquent implements AuthorInterface {
 
 
-	public function __construct(AuthorModel $author, DB $db)
+	public function __construct(AuthorModel $author, DB $db, AuthorValidator $validator)
 	{
 		$this->model = $author;
 		$this->db = $db;
+		$this->validate = $validator;
+	}
+
+
+	/**
+	 * Override create
+	 * 
+	 * @param  array  $data name, birth_date, death_date, array professions
+	 * @return Author
+	 */
+	public function create(array $data = array())
+	{
+		$this->validate->forCreation($data);
+		
+		if($data['professions'])
+		{
+			return $this->model()
+				->create($data)
+				->professions()
+				->sync($data['professions']);
+		}
+
+		return $this->model()->create($data);
 	}
 
 	/**

@@ -53,10 +53,10 @@ abstract class AbstractEloquent {
 	 */
 	public function create(array $data = array())
 	{
-		$this->validate->forCreation();
+		$this->validate->forCreation($data);
+		
 		return $this->model()
-			->fill($data)
-			->save();
+				->create($data);
 	}
 
 	/**
@@ -68,7 +68,7 @@ abstract class AbstractEloquent {
 	 */
 	public function update($id, array $data = array())
 	{
-		$this->validate->forUpdate();
+		$this->validate->forUpdate($data);
 		return $this->find($id)
 			->fill($data)
 			->save();

@@ -1,6 +1,7 @@
 <?php namespace Dashboard;
 
 use HuntQuote\Repositories\Author;
+use HuntQuote\Repositories\Profession;
 use HuntQuote\Common\Validator\ValidationException;
 
 class AuthorController extends \BaseController {
@@ -10,9 +11,15 @@ class AuthorController extends \BaseController {
 	 */
 	private $author;
 
-	public function __construct(Author $author)
+	/**
+	 * @var Profession
+	 */
+	private $profession;
+
+	public function __construct(Author $author, Profession $profession)
 	{
 		$this->author = $author;
+		$this->profession = $profession;
 	}
 
 	/**
@@ -34,7 +41,8 @@ class AuthorController extends \BaseController {
 	 */
 	public function create()
 	{
-		return \View::make('dashboard.authors.create');
+		return \View::make('dashboard.authors.create')
+			->with('professions', $this->profession->all()->lists('name', 'id'));
 	}
 
 
@@ -47,7 +55,7 @@ class AuthorController extends \BaseController {
 	{
 		try
 		{
-			$this->author->create(\Input::only(['profession_id', 'name', 'birth_date', 'death_date']));
+			$this->author->create(\Input::only(['name', 'birth_date', 'death_date', 'professions']));
 
 			return \Redirect::to('dashboard/authors')->withMessage('Author Created');
 		}
@@ -55,18 +63,6 @@ class AuthorController extends \BaseController {
 		{
 			return \Redirect::to('dashboard/authors/create')->withErrors($e->getMessage());	
 		}
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
 	}
 
 

@@ -11,6 +11,8 @@
         <!-- Theme style -->
         {{ HTML::style('assets/admin-lte/css/AdminLTE.css') }}
 
+        @yield('styles')
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -123,5 +125,7 @@
         {{ HTML::script('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js') }}
         <!-- AdminLTE App -->
         {{ HTML::script('assets/admin-lte/js/AdminLTE/app.js') }}
+
+        @yield('scripts')
     </body>
 </html>

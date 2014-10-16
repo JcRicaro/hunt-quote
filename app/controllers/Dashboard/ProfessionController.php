@@ -73,7 +73,7 @@ class ProfessionController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		return \View:;make('dashboard.professions.edit')
+		return \View::make('dashboard.professions.edit')
 			->with('data', $this->profession->find($id));
 	}
 

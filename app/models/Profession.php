@@ -2,6 +2,8 @@
 
 class Profession extends Eloquent {
 
+	protected $fillable = ['name'];
+
 	/**
 	 * Table used by the model
 	 * @var string
@@ -15,7 +17,7 @@ class Profession extends Eloquent {
 	 */
 	public function authors()
 	{
-		return $this->hasMany('Author');
+		return $this->belongsToMany('Author');
 	}
 
 }

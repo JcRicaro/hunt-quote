@@ -10,7 +10,7 @@ class Author extends Eloquent {
 
 	public $dates = ['birth_date', 'death_date'];
 
-	public $fillable = ['profession_id'];
+	public $fillable = ['name', 'birth_date', 'death_date'];
 
 	/**
 	 * belongsTo relationship with the Profession model
