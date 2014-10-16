@@ -61,7 +61,7 @@ class AuthorController extends \BaseController {
 		}
 		catch (ValidationException $e)
 		{
-			return \Redirect::to('dashboard/authors/create')->withErrors($e->getMessage());	
+			return \Redirect::to('dashboard/authors/create')->withErrors($e->getMessage())->withInputs();	
 		}
 	}
 
@@ -74,7 +74,9 @@ class AuthorController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return \View::make('dashboard.authors.edit')
+			->with('data', $this->author->find($id))
+			->with('professions', $this->profession->all()->lists('name', 'id'));
 	}
 
 
@@ -86,7 +88,16 @@ class AuthorController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		try
+		{
+			$this->author->update($id, \Input::only(['name', 'birth_date', 'death_date', 'professions']));
+
+			return \Redirect::to('dashboard/authors')->withMessage('Author Saved');
+		}
+		catch (ValidationException $e)
+		{
+			return \Redirect::to('dashboard/authors/' . $id . '/edit')->withErrors($e->getMessage());
+		}
 	}
 
 
@@ -98,8 +109,8 @@ class AuthorController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$this->author->delete($id);
+
+		return \Response::json(['status' => true]);
 	}
-
-
 }

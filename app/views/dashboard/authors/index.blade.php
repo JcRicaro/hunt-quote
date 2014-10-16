@@ -39,10 +39,10 @@
 						<th>
 							Name
 						</th>
-						<th>
+						<th class="col-sm-2">
 							Profession
 						</th>
-						<th class="col-sm-1">
+						<th class="col-sm-2">
 							
 						</th>
 					</tr>
@@ -60,9 +60,12 @@
 								@endforeach
 							</ul>
 						</td>
-						<td>
-							<a href="{{ URL::to('dashboard/authors/' . $author->id . '/edit') }}">
+						<td class="text-right">
+							<a href="{{ URL::to('dashboard/authors/' . $author->id . '/edit') }}" class="btn">
 								<i class="fa fa-edit"></i>
+							</a>
+							<a href="#" class="btn delete" data-id="{{ $author->id }}">
+								<i class="fa fa-remove"></i>
 							</a>
 						</td>
 					</tr>
@@ -71,4 +74,35 @@
 			</table>
 		</div>
 	</div>
+@stop
+
+@section('scripts')
+	{{ HTML::script('assets/admin-lte/js/plugins/bootbox/bootbox.min.js') }}
+
+	<script type="text/javascript">
+		jQuery(function($)
+		{
+			$('.delete').click(function()
+			{
+				var self = $(this);
+
+				bootbox.confirm("Are you sure?", function(result) {
+					if(result)
+					{
+						$.ajax({
+							url : baseUrl + 'dashboard/authors/' + self.data('id'),
+							type : 'delete',
+							success: function(data) {
+								if(data.status)
+									location.reload()
+							},
+							data: 'json'
+						})
+					}
+				});
+
+				return false;
+			})
+		})
+	</script>
 @stop

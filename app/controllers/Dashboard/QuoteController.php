@@ -1,16 +1,18 @@
 <?php namespace Dashboard;
 
 use HuntQuote\Repositories\Quote;
+use HuntQuote\Repositories\Tag;
+use HuntQuote\Repositories\Topic;
 
 class QuoteController extends \BaseController {
 
-	/**
-	 * Class constructor
-	 *
-	 */
-	public function __construct(Quote $quote)
+
+
+	public function __construct(Quote $quote, Tag $tag, Topic $topic)
 	{
 		$this->quote = $quote;
+		$this->tag= $tag;
+		$this->topic = $topic;
 	}
 
 	/**
@@ -20,8 +22,8 @@ class QuoteController extends \BaseController {
 	 */
 	public function index()
 	{
-		return \View::make('dashboard.quote.index')
-			->with('quotes', $this->quote->all());
+		return \View::make('dashboard.quotes.index')
+			->with('data', $this->quote->paginate(10));
 	}
 
 
@@ -32,7 +34,9 @@ class QuoteController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return \View::make('dashboard.quotes.create')
+			->with('topics', $this->topic->all()->lists('name', 'id'))
+			->with('tags', $this->tag->all()->lists('name', 'id'));
 	}
 
 
@@ -43,19 +47,16 @@ class QuoteController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-	}
+		try
+		{
+			$this->quote->create(\Input::only(['content', 'author_id', 'topics', 'tags']));
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+			return \Redirect::to('dashboard/quotes')->withMessage('Quote Created');
+		}
+		catch (ValidationException $e)
+		{
+			return \Redirect::to('dashboard/quotes/create')->withError($e->getMessage());
+		}
 	}
 
 
@@ -67,7 +68,10 @@ class QuoteController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return \View::make('dashboard.quotes.edit')
+			->with('data', $this->quote->find($id))
+			->with('topics', $this->topic->all()->lists('name', 'id'))
+			->with('tags', $this->topic->all()->lists('name', 'id'));
 	}
 
 
@@ -79,7 +83,16 @@ class QuoteController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		try
+		{
+			$this->quote->update($id, \Input::only(['content', 'author_id', 'tags', 'topics']));
+
+			return \Redirect::to('dashboard/quotes')->withMessage('Quote updated');
+		}
+		catch (ValidationException $e)
+		{
+			return \Redirect::to('dashboard/quotes/' . $id . '/edit')->withErrors($e->getMessage());
+		}
 	}
 
 
@@ -91,7 +104,9 @@ class QuoteController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$this->quote->delete($id);
+
+		return \Response::json(['status' => true]);
 	}
 
 

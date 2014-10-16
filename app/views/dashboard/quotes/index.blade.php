@@ -1,53 +1,52 @@
 @extends('_tpls.dashboard.tpl')
 
-@section('title') Professions @stop
+@section('title') Tags @stop
 
 @section('header')
 	<h1>
-		Professions
-		<small>List of Professions</small>
+		Tags
+		<small>List of quotes</small>
 	</h1>
 @stop
 
 @section('breadcrumbs')
 	<ol class="breadcrumb">
-		<li>
-			<a href="{{ URL::to('dashboard') }}">
-				<i class="fa fa-dashboard"></i> Home
-			</a>
-		</li>
-		<li class="active">
-			Professions
-		</li>
+	    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+	    <li class="active">Quotes</li>
 	</ol>
 @stop
-
 
 @section('content')
 	<div class="box box-solid">
 		<div class="box-header">
 			<h3 class="box-title">
-				Professions List
+				Quote List
 			</h3>
 			<div class="box-tools pull-right">
 				{{ $data->links() }}
 			</div>
 		</div>
 		<div class="box-body">
-			<a href="{{ URL::to('dashboard/professions/create') }}" class="btn pull-right">
+			<a href="{{ URL::to('dashboard/quotes/create') }}" class="btn pull-right">
 				<i class="fa fa-plus"></i> Create
 			</a>
-
+			
 			<div class="clearfix"></div>
 
 			<table class="table">
 				<thead>
 					<tr>
-						<th>
-							Name
-						</th>
 						<th class="col-sm-2">
-							Author Count
+							Author
+						</th>
+						<th>
+							Quote
+						</th>
+						<th>
+							Tags
+						</th>
+						<th>
+							Topics
 						</th>
 						<th class="col-sm-2">
 							
@@ -55,19 +54,35 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($data as $profession)
+					@foreach($data as $quote)
 					<tr>
 						<td>
-							{{ $profession->name }}
+							{{ $quote->author->name }}
 						</td>
 						<td>
-							{{ $profession->authors->count() }}
+							{{ $quote->content }}
+						</td>
+						<td>
+							@foreach($quote->tags as $tag)
+							<span class="label label-info">
+								#{{ $tag->name }}
+							</span>
+							&nbsp;
+							@endforeach
+						</td>
+						<td>
+							@foreach($quote->topics as $topic)
+							<span class="label label-info">
+								{{ $topic->name }}	
+							</span>
+							&nbsp;
+							@endforeach
 						</td>
 						<td class="text-right">
-							<a href="{{ URL::to('dashboard/professions/' . $profession->id . '/edit') }}" class="btn">
+							<a href="{{ URL::to('dashboard/topics/' . $quote->id . '/edit') }}" class="btn">
 								<i class="fa fa-edit"></i>
 							</a>
-							<a href="#" class="btn delete" data-id="{{ $profession->id }}">
+							<a href="#" class="delete btn" data-id="{{ $quote->id }}">
 								<i class="fa fa-remove"></i>
 							</a>
 						</td>
@@ -93,7 +108,7 @@
 					if(result)
 					{
 						$.ajax({
-							url : baseUrl + 'dashboard/professions/' + self.data('id'),
+							url : baseUrl + 'dashboard/quotes/' + self.data('id'),
 							type : 'delete',
 							success: function(data) {
 								if(data.status)

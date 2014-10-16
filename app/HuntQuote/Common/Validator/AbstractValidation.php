@@ -44,7 +44,7 @@ abstract class AbstractValidation {
 	public function forUpdate(array $data = array())
 	{
 		$rules = $this->updateRules;
-		$validation = $this->validator->make($data, $rules);
+		$validation = Validator::make($data, $rules);
 
 		if ( $validation->fails() )
 		{

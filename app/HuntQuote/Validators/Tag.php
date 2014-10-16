@@ -2,9 +2,9 @@
 
 use HuntQuote\Common\Validator\AbstractValidation;
 
-class Profession extends AbstractValidation {
+class Tag extends AbstractValidation {
 	protected $creationRules = array(
-		'name' => 'required|unique:professions'
+		'name' => 'required|unique:tags'
 		);
 
 	protected $updateRules = array(

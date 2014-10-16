@@ -1,6 +1,19 @@
 <?php namespace Dashboard;
 
+use HuntQuote\Repositories\Topic;
+use HuntQuote\Common\Validator\ValidationException;
+
 class TopicController extends \BaseController {
+
+	/**
+	 * @var TopicRepository
+	 */
+	private $topic;
+
+	public function __construct(Topic $topic)
+	{
+		$this->topic = $topic;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +22,8 @@ class TopicController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return \View::make('dashboard.topics.index')
+			->with('data', $this->topic->paginate(10));
 	}
 
 
@@ -20,7 +34,7 @@ class TopicController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return \View::make('dashboard.topics.create');
 	}
 
 
@@ -31,19 +45,16 @@ class TopicController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
-	}
+		try
+		{
+			$this->topic->create(\Input::only(['name']));
 
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+			return \Redirect::to('dashboard/topics')->withMessage('Topic Created');
+		}
+		catch (ValidationException $e)
+		{
+			return \Redirect::to('dashboard/topics/create')->withErrors($e->getMessage())->withInputs();
+		}
 	}
 
 
@@ -55,7 +66,8 @@ class TopicController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return \View::make('dashboard.topics.edit')
+			->with('data', $this->topic->find($id));
 	}
 
 
@@ -67,7 +79,16 @@ class TopicController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		try
+		{
+			$this->topic->update($id, \Input::only(['name', 'is_holiday']));
+
+			return \Redirect::to('dashboard/topics')->withMesage('Topic updated');
+		}
+		catch (ValidationException $e)
+		{
+			return \Redirect::to('dashboard/topic/' . $id .'/edit')->withErrors($e->getMessage());
+		}
 	}
 
 
@@ -79,8 +100,8 @@ class TopicController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$this->topic->delete($id);
+
+		return \Response::json(['status' => true]);
 	}
-
-
 }

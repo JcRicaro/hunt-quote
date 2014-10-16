@@ -19,6 +19,19 @@ class Author extends AbstractEloquent implements AuthorInterface {
 
 
 	/**
+	 * Delete override
+	 * 
+	 * @param  integer $id
+	 * @return Boolean
+	 */
+	public function delete($id)
+	{
+		$this->find($id)->professions()->detach();
+
+		return $this->find($id)->delete();
+	}
+
+	/**
 	 * Override create
 	 * 
 	 * @param  array  $data name, birth_date, death_date, array professions
@@ -37,6 +50,25 @@ class Author extends AbstractEloquent implements AuthorInterface {
 		}
 
 		return $this->model()->create($data);
+	}
+
+	/**
+	 * Override update
+	 * 
+	 * @param  integer 	$id
+	 * @param  array  	$data
+	 * @return Author
+	 */
+	public function update($id, array $data = array())
+	{
+		$this->validate->forUpdate($data);
+
+
+		if($data['professions'])
+			$this->find($id)->professions()->sync($data['professions']);
+		else
+			$this->find($id)->professions()->detach();
+		return $this->find($id)->update($data);
 	}
 
 	/**

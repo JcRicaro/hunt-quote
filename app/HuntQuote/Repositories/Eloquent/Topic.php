@@ -3,12 +3,28 @@
 use HuntQuote\Common\Repository\AbstractEloquent;
 use HuntQuote\Repositories\Topic as TopicInterface;
 use Topic as TopicModel;
+use HuntQuote\Validators\Topic as TopicValidator;
 
 class Topic extends AbstractEloquent implements TopicInterface {
 	
-	public function __construct(TopicModel $topic)
+	public function __construct(TopicModel $topic, TopicValidator $validator)
 	{
 		$this->model = $topic;
+		$this->validate = $validator;
+	}
+
+
+	/**
+	 * Delete override
+	 * 
+	 * @param  integer $id
+	 * @return Boolean
+	 */
+	public function delete($id)
+	{
+		$this->find($id)->quotes()->detach();
+
+		return $this->find($id)->delete();
 	}
 
 	/**

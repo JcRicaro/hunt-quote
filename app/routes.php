@@ -106,4 +106,5 @@ Route::group(['prefix' => 'dashboard'], function()
 	Route::resource('professions', 'Dashboard\ProfessionController');
 	Route::resource('authors', 'Dashboard\AuthorController');
 	Route::resource('topics', 'Dashboard\TopicController');
+	Route::resource('tags', 'Dashboard\TagController');
 });

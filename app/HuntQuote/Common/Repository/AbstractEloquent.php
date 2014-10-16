@@ -70,8 +70,7 @@ abstract class AbstractEloquent {
 	{
 		$this->validate->forUpdate($data);
 		return $this->find($id)
-			->fill($data)
-			->save();
+			->update($data);
 	}
 
 	/**

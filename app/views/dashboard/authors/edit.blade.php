@@ -1,11 +1,11 @@
 @extends('_tpls.dashboard.tpl')
 
-@section('title') New Author @stop
+@section('title') Edit Author @stop
 
 @section('header')
 	<h1>
 	    Authors
-	    <small>New Author</small>
+	    <small>Edit Author</small>
 	</h1>
 @stop
 
@@ -13,7 +13,7 @@
 	<ol class="breadcrumb">
 	    <li><a href="{{ URL::to('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
 	    <li><a href="{{ URL::to('dashboard/authors') }}"><i class="fa fa-pencil"></i> Authors</a></li>
-	    <li class="active">New</li>
+	    <li class="active">Edit</li>
 	</ol>
 @stop
 
@@ -21,24 +21,24 @@
 	<div class="box box-solid">
 		<div class="box-header">
 			<h3 class="box-title">
-				New Author
+				Edit Author
 			</h3>
 		</div>
 		{{ Form::open([
-				'url' 		=> 'dashboard/authors',
-				'method' 	=> 'post',
+				'url' 		=> 'dashboard/authors/' . $data->id,
+				'method' 	=> 'put',
 				'role' 		=> 'form',
 				'files'		=> 'true'
 			]) }}
 		<div class="box-body">
 			<div class="form-group">
 				{{ Form::label('name', 'Name') }}
-				{{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter Name Here']) }}
+				{{ Form::text('name', $data->name, ['class' => 'form-control', 'placeholder' => 'Enter Name Here']) }}
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('professions', 'Professions') }}
-				{{ Form::select('professions[]', $professions, null, ['class' => 'chosen-select form-control', 'multiple' => 'multiple']) }}
+				{{ Form::select('professions[]', $professions, $data->professions->lists('id'), ['class' => 'chosen-select form-control', 'multiple' => 'multiple']) }}
 			</div>
 		</div>
 		<div class="box-footer">

@@ -114,13 +114,15 @@ class LocalSeeder extends Seeder {
 		$db = DB::table('quotes');
 		$db->truncate();
 
+		$authors = DB::table('authors')->lists('id');
+
 		foreach(range(1, $count) as $index)
 		{
 			$photo = $index % 2 == 0 ? 'default.jpg': '';
 
 			$db->insert([
 				'id'			=> $index,
-				'author_id'		=> $index % 4,
+				'author_id'		=> array_rand($authors),
 				'content'		=> $f->paragraph(rand(1,3)),
 				'photo'			=> $photo,
 				'created_at'	=> now(),
@@ -190,17 +192,35 @@ class LocalSeeder extends Seeder {
 
 	public function quote_topic($count = 100)
 	{
-		$db = DB::table('topic_quote');
+		$db = DB::table('quote_topic');
 		$db->truncate();
 
-		foreach(range(1, $count) as $index)
+		$topics = DB::table('topics')->lists('id');
+		$quotes = DB::table('quotes')->lists('id');
+
+		foreach($quotes as $quote)
 		{
-			$db->insert([
-				'id'			=> $index,
-				'quote_id'		=> $index,
-				'topic_id'		=> ($index % 10) + 1
-			]);
+			$quoteTopics = array_rand($topics, rand(1, 10));
+
+			if(is_array($quoteTopics))
+			{
+				foreach($quoteTopics as $quoteTopic)
+				{
+					$db->insert([
+						'quote_id' => $quote,
+						'topic_id' => $quoteTopic
+						]);
+				}
+			}
+			else
+			{
+				$db->insert([
+					'quote_id' => $quote,
+					'topic_id' => $quoteTopics
+					]);
+			}
 		}
+		
 	}
 
 	public function author_profession()
@@ -213,7 +233,7 @@ class LocalSeeder extends Seeder {
 
 		foreach($authors as $author)
 		{
-			$authorProfessions = array_rand($professions, rand(1, count($professions)));
+			$authorProfessions = array_rand($professions, rand(1, 5));
 
 			if(is_array($authorProfessions))
 			{
@@ -241,15 +261,30 @@ class LocalSeeder extends Seeder {
 		$db = DB::table('quote_tag');
 		$db->truncate();
 
-		foreach(range(1, $count) as $index)
+		$quotes = DB::table('quotes')->lists('id');
+		$tags = DB::table('tags')->lists('id');
+
+		foreach($quotes as $quote)
 		{
-			$db->insert([
-				'id'			=> $index,
-				'quote_id'		=> $index,
-				'tag_id'		=> $index,
-				'created_at'	=> now(),
-				'updated_at'	=> now()
-			]);
+			$quoteTags = array_rand($tags, rand(1, 10));
+
+			if(is_array($quoteTags))
+			{
+				foreach($quoteTags as $quoteTag)
+				{
+					$db->insert([
+						'tag_id' => $quoteTag,
+						'quote_id' => $quote
+						]);
+				}
+			}
+			else
+			{
+				$db->insert([
+					'tag_id' => $quoteTags,
+					'quote_id' => $quote
+					]);
+			}
 		}
 	}
 

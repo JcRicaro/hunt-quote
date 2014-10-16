@@ -34,14 +34,14 @@ class Quote extends Eloquent {
 	 */
 	public function topics()
 	{
-		return $this->belongsToMany('Topic', 'topic_quote');
+		return $this->belongsToMany('Topic');
 	}
 
 	/**
 	 * belongsToMany relationship with the Tag model
 	 * @return Tag
 	 */
-	public function tag()
+	public function tags()
 	{
 		return $this->belongsToMany('Tag');
 	}

@@ -13,9 +13,16 @@ class Profession extends AbstractEloquent implements ProfessionInterface {
 		$this->validate = $validator;
 	}
 
-	public function selectData()
+	/**
+	 * Delete override
+	 * 
+	 * @param  integer $id
+	 * @return Boolean
+	 */
+	public function delete($id)
 	{
-		return $this->db->lists('name', 'id');
-	}
+		$this->find($id)->authors()->detach();
 
+		return $this->find($id)->delete();
+	}
 }

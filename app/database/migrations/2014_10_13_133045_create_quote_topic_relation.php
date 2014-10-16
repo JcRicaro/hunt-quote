@@ -12,7 +12,7 @@ class CreateQuoteTopicRelation extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('topic_quote', function(Blueprint $table)
+		Schema::create('quote_topic', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('topic_id');

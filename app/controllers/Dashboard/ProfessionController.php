@@ -5,6 +5,11 @@ use HuntQuote\Repositories\Profession;
 
 class ProfessionController extends \BaseController {
 
+	/**
+	 * @var ProfessionRepository
+	 */
+	private $profession;
+
 	public function __construct(Profession $profession)
 	{
 		$this->profession = $profession;
@@ -48,20 +53,8 @@ class ProfessionController extends \BaseController {
 		}
 		catch (ValidationException $e)
 		{
-			retur \Redirect::to('dashboard/professions/create')->withErrors($e->getMessage());
+			return \Redirect::to('dashboard/professions/create')->withErrors($e->getMessage())->withInputs();
 		}
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
 	}
 
 
@@ -89,8 +82,10 @@ class ProfessionController extends \BaseController {
 		try
 		{
 			$this->profession->update($id, \Input::only(['name']));
+
+			return \Redirect::to('dashboard/professions')->withMessage('Profession updated');
 		}
-		catch (Exception $e)
+		catch (ValidationException $e)
 		{
 			return \Redirect::to('dashboard/professions/' . $id . '/edit')->withErrors($e->getMessage());
 		}
@@ -105,8 +100,8 @@ class ProfessionController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$this->profession->delete($id);
+
+		return \Response::json(['status' => true]);
 	}
-
-
 }

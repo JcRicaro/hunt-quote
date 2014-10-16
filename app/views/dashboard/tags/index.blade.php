@@ -1,43 +1,36 @@
 @extends('_tpls.dashboard.tpl')
 
-@section('title') Professions @stop
+@section('title') Tags @stop
 
 @section('header')
 	<h1>
-		Professions
-		<small>List of Professions</small>
+		Tags
+		<small>List of tags</small>
 	</h1>
 @stop
 
 @section('breadcrumbs')
 	<ol class="breadcrumb">
-		<li>
-			<a href="{{ URL::to('dashboard') }}">
-				<i class="fa fa-dashboard"></i> Home
-			</a>
-		</li>
-		<li class="active">
-			Professions
-		</li>
+	    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+	    <li class="active">Tags</li>
 	</ol>
 @stop
-
 
 @section('content')
 	<div class="box box-solid">
 		<div class="box-header">
 			<h3 class="box-title">
-				Professions List
+				Tag List
 			</h3>
 			<div class="box-tools pull-right">
 				{{ $data->links() }}
 			</div>
 		</div>
 		<div class="box-body">
-			<a href="{{ URL::to('dashboard/professions/create') }}" class="btn pull-right">
+			<a href="{{ URL::to('dashboard/tags/create') }}" class="btn pull-right">
 				<i class="fa fa-plus"></i> Create
 			</a>
-
+			
 			<div class="clearfix"></div>
 
 			<table class="table">
@@ -47,7 +40,7 @@
 							Name
 						</th>
 						<th class="col-sm-2">
-							Author Count
+							Topics
 						</th>
 						<th class="col-sm-2">
 							
@@ -55,19 +48,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($data as $profession)
+					@foreach($data as $tag)
 					<tr>
 						<td>
-							{{ $profession->name }}
+							{{ $tag->name }}
 						</td>
 						<td>
-							{{ $profession->authors->count() }}
+							{{ $tag->quotes->count() }}
+							
 						</td>
 						<td class="text-right">
-							<a href="{{ URL::to('dashboard/professions/' . $profession->id . '/edit') }}" class="btn">
+							<a href="{{ URL::to('dashboard/tags/' . $tag->id . '/edit') }}" class="btn" title="Edit">
 								<i class="fa fa-edit"></i>
 							</a>
-							<a href="#" class="btn delete" data-id="{{ $profession->id }}">
+							<a href="#" class="btn delete" title="Delete" data-id="{{ $tag->id }}">
 								<i class="fa fa-remove"></i>
 							</a>
 						</td>
@@ -93,7 +87,7 @@
 					if(result)
 					{
 						$.ajax({
-							url : baseUrl + 'dashboard/professions/' + self.data('id'),
+							url : baseUrl + 'dashboard/tags/' + self.data('id'),
 							type : 'delete',
 							success: function(data) {
 								if(data.status)

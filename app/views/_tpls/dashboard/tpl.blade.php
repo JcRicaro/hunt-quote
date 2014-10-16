@@ -126,6 +126,10 @@
         <!-- AdminLTE App -->
         {{ HTML::script('assets/admin-lte/js/AdminLTE/app.js') }}
 
+        <script type="text/javascript">
+            var baseUrl = "{{ URL::to('/') }}" + "/";
+        </script>
+
         @yield('scripts')
     </body>
 </html>

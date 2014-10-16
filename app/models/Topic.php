@@ -2,6 +2,8 @@
 
 class Topic extends Eloquent {
 
+	protected $fillable = ['name', 'is_holiday'];
+
 	/**
 	 * Table used by the model
 	 * @var string
@@ -15,7 +17,7 @@ class Topic extends Eloquent {
 	 */
 	public function quotes()
 	{
-		return $this->belongsToMany('Quote', 'topic_quote');
+		return $this->belongsToMany('Quote');
 	}
 
 	/**
@@ -36,6 +38,11 @@ class Topic extends Eloquent {
 	{
 		$redis = App::make('redis');
 		$redis->zIncrBy('topic-hits', 1, $this->id);
+	}
+
+	public function holiday()
+	{
+		return ($this->is_holiday) ? 'Yes' : 'No';
 	}
 
 }
