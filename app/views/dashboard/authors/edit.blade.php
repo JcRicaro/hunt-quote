@@ -32,8 +32,18 @@
 			]) }}
 		<div class="box-body">
 			<div class="form-group">
-				{{ Form::label('name', 'Name') }}
-				{{ Form::text('name', $data->name, ['class' => 'form-control', 'placeholder' => 'Enter Name Here']) }}
+				{{ Form::label('firstname', 'First Name') }}
+				{{ Form::text('firstname', $data->name, ['class' => 'form-control', 'placeholder' => 'Enter First Name Here']) }}
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('middlename', 'Middle Name') }}
+				{{ Form::text('middlename', $data->name, ['class' => 'form-control', 'placeholder' => 'Enter Middle Name Here']) }}
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('lastname', 'Last Name') }}
+				{{ Form::text('lastname', $data->name, ['class' => 'form-control', 'placeholder' => 'Enter Last Name Here']) }}
 			</div>
 
 			<div class="form-group">
@@ -42,8 +52,8 @@
 			</div>
 
 			<div class="form-group">
-				{{ Form::label('nationality', 'Nationality') }}
-				{{ Form::select('nationality', $nationalities, $data->nationality->id, ['class' => 'chosen-select form-control']) }}
+				{{ Form::label('nationality_id', 'Nationality') }}
+				{{ Form::select('nationality_id', $nationalities, $data->nationality->id, ['class' => 'chosen-select form-control']) }}
 			</div>
 		</div>
 		<div class="box-footer">

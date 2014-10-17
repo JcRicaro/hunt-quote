@@ -68,7 +68,7 @@ class Author extends AbstractEloquent implements AuthorInterface {
 			$this->find($id)->professions()->sync($data['professions']);
 		else
 			$this->find($id)->professions()->detach();
-		return $this->find($id)->update($data);
+		return $this->model->where('id', $id)->update($data);
 	}
 
 	/**

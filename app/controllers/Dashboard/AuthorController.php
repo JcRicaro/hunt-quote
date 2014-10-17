@@ -93,9 +93,10 @@ class AuthorController extends \BaseController {
 	{
 		try
 		{
-			$this->author->update($id, \Input::only(['name', 'birth_date', 'death_date', 'professions', 'nationality']));
+			$this->author->update($id, \Input::only(['name', 'birth_date', 'death_date', 'professions', 'nationality_id']));
 
-			return \Redirect::to('dashboard/authors')->withMessage('Author Saved');
+			dd('./.');
+			// return \Redirect::to('dashboard/authors')->withMessage('Author Saved');
 		}
 		catch (ValidationException $e)
 		{
