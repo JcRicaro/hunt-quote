@@ -9,8 +9,7 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     @foreach($photos as $index => $quote)
-      <div class="item {{ ($index == 0) ? 'active' : '' }}">
-        <img src="{{ $quote->photoURL }}" alt="...">
+      <div class="item {{ ($index == 0) ? 'active' : '' }} item-bg" style="background-image: url({{ $quote->photoURL }})">
         <div class="carousel-caption">
           {{ $quote->content }}
         </div>

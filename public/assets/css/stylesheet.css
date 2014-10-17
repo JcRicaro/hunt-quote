@@ -248,3 +248,10 @@ footer .footer-copyright {
 	height: 500px;
 	width: 500px;
 }
+
+.item-bg {
+	height: 450px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
