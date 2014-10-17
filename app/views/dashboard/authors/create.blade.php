@@ -32,13 +32,28 @@
 			]) }}
 		<div class="box-body">
 			<div class="form-group">
-				{{ Form::label('name', 'Name') }}
-				{{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter Name Here']) }}
+				{{ Form::label('firstname', 'First Name') }}
+				{{ Form::text('firstname', null, ['class' => 'form-control', 'placeholder' => 'Enter First Name Here']) }}
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('middlename', 'Middle Name') }}
+				{{ Form::text('middlename', null, ['class' => 'form-control', 'placeholder' => 'Enter Middle Name Here']) }}
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('lastname', 'Last Name') }}
+				{{ Form::text('lastname', null, ['class' => 'form-control', 'placeholder' => 'Enter Last Name Here']) }}
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('professions', 'Professions') }}
 				{{ Form::select('professions[]', $professions, null, ['class' => 'chosen-select form-control', 'multiple' => 'multiple']) }}
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('nationality_id', 'Nationality') }}
+				{{ Form::select('nationality_id', $nationalities, null, ['class' => 'form-control']) }}
 			</div>
 		</div>
 		<div class="box-footer">

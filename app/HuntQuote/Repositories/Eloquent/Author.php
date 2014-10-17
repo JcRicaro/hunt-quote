@@ -40,7 +40,13 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	public function create(array $data = array())
 	{
 		$this->validate->forCreation($data);
-		
+
+		$data['slug'] = sprintf("%s_%s-%s",
+			strtolower($data['firstname']),
+			strtolower($data['lastname']),
+			\str_random(5)
+		);
+
 		if($data['professions'])
 		{
 			return $this->model()
@@ -63,12 +69,18 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	{
 		$this->validate->forUpdate($data);
 
+		$data['slug'] = sprintf("%s_%s-%s",
+			$data['firstname'],
+			$data['lastname'],
+			\str_random(5)
+		);
 
 		if($data['professions'])
 			$this->find($id)->professions()->sync($data['professions']);
 		else
 			$this->find($id)->professions()->detach();
-		return $this->model->where('id', $id)->update($data);
+
+		return $this->find($id)->update($data);
 	}
 
 	/**

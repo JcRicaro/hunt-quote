@@ -10,7 +10,7 @@ class Author extends Eloquent {
 
 	public $dates = ['birth_date', 'death_date'];
 
-	public $fillable = ['lastname', 'firstname', 'middlename', 'slug', 'birth_date', 'death_date'];
+	public $fillable = ['lastname', 'firstname', 'middlename', 'slug', 'birth_date', 'death_date', 'nationality_id'];
 
 	public function getSlug()
 	{

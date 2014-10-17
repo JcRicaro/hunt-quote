@@ -4,10 +4,14 @@ use HuntQuote\Common\Validator\AbstractValidation;
 
 class Author extends AbstractValidation {
 	protected $creationRules = array(
-		'name' => 'required|unique'
+		'firstname' => 'required',
+		'lastname' => 'required',
+		'nationality_id' => 'required|numeric'
 		);
 
 	protected $updateRules = array(
-		'name' => 'required'
+		'firstname' => 'required',
+		'lastname' => 'required',
+		'nationality_id' => 'required|numeric'
 		);
 }

@@ -43,6 +43,9 @@
 							Profession
 						</th>
 						<th class="col-sm-2">
+							Nationality
+						</th>
+						<th class="col-sm-2">
 							
 						</th>
 					</tr>
@@ -60,6 +63,7 @@
 								@endforeach
 							</ul>
 						</td>
+						<td> {{ $author->nationality->name }} </td>
 						<td class="text-right">
 							<a href="{{ URL::to('dashboard/authors/' . $author->id . '/edit') }}" class="btn">
 								<i class="fa fa-edit"></i>

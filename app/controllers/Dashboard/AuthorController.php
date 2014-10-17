@@ -44,7 +44,8 @@ class AuthorController extends \BaseController {
 	public function create()
 	{
 		return \View::make('dashboard.authors.create')
-			->with('professions', $this->profession->all()->lists('name', 'id'));
+			->with('professions', $this->profession->all()->lists('name', 'id'))
+			->with('nationalities', $this->nationality->all()->lists('name', 'id'));
 	}
 
 
@@ -55,9 +56,19 @@ class AuthorController extends \BaseController {
 	 */
 	public function store()
 	{
+		$inputs = \Input::only([
+			'firstname',
+			'middlename',
+			'lastname',
+			'birth_date',
+			'death_date',
+			'professions',
+			'nationality_id'
+		]);
+
 		try
 		{
-			$this->author->create(\Input::only(['name', 'birth_date', 'death_date', 'professions']));
+			$this->author->create($inputs);
 
 			return \Redirect::to('dashboard/authors')->withMessage('Author Created');
 		}
@@ -91,17 +102,27 @@ class AuthorController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$inputs = \Input::only([
+			'firstname',
+			'middlename',
+			'lastname',
+			'birth_date',
+			'death_date',
+			'professions',
+			'nationality_id'
+		]);
+
 		try
 		{
-			$this->author->update($id, \Input::only(['name', 'birth_date', 'death_date', 'professions', 'nationality_id']));
-
-			dd('./.');
-			// return \Redirect::to('dashboard/authors')->withMessage('Author Saved');
+			$this->author->update($id, $inputs);
 		}
 		catch (ValidationException $e)
 		{
+			dd($e->getMessage());
 			return \Redirect::to('dashboard/authors/' . $id . '/edit')->withErrors($e->getMessage());
 		}
+
+		return \Redirect::to('dashboard/authors')->withMessage('Author Saved');
 	}
 
 
