@@ -45,4 +45,9 @@ class Topic extends Eloquent {
 		return ($this->is_holiday) ? 'Yes' : 'No';
 	}
 
+	public function getslug()
+	{
+		return strtolower(str_replace(' ', '_', $this->name));
+	}
+
 }

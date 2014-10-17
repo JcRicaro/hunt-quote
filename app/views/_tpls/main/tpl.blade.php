@@ -4,8 +4,9 @@
 	<title>HuntQuote - @yield('title')</title>
 	<meta charset="utf-8">
 	@yield('meta')
-
+	<!--
 	<link href="http://fonts.googleapis.com/css?family=Ruda" rel="stylesheet">
+	-->
 	{{ HTML::style('vendor/bootstrap/dist/css/bootstrap.min.css') }}
 	{{ HTML::style('assets/css/stylesheet.css') }}
 	@yield('styles')

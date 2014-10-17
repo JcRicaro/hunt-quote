@@ -12,7 +12,11 @@
 					<hr>
 					<ul class="list-unstyled">
 						@foreach ($popularTopics as $topic)
-							<li> <a href="#"> {{ $topic->name }} </a> </li>
+							<li>
+								<a href="{{ route('topics.show', $topic->getSlug()) }}">
+									{{ $topic->name }}
+								</a>
+							</li>
 						@endforeach
 					</ul>
 				</div>
@@ -22,7 +26,11 @@
 					<hr>
 					<ul class="list-unstyled">
 						@foreach ($popularAuthors as $author)
-							<li> <a href="#"> {{ $author->name }} </a> </li>
+							<li>
+								<a href="{{ route('authors.show', [$author->getIndex(), $author->getSlug()]) }}">
+									{{ $author->getName() }}
+								</a>
+							</li>
 						@endforeach
 					</ul>
 				</div>
@@ -33,7 +41,7 @@
 			<div class="row">
 				@foreach($pictureQuotes as $quote)
 					<div class="col-md-6">
-						<a href="#"> <img src="{{ $quote->photoURL }}" class="img-responsive"> </a>
+						<a href="{{ route('quotes.show', $quote->getSlug()) }}"> <img src="{{ $quote->photoURL }}" class="img-responsive"> </a>
 					</div>
 				@endforeach
 			</div>
@@ -45,7 +53,7 @@
 
 					<ul class="list-unstyled">
 						@foreach($authorsToExplore as $author)
-							<li> <a href="{{ route('authors.show', $author->id) }}"> {{ $author->name }} </a> </li>
+							<li> <a href="{{ route('authors.show', [$author->getIndex(), $author->getSlug()]) }}"> {{ $author->getName() }} </a> </li>
 						@endforeach
 					</ul>
 				</div>
@@ -56,7 +64,7 @@
 
 					<ul class="list-unstyled">
 						@foreach($topicsToExplore as $topic)
-							<li> <a href="{{ route('topics.show', $topic->id) }}"> {{ $topic->name }} </a> </li>
+							<li> <a href="{{ route('topics.show', $topic->getSlug()) }}"> {{ $topic->name }} </a> </li>
 						@endforeach
 					</ul>
 				</div>
@@ -73,7 +81,9 @@
 
 					<h4>
 						&mdash;
-						<a href="{{ route('authors.show', $featuredQuote->author->id) }}"> {{ $featuredQuote->author->name }} </a>
+						<a href="{{ route('authors.show', [$featuredQuote->author->getIndex(), $featuredQuote->author->getSlug()]) }}">
+							{{ $featuredQuote->author->getName() }}
+						</a>
 					</h4>
 				</div>
 			</div>
@@ -82,7 +92,7 @@
 			<hr>
 			<ul class="list-unstyled">
 				@foreach ($recentlyUpdatedAuthors as $author)
-					<li> {{ date('Y', $author->birth_date->timestamp) }} - <a href="#"> {{ $author->name }} </a> </li>
+					<li> {{ date('Y', $author->birth_date->timestamp) }} - <a href="{{ route('authors.show', [$author->getIndex(), $author->getSlug()]) }}"> {{ $author->getName() }} </a> </li>
 				@endforeach
 			</ul>
 
@@ -91,7 +101,7 @@
 			<hr>
 			<ul class="list-unstyled">
 				@foreach($recentlyUpdatedAuthors as $author)
-					<li> <a href="#"> {{ $author->name }} </a> </li>
+					<li> <a href="{{ route('authors.show', [$author->getIndex(), $author->getSlug()]) }}"> {{ $author->name }} </a> </li>
 				@endforeach
 			</a>
 		</div>

@@ -18,6 +18,7 @@ class CreateQuoteTopicsTable extends Migration {
 			$table->string('name');
 			$table->boolean('is_holiday')->default(false);
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

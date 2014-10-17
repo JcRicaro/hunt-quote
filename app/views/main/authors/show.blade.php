@@ -1,10 +1,10 @@
 @extends('_tpls.main.tpl')
 
-@section('title') {{ $author->name }} @stop
+@section('title') {{ $author->getName() }} @stop
 @section('meta') @stop
 
 @section('content')
-	<h3> {{ $author->name }}'s Quotes </h3>
+	<h3> {{ $author->getName() }}'s Quotes </h3>
 	<hr>
 
 	<div class="row">

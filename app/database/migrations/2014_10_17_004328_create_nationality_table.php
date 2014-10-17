@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorProfessionsTable extends Migration {
+class CreateNationalityTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,12 @@ class CreateAuthorProfessionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('author_professions', function(Blueprint $table)
+		Schema::create('nationalities', function($table)
 		{
 			$table->increments('id');
 			$table->string('name');
-			$table->boolean('holiday');
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
@@ -28,7 +28,7 @@ class CreateAuthorProfessionsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('author_professions');
+		Schema::dropIfExists('nationalities');
 	}
 
 }

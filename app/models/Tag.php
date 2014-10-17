@@ -19,4 +19,9 @@ class Tag extends Eloquent {
 		return $this->belongsToMany('Quote');
 	}
 
+	public function getSlug()
+	{
+		return strtolower(str_replace(' ', '_', $this->name));
+	}
+
 }

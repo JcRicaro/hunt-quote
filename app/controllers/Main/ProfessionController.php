@@ -30,9 +30,9 @@ class ProfessionController extends \BaseController {
 	 * 
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
-		$profession = $this->profession->find($id);
+		$profession = $this->profession->getBySlug($slug);
 		$authors = $profession->authors()->paginate(30);
 
 		return \View::make('main.professions.show')

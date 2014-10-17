@@ -21,6 +21,7 @@ class LocalSeeder extends Seeder {
 	public function run()
 	{
 		$this->users();
+		$this->nationalities();
 		$this->authors();
 		$this->professions();
 		$this->quotes();
@@ -51,21 +52,45 @@ class LocalSeeder extends Seeder {
 		}
 	}
 
+	public function nationalities($count = 50)
+	{
+		$f = $this->faker;
+		$db = DB::table('nationalities');
+		$db->truncate();
+
+		foreach(range(1,$count) as $index)
+		{
+			$db->insert([
+				'id' 			=> $index,
+				'name' 			=> $f->sentence(rand(1,2)),
+				'created_at' 	=> now(),
+				'updated_at' 	=> now()
+				]);
+		}
+	}
+
 	public function authors($count = 100)
 	{
 		$f = $this->faker;
 		$db = DB::table('authors');
 		$db->truncate();
+		$nationalities = DB::table('nationalities')->lists('id');
 
 		foreach(range(1, $count) as $index)
 		{
+			$lastName = $f->lastName;
+			$firstName = $f->firstName;
+
 			$db->insert([
-				'id'			=> $index,
-				'name'			=> $f->name,
-				'birth_date'	=> $f->dateTimeBetween(),
-				'death_Date'	=> $f->dateTimeBetween(),
-				'created_at'	=> now(),
-				'updated_at'	=> now()
+				'id'				=> $index,
+				'nationality_id' 	=> array_rand($nationalities),
+				'lastname'			=> $lastName,
+				'firstname' 		=> $firstName,
+				'slug' => snake_case($firstName . $lastName),
+				'birth_date'		=> $f->dateTimeBetween(),
+				'death_Date'		=> $f->dateTimeBetween(),
+				'created_at'		=> now(),
+				'updated_at'		=> now()
 			]);
 		}
 	}
@@ -123,6 +148,7 @@ class LocalSeeder extends Seeder {
 			$db->insert([
 				'id'			=> $index,
 				'author_id'		=> array_rand($authors),
+				'slug' 			=> $index,
 				'content'		=> $f->paragraph(rand(1,3)),
 				'photo'			=> $photo,
 				'created_at'	=> now(),

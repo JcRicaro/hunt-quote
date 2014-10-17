@@ -39,9 +39,9 @@ Route::group(['prefix' => 'quotes'], function()
 	Route::post('submission', [
 		'as'   => 'quotes.submission.post',
 		'uses' => 'Main\QuoteController@submissionpost'
-	]);
+	]); 
 
-	Route::get('{id}', [
+	Route::get('{slug}', [
 		'as'   => 'quotes.show',
 		'uses' => 'Main\QuoteController@show'
 	]);
@@ -73,7 +73,7 @@ Route::group(['prefix' => 'authors'], function()
 		'uses' => 'Main\AuthorController@index'
 	]);
 
-	Route::get('{id}', [
+	Route::get('{index}/{slug}', [
 		'as'   => 'authors.show',
 		'uses' =>'Main\AuthorController@show'
 	]);
@@ -89,7 +89,7 @@ Route::group(['prefix' => 'topics'], function()
 		'uses' =>'Main\TopicController@index'
 	]);
 
-	Route::get('{id}', [
+	Route::get('{slug}', [
 		'as'   => 'topics.show',
 		'uses' =>'Main\TopicController@show'
 	]);

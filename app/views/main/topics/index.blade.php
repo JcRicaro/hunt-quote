@@ -17,7 +17,7 @@
 						<ul class="list-unstyled">
 				@endif
 
-				<li> <a href="{{ route('topics.show', $topic->id) }}"> {{ $topic->name }} </a> </li>
+				<li> <a href="{{ route('topics.show', $topic->getSlug() ) }}"> {{ $topic->name }} </a> </li>
 
 				@if ( $index % 16 == 15 || $index == count($topics) - 1 )
 						</ul>
@@ -38,7 +38,7 @@
 						<ul class="list-unstyled">
 				@endif
 
-				<li> <a href="{{ route('topics.show', $holiday->id) }}"> {{ $holiday->name }} </a> </li>
+				<li> <a href="{{ route('topics.show', $holiday->getSlug()) }}"> {{ $holiday->name }} </a> </li>
 
 				@if ( $index % 3 == 2 || $index == count($holidays) - 1 )
 						</ul>

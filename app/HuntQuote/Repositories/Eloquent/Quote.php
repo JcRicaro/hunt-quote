@@ -53,6 +53,11 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 		return $quote;
 	}
 
+	public function getBySlug($slug)
+	{
+		return $this->model->where('slug', $slug)->first();
+	}
+
 	/**
 	 * Get quotes with photos
 	 * @param  integer $count [description]

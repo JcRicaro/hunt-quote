@@ -20,4 +20,9 @@ class Profession extends Eloquent {
 		return $this->belongsToMany('Author');
 	}
 
+	public function getSlug()
+	{
+		return strtolower(str_replace(' ', '_', $this->name));
+	}
+
 }

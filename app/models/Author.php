@@ -10,7 +10,22 @@ class Author extends Eloquent {
 
 	public $dates = ['birth_date', 'death_date'];
 
-	public $fillable = ['name', 'birth_date', 'death_date'];
+	public $fillable = ['lastname', 'firstname', 'middlename', 'slug', 'birth_date', 'death_date'];
+
+	public function getSlug()
+	{
+		return $this->slug;
+	}
+
+	public function getName()
+	{
+		return $this->firstname . ' ' . $this->lastname;
+	}
+
+	public function getIndex()
+	{
+		return strtolower(substr($this->lastname, 0, 1));
+	}
 
 	/**
 	 * belongsTo relationship with the Profession model

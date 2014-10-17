@@ -17,6 +17,11 @@ class Quote extends Eloquent {
 		return asset("uploads/quotes/{$this->photo}");
 	}
 
+	public function getSlug()
+	{
+		return $this->slug;
+	}
+
 	/**
 	 * belongsTo relationship with the Author model
 	 * 

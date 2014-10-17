@@ -22,8 +22,17 @@
 			<tbody>
 				@foreach($authors as $author)
 					<tr class="author-row">
-						<td data-src="{{ route('authors.show', $author->id) }}"> {{ $author->name }} </td>
-						<td data-src="{{ route('professions.show', $author->profession->id) }}"> {{ $author->profession->name }} </td>
+						<td>
+							<a href="{{ route('authors.show', [$author->getIndex(), $author->getSlug()]) }}">
+								{{ $author->getName() }}
+							</a>
+						</td>
+						<td>
+							@foreach($author->professions as $profession)
+							<a href="{{ route('professions.show', $profession->getSlug()) }}">{{ $profession->name }}</a>
+							&nbsp;
+							@endforeach
+						</td>
 					</tr>
 				@endforeach
 			</tbody>
@@ -35,13 +44,4 @@
 		<hr>
 
 	@endif
-@stop
-
-@section('scripts')
-	<script>
-		// For yolo
-		$('.author-row > td').on('click', function (e) {
-			window.location.href = $(this).data('src');
-		});
-	</script>
 @stop

@@ -32,9 +32,9 @@ class QuoteController extends \BaseController {
 	 * 
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
-		$quote = $this->quote->find($id);
+		$quote = $this->quote->getBySlug($slug);
 		$author = $quote->author;
 		$profession = $author->profession;
 		$topics = $quote->topics;

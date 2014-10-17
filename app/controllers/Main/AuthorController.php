@@ -33,9 +33,9 @@ class AuthorController extends \BaseController {
 	 * 
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($index, $slug)
 	{
-		$author = $this->author->find($id);
+		$author = $this->author->getBySlug($slug);
 		$photos = $author->quotes()->withPhoto()->take(10)->get();
 		$quotes = $author->quotes()->paginate(10);
 

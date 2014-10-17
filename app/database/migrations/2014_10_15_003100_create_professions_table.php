@@ -18,6 +18,7 @@ class CreateProfessionsTable extends Migration {
 			$table->string('name');
 			$table->boolean('holiday');
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

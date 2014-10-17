@@ -14,7 +14,7 @@
 	<div class="row photo-quote-list">
 		@foreach($quotes as $quote)
 			<div class="col-md-3 photo-quote-item">
-				<a href="{{ route('quotes.show', $quote->id) }}"
+				<a href="{{ route('quotes.show', $quote->getSlug()) }}"
 					style="background-image: url({{ $quote->photoURL }});"
 					class="photo-quote"
 				>

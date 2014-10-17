@@ -101,12 +101,23 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	 */
 	public function groupedAlphabetically()
 	{
-		return $this->orderBy('name', 'asc')
+		return $this->orderBy('lastname', 'asc')
 			->get()
 			->groupBy(function($author)
 			{
-				return substr($author->name, 0, 1);
+				return substr($author->lastname, 0, 1);
 			});
+	}
+
+	/**
+	 * Returns author, according to slug
+	 * 
+	 * @param  string $slug
+	 * @return Author
+	 */
+	public function getBySlug($slug)
+	{
+		return $this->model->where('slug', $slug)->first();
 	}
 
 	/**
@@ -129,7 +140,7 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	public function getByCharacterPaginated($character, $perPage = 30)
 	{
 		return $this->model
-			->where('name', 'LIKE', "$character%")
+			->where('lastname', 'LIKE', "$character%")
 			->paginate($perPage);
 	}
 

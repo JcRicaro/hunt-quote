@@ -19,10 +19,11 @@
 
 		<h4> {{ $letter }} </h4>
 		<hr>
-
 		<ul class="list-unstyled">
 			@foreach($authors as $author)			
-				<li> <a href="{{ route('authors.show', $author->id) }}"> {{ $author->name }} </a> </li>
+			<li>
+				<a href="{{ route('authors.show', [$author->getIndex(), $author->getSlug()]) }}"> {{ $author->getName() }}</a>
+			</li>
 			@endforeach
 		</ul>
 
