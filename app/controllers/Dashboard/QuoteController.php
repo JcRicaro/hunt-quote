@@ -55,7 +55,9 @@ class QuoteController extends \BaseController {
 		}
 		catch (ValidationException $e)
 		{
-			return \Redirect::to('dashboard/quotes/create')->withError($e->getMessage());
+			return \Redirect::to('dashboard/quotes/create')
+				->withError($e->getMessage())
+				->withInput();
 		}
 	}
 
@@ -91,7 +93,8 @@ class QuoteController extends \BaseController {
 		}
 		catch (ValidationException $e)
 		{
-			return \Redirect::to('dashboard/quotes/' . $id . '/edit')->withErrors($e->getMessage());
+			return \Redirect::to('dashboard/quotes/' . $id . '/edit')
+				->withErrors($e->getMessage());
 		}
 	}
 

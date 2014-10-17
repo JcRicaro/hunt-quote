@@ -53,7 +53,7 @@ class ProfessionController extends \BaseController {
 		}
 		catch (ValidationException $e)
 		{
-			return \Redirect::to('dashboard/professions/create')->withErrors($e->getMessage())->withInputs();
+			return \Redirect::to('dashboard/professions/create')->withErrors($e->getMessage())->withInput();
 		}
 	}
 

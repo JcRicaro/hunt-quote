@@ -2,6 +2,7 @@
 
 use HuntQuote\Repositories\Author;
 use HuntQuote\Repositories\Profession;
+use HuntQuote\Repositories\Nationality;
 use HuntQuote\Common\Validator\ValidationException;
 
 class AuthorController extends \BaseController {
@@ -16,10 +17,11 @@ class AuthorController extends \BaseController {
 	 */
 	private $profession;
 
-	public function __construct(Author $author, Profession $profession)
+	public function __construct(Author $author, Profession $profession, Nationality $nationality)
 	{
 		$this->author = $author;
 		$this->profession = $profession;
+		$this->nationality = $nationality;
 	}
 
 	/**
@@ -61,7 +63,7 @@ class AuthorController extends \BaseController {
 		}
 		catch (ValidationException $e)
 		{
-			return \Redirect::to('dashboard/authors/create')->withErrors($e->getMessage())->withInputs();	
+			return \Redirect::to('dashboard/authors/create')->withErrors($e->getMessage())->withInput();
 		}
 	}
 
@@ -76,7 +78,8 @@ class AuthorController extends \BaseController {
 	{
 		return \View::make('dashboard.authors.edit')
 			->with('data', $this->author->find($id))
-			->with('professions', $this->profession->all()->lists('name', 'id'));
+			->with('professions', $this->profession->all()->lists('name', 'id'))
+			->with('nationalities', $this->nationality->all()->lists('name', 'id'));
 	}
 
 
@@ -90,7 +93,7 @@ class AuthorController extends \BaseController {
 	{
 		try
 		{
-			$this->author->update($id, \Input::only(['name', 'birth_date', 'death_date', 'professions']));
+			$this->author->update($id, \Input::only(['name', 'birth_date', 'death_date', 'professions', 'nationality']));
 
 			return \Redirect::to('dashboard/authors')->withMessage('Author Saved');
 		}

@@ -34,4 +34,10 @@
             <i class="fa fa-tags"></i> <span>Tags</span>
         </a>
     </li>
+
+    <li class="{{ HTML::nav('dashboard/nationalities') }}">
+        <a href="{{ URL::to('dashboard/nationalities') }}">
+            <i class="fa fa-tags"></i> <span>Nationalities</span>
+        </a>
+    </li>
 </ul>

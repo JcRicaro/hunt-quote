@@ -28,7 +28,7 @@ abstract class AbstractEloquent {
 	 * @param  int $perPage
 	 * @return Paginate
 	 */
-	public function paginate($perPage, $orderRow = 'id', $orderBy = 'desc')
+	public function paginate($perPage = 10, $orderRow = 'id', $orderBy = 'desc')
 	{
 		return $this->model
 			->orderBy($orderRow, $orderBy)
@@ -42,7 +42,7 @@ abstract class AbstractEloquent {
 	 */
 	public function delete($id)
 	{
-		return $this->find($id)->delete();
+		return $this->model->delete($id);
 	}
 
 	/**
@@ -69,7 +69,8 @@ abstract class AbstractEloquent {
 	public function update($id, array $data = array())
 	{
 		$this->validate->forUpdate($data);
-		return $this->find($id)
+		return $this->model
+			->where('id', $id)
 			->update($data);
 	}
 

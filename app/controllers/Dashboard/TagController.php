@@ -52,7 +52,9 @@ class TagController extends \BaseController {
 		}
 		catch (ValidationException $e)
 		{
-			return Redirect::to('dashboard/tags/create')->withErrors($e->getMessage())->withInputs();
+			return Redirect::to('dashboard/tags/create')
+				->withErrors($e->getMessage())
+				->withInput();
 		}
 	}
 

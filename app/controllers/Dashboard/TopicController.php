@@ -53,7 +53,9 @@ class TopicController extends \BaseController {
 		}
 		catch (ValidationException $e)
 		{
-			return \Redirect::to('dashboard/topics/create')->withErrors($e->getMessage())->withInputs();
+			return \Redirect::to('dashboard/topics/create')
+				->withErrors($e->getMessage())
+				->withInput();
 		}
 	}
 
@@ -87,7 +89,8 @@ class TopicController extends \BaseController {
 		}
 		catch (ValidationException $e)
 		{
-			return \Redirect::to('dashboard/topic/' . $id .'/edit')->withErrors($e->getMessage());
+			return \Redirect::to('dashboard/topic/' . $id .'/edit')
+				->withErrors($e->getMessage());
 		}
 	}
 

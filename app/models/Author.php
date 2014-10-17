@@ -67,4 +67,9 @@ class Author extends Eloquent {
 		$redis->zIncrBy('author-hits', 1, $this->id);
 	}
 
+	public function nationality()
+	{
+		return $this->belongsTo('Nationality');
+	}
+
 }

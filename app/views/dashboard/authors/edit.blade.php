@@ -40,6 +40,11 @@
 				{{ Form::label('professions', 'Professions') }}
 				{{ Form::select('professions[]', $professions, $data->professions->lists('id'), ['class' => 'chosen-select form-control', 'multiple' => 'multiple']) }}
 			</div>
+
+			<div class="form-group">
+				{{ Form::label('nationality', 'Nationality') }}
+				{{ Form::select('nationality', $nationalities, $data->nationality->id, ['class' => 'chosen-select form-control']) }}
+			</div>
 		</div>
 		<div class="box-footer">
 			<button type="submit" class="btn btn-primary">Submit</button>
