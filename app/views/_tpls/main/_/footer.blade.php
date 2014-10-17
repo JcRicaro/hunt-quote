@@ -5,6 +5,7 @@
 				<div class="footer-logo-wrapper">
 					<img src="{{ asset('assets/img/logo.png') }}" class="footer-logo">
 				</div>
+				<h4 class="footer-logo-text text-center">HuntQuote</h4>
 			</div>
 			<div class="col-md-3">
 				<h5 class="footer-head"> Site </h5>

@@ -57,7 +57,7 @@
 					@foreach($data as $quote)
 					<tr>
 						<td>
-							{{ $quote->author->name }}
+							{{ $quote->author->getName() }}
 						</td>
 						<td>
 							{{ $quote->content }}

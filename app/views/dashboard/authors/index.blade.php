@@ -51,7 +51,7 @@
 					@foreach($data as $author)
 					<tr>
 						<td>
-							{{ $author->name }}
+							{{ $author->getName() }}
 						</td>
 						<td>
 							<ul class="list-unstyled">
