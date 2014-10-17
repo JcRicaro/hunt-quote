@@ -27,6 +27,6 @@ class CreateQuoteTopicRelation extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('topic_quote');
+		Schema::dropIfExists('quote_topic');
 	}
 }

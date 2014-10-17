@@ -34,9 +34,9 @@ class TopicController extends \BaseController {
 	 * 
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
-		$topic = $this->topic->find($id);
+		$topic = $this->topic->getBySlug($slug);
 		$topic->incrementHits();
 		$photos = $topic->quotes()->withPhoto()->take(10)->get();
 		$quotes = $topic->quotes()->paginate(10);

@@ -31,4 +31,6 @@ interface Topic extends AbstractInterface {
 	 */
 	public function getRandomSet($limit = 10);
 
+	public function getBySlug($slug);
+
 }

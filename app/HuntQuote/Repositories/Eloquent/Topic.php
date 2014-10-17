@@ -4,6 +4,7 @@ use HuntQuote\Common\Repository\AbstractEloquent;
 use HuntQuote\Repositories\Topic as TopicInterface;
 use Topic as TopicModel;
 use HuntQuote\Validators\Topic as TopicValidator;
+use Str;
 
 class Topic extends AbstractEloquent implements TopicInterface {
 	
@@ -11,6 +12,14 @@ class Topic extends AbstractEloquent implements TopicInterface {
 	{
 		$this->model = $topic;
 		$this->validate = $validator;
+	}
+
+	public function create(array $data = array())
+	{
+		$name = $data['name'];
+		$data['name'] = Str::title($name);
+
+		parent::create($data);
 	}
 
 
@@ -76,6 +85,15 @@ class Topic extends AbstractEloquent implements TopicInterface {
 			{
 				return $set->name;
 			});
+	}
+
+	public function getBySlug($slug)
+	{
+		$slug = Str::title(str_replace('_', ' ', $slug));
+
+		return $this->model
+			->where('name', $slug)
+			->firstOrFail();
 	}
 
 }
