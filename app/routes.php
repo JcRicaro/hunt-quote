@@ -109,6 +109,10 @@ Route::group(['prefix' => 'nationalities'], function()
  */
 Route::group(['prefix' => 'dashboard'], function()
 {
+	Route::get('/', function()
+	{
+		return Redirect::to('dashboard/quotes');
+	});
 	// Route::controller('/', 'Dashboard\Controller');
 	Route::resource('professions', 'Dashboard\ProfessionController');
 	Route::resource('quotes', 'Dashboard\QuoteController');
