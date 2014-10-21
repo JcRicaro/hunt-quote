@@ -82,10 +82,16 @@ class LocalSeeder extends Seeder {
 			$lastName = $f->lastName;
 			$firstName = $f->firstName;
 			$full = "{$firstName} {$lastName}";
+			$nid = array_rand($nationalities);
+
+			if($nid == 0)
+			{
+				$nid = 1;
+			}
 
 			$db->insert([
 				'id'				=> $index,
-				'nationality_id' 	=> array_rand($nationalities),
+				'nationality_id' 	=> $nid,
 				'lastname'			=> $lastName,
 				'firstname' 		=> $firstName,
 				'fullname'			=> $full,
