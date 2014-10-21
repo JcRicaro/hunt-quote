@@ -4,10 +4,9 @@ use HuntQuote\Repositories\Author;
 use HuntQuote\Repositories\Quote;
 use HuntQuote\Repositories\Tag;
 use HuntQuote\Repositories\Topic;
+use HuntQuote\Common\Validator\ValidationException;
 
 class QuoteController extends \BaseController {
-
-
 
 	public function __construct(Quote $quote, Tag $tag, Topic $topic, Author $author)
 	{

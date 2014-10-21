@@ -42,5 +42,11 @@ class RepositoryServiceProvider extends ServiceProvider {
 			'HuntQuote\Repositories\Nationality',
 			'HuntQuote\Repositories\Eloquent\Nationality'
 		);
+
+
+		$app->bind(
+			'HuntQuote\Repositories\Page',
+			'HuntQuote\Repositories\Eloquent\Page'
+		);
 	}
 }

@@ -46,4 +46,17 @@
             <i class="fa fa-quote-left"></i> <span>Quote of the Day</span>
         </a>
     </li>
+
+    <li class="{{ HTML::nav('dashboard/pages') }}">
+        <a href="{{ URL::to('dashboard/pages') }}">
+            <i class="fa fa-edit"></i> <span>Pages</span>
+        </a>
+    </li>
+
+    <li class="{{ HTML::nav('dashboard/users') }}">
+        <a href="{{ URL::to('dashboard/users') }}">
+            <i class="fa fa-users"></i> <span>Users</span>
+        </a>
+    </li>
+
 </ul>

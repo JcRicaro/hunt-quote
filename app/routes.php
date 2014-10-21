@@ -107,7 +107,7 @@ Route::group(['prefix' => 'nationalities'], function()
  * Dashboard routes
  * @link dashboard/*
  */
-Route::group(['prefix' => 'dashboard'], function()
+Route::group(['prefix' => 'dashboard', 'before' => 'auth'], function()
 {
 	Route::get('/', function()
 	{
@@ -121,6 +121,16 @@ Route::group(['prefix' => 'dashboard'], function()
 	Route::resource('topics', 'Dashboard\TopicController');
 	Route::resource('tags', 'Dashboard\TagController');
 	Route::resource('nationalities', 'Dashboard\NationalityController');
+	Route::resource('users', 'Dashboard\UserController');
+	// Route::resource('pages', 'Dashboard\PageController');
+	Route::get('pages', [
+		'as'  => 'dashboard.pages.index',
+		'uses' => 'Dashboard\PageController@index'
+	]);
+	Route::put('pages', [
+		'as'  => 'dashboard.pages.update',
+		'uses' => 'Dashboard\PageController@update'
+	]);
 });
 
 Route::get('/', 'Main\Controller@index');
@@ -131,6 +141,23 @@ Route::get('{alpha}', 'Main\AuthorController@alpha')
 Route::get('quote-of-the-day', [
 	'as'   => 'quotes.otd',
 	'uses' => 'Main\QuoteController@otd'
+]);
+
+/**
+ * @link login
+ */
+Route::post('login', [
+	'as'     => 'auth.login',
+	'uses'   => 'AuthController@login',
+	'before' => 'guest'
+]);
+
+/**
+ * @link logout
+ */
+Route::get('logout', [
+	'as'   => 'auth.logout',
+	'uses' => 'AuthController@logout'
 ]);
 
 Route::controller('/', 'PagesController', [

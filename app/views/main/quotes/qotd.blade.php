@@ -1,13 +1,13 @@
 @extends('_tpls.main.tpl')
 
-@section('title') Quote Pictures @stop
+@section('title') Quotes of the Day @stop
 
 @section('meta')
 
 @stop
 
 @section('content')
-	<h3> Picture Quotes </h3>
+	<h3> Quotes of the Day </h3>
 	<hr>
 
 	@include('_tpls.main._.social')

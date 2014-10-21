@@ -1,11 +1,11 @@
 @extends('_tpls.dashboard.tpl')
 
-@section('title') Set Quote of the Day @stop
+@section('title') Edit User @stop
 
 @section('header')
 	<h1>
-		Quote of the Day
-		<small>New</small>
+		Users
+		<small>Edit</small>
 	</h1>
 @stop
 
@@ -18,11 +18,11 @@
 		</li>
 		<li>
 			<a href="{{ URL::to('dashboard/professions') }}">
-				<i class="fa fa-paint-brush"></i> QOTD
+				<i class="fa fa-paint-brush"></i> Users
 			</a>
 		</li>
 		<li class="active">
-			New
+			Edit
 		</li>
 	</ol>
 @stop
@@ -31,45 +31,44 @@
 	<div class="box box-solid">
 		<div class="box-header">
 			<h3 class="box-title">
-				Set today's Quote of the Day
+				Edit User
 			</h3>
 		</div>
 
 		@include('_tpls.dashboard._.flash')
 
 		{{ Form::open([
-			'url' 		=> 'dashboard/qotd',
-			'method' 	=> 'post',
+			'url' 		=> 'dashboard/users/' . $user->id,
+			'method' 	=> 'put',
 			'role' 		=> 'form'
 		]) }}
+
 		<div class="box-body">
+			<input type="hidden" value="{{ $user->id }}" name="id">
+			
 			<div class="form-group">
-				{{ Form::label('quote_id', 'Quote') }}
-				{{ Form::select('quote_id', $quotes, null, ['class' => 'chosen-select form-control']) }}
+				<label> Username </label>
+				<input type="text" class="form-control" name="username" value="{{ $user->username }}">
+			</div>
+
+			<div class="form-group">
+				<label> Email </label>
+				<input type="email" class="form-control" name="email" value="{{ $user->email }}">
+			</div>
+
+			<div class="form-group">
+				<label> Password </label>
+				<input type="password" class="form-control" name="password">
 			</div>
 		</div>
+
 
 		<div class="box-footer">
 			<button type="submit" class="btn btn-primary">
 				Submit
 			</button>
 		</div>
+
 		{{ Form::close() }}
 	</div>
-@stop
-
-
-@section('styles')
-	{{ HTML::style('assets/admin-lte/css/chosen/chosen.min.css') }}
-@stop
-
-@section('scripts')
-	{{ HTML::script('assets/admin-lte/js/plugins/chosen/chosen.jquery.min.js') }}
-
-	<script type="text/javascript">
-		jQuery(function($)
-		{
-			$(".chosen-select").chosen({max_selected_options: 5});		
-		})
-	</script>
 @stop
