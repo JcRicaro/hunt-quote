@@ -40,6 +40,27 @@ function meta_author($author)
 	echo $author->nationality->name;
 }
 
+function meta_authorDesc($professions, $nationality)
+{
+	$str = '';
+	if($professions->count())
+	{
+		foreach($professions as $profession)
+		{
+			$str .= sprintf("%s %s, ",
+				$nationality->name,
+				$profession->name
+			);
+		}
+	}
+	else
+	{
+		$str = ", ";
+	}
+
+	return $str;
+}
+
 function meta_professionIndex($professions)
 {
 	foreach($professions as $profession)

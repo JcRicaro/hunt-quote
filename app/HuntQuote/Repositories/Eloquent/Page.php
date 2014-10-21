@@ -5,7 +5,7 @@ use HuntQuote\Repositories\Page as PageInterface;
 use Page as PageModel;
 use HuntQuote\Validators\Page as PageValidator;
 
-class Page extends AbstractEloquent implements PageInterface {
+class Page implements PageInterface {
 	
 	public function __construct(PageModel $model, PageValidator $validator)
 	{
@@ -19,13 +19,13 @@ class Page extends AbstractEloquent implements PageInterface {
 	 * @param  integer $id
 	 * @return Boolean
 	 */
-	public function update($id, array $data = array())
+	public function update(array $data = array())
 	{
 		$this->model->where('key', 'story')->update(['value' => $data['story']]);
 		$this->model->where('key', 'inquire')->update(['value' => $data['inquire']]);
 		$this->model->where('key', 'terms')->update(['value' => $data['terms']]);
 		$this->model->where('key', 'privacy')->update(['value' => $data['privacy']]);
-		$this->model->where('key', 'submit')->update(['value' => $data['submit']]);
+		// $this->model->where('key', 'submit')->update(['value' => $data['submit']]);
 	}
 
 	public function getStory()

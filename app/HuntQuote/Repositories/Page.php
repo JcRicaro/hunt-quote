@@ -2,6 +2,8 @@
 
 use HuntQuote\Common\Repository\AbstractInterface;
 
-interface Page extends AbstractInterface {
+interface Page {
+
+	public function update(array $data = array());
 	
 }

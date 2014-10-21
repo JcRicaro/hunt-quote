@@ -29,7 +29,7 @@
 				<ul class="list-unstyled footer-navigation">
 					<li> <a href="{{ route('pages.about') }}"> Story </a> </li>
 					<li> <a href="{{ route('pages.inquire') }}"> Inquire </a> </li>
-					<li> <a href="{{ route('pages.submit') }}"> Submit </a> </li>
+					<?php /* <li> <a href="{{ route('pages.submit') }}"> Submit </a> </li> */ ?>
 					<li> <a href="{{ route('pages.privacy') }}"> Privacy </a> </li>
 					<li> <a href="{{ route('pages.terms') }}"> Terms </a> </li>
 				</ul>
