@@ -1,7 +1,11 @@
 @extends('_tpls.main.tpl')
 
 @section('title') {{ $topic->name }} @stop
-@section('meta') @stop
+@section('meta')
+	<meta name="title" content="Quote Topics">
+	<meta name="keywords" content="{{ meta_topic($topic) }}">
+	<meta property="og:title" content="Quotes Topics" />
+@stop
 
 @section('content')
 
@@ -9,6 +13,8 @@
 
 		<h3> {{ $topic->name }} Quotes </h3>
 		<hr>
+
+		@include('_tpls.main._.social')
 
 		@if ( $photos->count() )
 			@include('main.topics.show.carousel')
@@ -19,21 +25,23 @@
 
 			{{ $quotes->links() }}
 
-			<ul class="gp-list list-unstyled">
-				@foreach($quotes as $quote)
-					<li>
-						<div class="panel panel-default">
-							@if ( $quote->hasPhoto() )
-								<div class="panel-thumbnail" style="background-image: url({{ $quote->photoURL }});">
+			<div class="row">
+				@foreach($quotes->chunk(4) as $chunk)
+					<div class="col-md-4">
+						@foreach($chunk as $quote)
+							<a class="panel panel-default panel-quote" href="{{ route('quotes.show', $quote->id) }}">
+								@if ( $quote->hasPhoto() )
+									<div class="panel-thumbnail" style="background-image: url({{ $quote->photoURL }});">
+									</div>
+								@endif
+								<div class="panel-body">
+									<h4> {{ $quote->content }} </h4>
 								</div>
-							@endif
-							<div class="panel-body">
-								<h4> {{ $quote->content }} </h4>
-							</div>
-						</div>						
-					</li>
+							</a>						
+						@endforeach
+					</div>
 				@endforeach
-			</ul>
+			</div>
 
 			</div>
 		</div>

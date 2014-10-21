@@ -3,14 +3,23 @@
 use HuntQuote\Common\Repository\AbstractEloquent;
 use HuntQuote\Repositories\Quote as QuoteInterface;
 use Quote as QuoteModel;
+use QuoteOfTheDay as QuoteOfTheDayModel;
 use HuntQuote\Validators\Quote as QuoteValidator;
+use HuntQuote\Services\Uploader\Quote as QuoteUploader;
 
 class Quote extends AbstractEloquent implements QuoteInterface {
 
-	public function __construct(QuoteModel $quote, QuoteValidator $validator)
+	public function __construct(
+		QuoteModel $quote,
+		QuoteOfTheDayModel $qotd,
+		QuoteValidator $validator,
+		QuoteUploader $uploader
+	)
 	{
 		$this->model = $quote;
 		$this->validate = $validator;
+		$this->uploader = $uploader;
+		$this->qotd = $qotd;
 	}
 
 	/**
@@ -21,11 +30,29 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 	 */
 	public function delete($id)
 	{
-		$this->find($id)->tags()->detach();
+		$model = $this->find($id);
 
-		$this->find($id)->topics()->detach();
+		$model->tags()->detach();
+		$model->topics()->detach();
+		$this->qotd->where('quote_id', $id)->delete();
 
 		return $this->find($id)->delete();
+	}
+
+	public function update($id, array $data = array())
+	{
+		if( isset($data['photo']) )
+		{
+			$data['photo'] = $this->upload($data['photo']);
+		}
+
+		if($data['tags'])
+			$quote->tags()->sync($data['tags']);
+
+		if($data['topics'])
+			$quote->topics()->sync($data['topics']);		
+
+		parent::update($id, $data);
 	}
 
 	/**
@@ -40,7 +67,10 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 	 */
 	public function create(array $data = array())
 	{
-		$this->validate->forCreation($data);
+		if( isset($data['photo']) )
+		{
+			$data['photo'] = $this->upload($data['photo']);
+		}
 
 		$quote = $this->model()->create($data);
 
@@ -48,7 +78,7 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 			$quote->tags()->sync($data['tags']);
 
 		if($data['topics'])
-			$quote->topics->sync($data['topics']);
+			$quote->topics()->sync($data['topics']);
 
 		return $quote;
 	}
@@ -92,6 +122,57 @@ class Quote extends AbstractEloquent implements QuoteInterface {
 		return $this->model
 			->orderByRaw('RAND()')
 			->first();
+	}
+
+	/**
+	 * Uploads file
+	 * @param  [type] $file [description]
+	 * @return string
+	 */
+	protected function upload($file)
+	{
+		return $this->uploader->upload($file);
+	}
+
+	/**
+	 *
+	 * @return [type] [description]
+	 */
+	public function saveQuoteForTheDay($inputs)
+	{
+		$this->validate->forQotd($inputs);
+
+		$this->qotd->create($inputs);
+	}
+
+	/**
+	 * Paginate QOTD
+	 * @return
+	 */
+	public function paginateQotd($count, $orderCol = 'id', $orderBy = 'desc')
+	{
+		return $this->qotd
+			->orderBy($orderCol, $orderBy)
+			->paginate($count);
+	}
+
+	public function deleteQotd($id)
+	{
+		$this->qotd
+			->where('id', $id)
+			->delete($id);
+	}
+
+	public function allQotd()
+	{
+		return $this->qotd->all();
+	}
+
+	public function getQotds()
+	{
+		$ids = $this->allQotd()->lists('id');
+
+		return $this->model->whereIn('id', $ids)->paginate(12);
 	}
 
 }

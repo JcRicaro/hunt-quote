@@ -41,6 +41,11 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	{
 		$this->validate->forCreation($data);
 
+		$data['fullname'] = sprintf("%s %s",
+			$data['firstname'],
+			$data['lastname']
+		);
+
 		$data['slug'] = sprintf("%s_%s-%s",
 			strtolower($data['firstname']),
 			strtolower($data['lastname']),
@@ -160,15 +165,14 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	 * [getRelated description]
 	 * @param  [type]  $id       [description]
 	 * @param  integer $limit    [description]
-	 * @param  string  $orderCol [description]
-	 * @param  string  $orderBy  [description]
 	 * @return [type]            [description]
 	 */
-	public function getRelated($id, $limit = 10, $orderCol = 'name', $orderBy = 'asc')
+	public function getRelated($professions, $nationalityId, $originId, $limit = 10)
 	{
 		return $this->model
-			->where('profession_id', $id)
-			->orderBy($orderCol, $orderBy)
+			->where('nationality_id', '=', $nationalityId)
+			->where('id', '!=', $originId)
+			// getRelatedAuthors
 			->take($limit)
 			->get();
 	}

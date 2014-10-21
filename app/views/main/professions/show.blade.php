@@ -1,7 +1,12 @@
 @extends('_tpls.main.tpl')
 
 @section('title') {{ $profession->name }} @stop
-@section('meta') @stop
+
+@section('meta')
+	<meta name="title" content="{{ $profession->name }} Quotes">
+	<meta name="keywords" content="{{ $profession->name }}, <?php meta_profession($authors) ?>">
+	<meta property="og:title" content="{{ $profession->name }} Quotes" />	
+@stop
 
 @section('content')
 	<div class="row">
@@ -9,6 +14,9 @@
 			@if ( $authors->count() )
 				<h3> {{ $profession->name }} Quotes </h3>
 				<hr>
+				
+				@include('_tpls.main._.social')
+
 				{{ $authors->links() }}
 				<table class="table table-hover">
 					<thead>
@@ -38,5 +46,4 @@
 			@endif
 		</div>
 	</div>
-
 @stop

@@ -79,7 +79,7 @@
 							@endforeach
 						</td>
 						<td class="text-right">
-							<a href="{{ URL::to('dashboard/topics/' . $quote->id . '/edit') }}" class="btn">
+							<a href="{{ URL::to('dashboard/quotes/' . $quote->id . '/edit') }}" class="btn">
 								<i class="fa fa-edit"></i>
 							</a>
 							<a href="#" class="delete btn" data-id="{{ $quote->id }}">

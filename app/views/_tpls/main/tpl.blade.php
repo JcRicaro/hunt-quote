@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>HuntQuote - @yield('title')</title>
+	<title> @yield('title') - HuntQuote </title>
 	<meta charset="utf-8">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="{{ Request::url() }}" />
 	@yield('meta')
 	<!--
 	<link href="http://fonts.googleapis.com/css?family=Ruda" rel="stylesheet">
 	-->
 	{{ HTML::style('vendor/bootstrap/dist/css/bootstrap.min.css') }}
 	{{ HTML::style('assets/css/stylesheet.css') }}
+	<link href="http://cf.shareasimage.com/static/app/css/publisher.css" type="text/css" rel="stylesheet" />
 	@yield('styles')
 </head>
+
 <body>
 	@include('_tpls.main._.nav')
 	@include('_tpls.main._.breadcrumbs')
@@ -26,6 +30,10 @@
 	{{ HTML::script('vendor/jquery/dist/jquery.min.js') }}
 	{{ HTML::script('vendor/bootstrap/dist/js/bootstrap.min.js') }}
 	{{ HTML::script('assets/js/script.js') }}
+	<script type="text/javascript">
+
+	</script>
+	<div class="fb-root"></div>
 	@yield('scripts')
 </body>
 </html>

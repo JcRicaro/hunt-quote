@@ -28,6 +28,6 @@ class Profession extends AbstractEloquent implements ProfessionInterface {
 
 	public function getBySlug($slug)
 	{
-		return $this->model->where('name', strtolower(str_replace(' ', '_', $slug)))->first();
+		return $this->model->where('name', strtolower(str_replace('_', ' ', $slug)))->first();
 	}
 }

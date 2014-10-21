@@ -122,6 +122,7 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'HuntQuote\Common\Repository\RepositoryServiceProvider',
+		'HuntQuote\Core\Validation\ValidationServiceProvider',
 
 	),
 

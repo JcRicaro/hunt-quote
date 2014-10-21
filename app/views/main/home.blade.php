@@ -1,7 +1,11 @@
 @extends('_tpls.main.tpl')
 
 @section('title') Home @stop
-@section('meta') @stop
+@section('meta')
+	<meta name="title" content="Quote Topics">
+	<meta name="keywords" content="{{ meta_home($popularTopics, $popularAuthors, $authorsWithBirthdays, $topicsToExplore, $authorsToExplore) }}">
+	<meta property="og:title" content="Quotes Topics" />
+@stop
 
 @section('content')
 	<div class="row">
@@ -91,7 +95,7 @@
 			<h3> Today's Birthdays </h3>
 			<hr>
 			<ul class="list-unstyled">
-				@foreach ($recentlyUpdatedAuthors as $author)
+				@foreach ($authorsWithBirthdays as $author)
 					<li> {{ date('Y', $author->birth_date->timestamp) }} - <a href="{{ route('authors.show', [$author->getIndex(), $author->getSlug()]) }}"> {{ $author->getName() }} </a> </li>
 				@endforeach
 			</ul>

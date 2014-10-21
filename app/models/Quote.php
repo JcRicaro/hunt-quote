@@ -6,7 +6,9 @@ class Quote extends Eloquent {
 	 * Table used by the model
 	 * @var string
 	 */
-	public $table = 'quotes';
+	protected $table = 'quotes';
+
+	protected $fillable = ['author_id', 'content', 'photo'];
 
 	/**
 	 * [getPogiAttribute description]
@@ -57,9 +59,9 @@ class Quote extends Eloquent {
 	 */
 	public function getPreviewAttribute()
 	{
-		return sprintf("%s by %s",
-			substr($this->content, 0, 50) . '...',
-			$this->author->name
+		return sprintf("%s... by %s",
+			substr($this->content, 0, 50),
+			$this->author->getName()
 		);
 	}
 

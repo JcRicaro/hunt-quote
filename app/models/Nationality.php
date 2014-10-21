@@ -15,4 +15,9 @@ class Nationality extends Eloquent {
 		return $this->hasMany('Author');
 	}
 
+	public function getSlug()
+	{
+		return strtolower(str_replace(' ', '_', $this->name));
+	}
+
 }

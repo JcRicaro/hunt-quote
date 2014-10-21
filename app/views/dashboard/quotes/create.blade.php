@@ -37,12 +37,13 @@
 		{{ Form::open([
 			'url' 		=> 'dashboard/quotes',
 			'method' 	=> 'post',
-			'role' 		=> 'form'
+			'role' 		=> 'form',
+			'files'		=> 'true'
 		]) }}
 		<div class="box-body">
 			<div class="form-group">
-				{{ Form::label('name', 'Name') }}
-				{{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Enter Name Here']) }}
+				{{ Form::label('authors', 'Authors') }}
+				{{ Form::select('author_id', $authors, null, ['class' => 'form-control chosen-select']) }}
 			</div>
 
 			<div class="form-group">

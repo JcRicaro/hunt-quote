@@ -1,0 +1,1 @@
+@extends('_tpls.main.about')

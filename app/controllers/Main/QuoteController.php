@@ -21,10 +21,10 @@ class QuoteController extends \BaseController {
 	 */
 	public function index()
 	{
-		$quotes = $this->quote->paginate(10);
-
-		return \View::make('main.quotes.index')
-			->with('quotes', $quotes);
+		$authors = $this->author->groupedAlphabetically();
+		
+		return \View::make('main.authors.index')
+			->with('authorsByLetter', $authors);
 	}
 
 	/**
@@ -32,19 +32,27 @@ class QuoteController extends \BaseController {
 	 * 
 	 * @return Response
 	 */
-	public function show($slug)
+	public function show($id)
 	{
-		$quote = $this->quote->getBySlug($slug);
-		$author = $quote->author;
-		$profession = $author->profession;
+		$quote = $this->quote->find($id);
+		$tags  = $quote->tags;
 		$topics = $quote->topics;
-		$related = $this->author->getRelated($profession->id, 5);
+		$author = $quote->author;
+		$professions = $author->professions;
+		$nationality = $author->nationality;
+		$related = $this->author->getRelated(
+			$professions,
+			$nationality->id,
+			$author->id,
+			5
+		);
 
 		return \View::make('main.quotes.show')
 			->with('quote', $quote)
 			->with('author', $author)
-			->with('profession', $profession)
+			->with('professions', $professions)
 			->with('topics', $topics)
+			->with('nationality', $nationality)
 			->with('related', $related);
 	}
 
@@ -57,6 +65,19 @@ class QuoteController extends \BaseController {
 		$quotes = $this->quote->getWithPhotosPaginated(32);
 
 		return \View::make('main.quotes.photos')
+			->with('quotes', $quotes);
+	}
+
+	/**
+	 * 
+	 * 
+	 * @return [type] [description]
+	 */
+	public function otd()
+	{
+		$quotes = $this->quote->getQotds();
+
+		return \View::make('main.quotes.qotd')
 			->with('quotes', $quotes);
 	}
 

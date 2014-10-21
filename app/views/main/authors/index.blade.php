@@ -1,19 +1,26 @@
 @extends('_tpls.main.tpl')
 
 @section('title') Authors @stop
-@section('meta') @stop
+@section('meta')
+	<meta name="title" content="Authors by Letter">
+	<meta name="keywords" content="<?php meta_authorIndex($authorsByLetter) ?>">
+	<meta property="og:title" content="Authors by Letter" />
+@stop
 
 @section('content')
 	<h3> Favorite Authors </h3>
 	<hr>
+
+	@include('_tpls.main._.social')
+
 	<p> Looking for quotes by our most popular authors? Gather wisdom from the ages as you browse favorite quotes by famous authors like: Aristotle, Abraham Lincoln, Thomas Jeferson, Oscar Wilde, and William Shakespeare. </p>
 	
 	@foreach($authorsByLetter as $letter => $authors)
-		@if ( $letter == 'M' )				
+		@if ( $letter === 'L' )
 			</div>
 		@endif
 
-		@if ( $letter == 'A' || $letter == 'M' )
+		@if ( $letter == 'A' || $letter == 'L' )
 			<div class="col-md-6">
 		@endif
 

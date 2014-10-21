@@ -13,5 +13,14 @@ class Nationality extends AbstractEloquent implements NationalityInterface {
 		$this->model = $nationality;
 		$this->validate = $validator;
 	}
+
+	public function getBySlug($slug)
+	{
+		$slug = str_replace('_', ' ', $slug);
+
+		return $this->model
+			->where('name', strtolower($slug) )
+			->first();
+	}
 	
 }

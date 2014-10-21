@@ -1,7 +1,11 @@
 @extends('_tpls.main.tpl')
 
 @section('title') Authors @stop
-@section('meta') @stop
+@section('meta')
+	<meta name="title" content="Authors starting with letter {{ strtoupper($character) }}">
+	<meta name="keywords" content="<?php meta_authorAlpha($authors) ?>">
+	<meta property="og:title" content="Authors starting with letter {{ strtoupper($character) }}" />
+@stop
 
 @section('content')
 	@if ( $authors->count() )
@@ -9,7 +13,7 @@
 		<h3> Quotes by '{{ strtoupper($character) }}' authors </h3>
 		<hr>
 
-		
+		@include('_tpls.main._.social')
 
 		<table class="table table-hover">
 			<thead>
@@ -28,9 +32,12 @@
 							</a>
 						</td>
 						<td>
-							@foreach($author->professions as $profession)
+							@foreach($author->professions as $index => $profession)
 							<a href="{{ route('professions.show', $profession->getSlug()) }}">{{ $profession->name }}</a>
-							&nbsp;
+							
+							@if ( $index < $author->professions->count() - 1 )
+								,&nbsp;
+							@endif
 							@endforeach
 						</td>
 					</tr>

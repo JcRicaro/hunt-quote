@@ -21,6 +21,20 @@
 				</ul>
 
 			</div>
+
+			<div class="col-md-3">
+				<h5 class="footer-head"> About Us </h5>
+				<hr>
+
+				<ul class="list-unstyled footer-navigation">
+					<li> <a href="{{ route('pages.about') }}"> Story </a> </li>
+					<li> <a href="{{ route('pages.inquire') }}"> Inquire </a> </li>
+					<li> <a href="{{ route('pages.submit') }}"> Submit </a> </li>
+					<li> <a href="{{ route('pages.privacy') }}"> Privacy </a> </li>
+					<li> <a href="{{ route('pages.terms') }}"> Terms </a> </li>
+				</ul>
+
+			</div>
 		</div>
 	</div>
 

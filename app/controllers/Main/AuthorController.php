@@ -20,10 +20,7 @@ class AuthorController extends \BaseController {
 	public function index()
 	{
 		$authors = $this->author->groupedAlphabetically();
-
-		// dd($authors['A']);
-		// return \Response::json($authors);
-
+		
 		return \View::make('main.authors.index')
 			->with('authorsByLetter', $authors);
 	}

@@ -88,6 +88,7 @@ require app_path().'/filters.php';
 */
 
 require app_path() . '/helpers.php';
+require app_path() . '/meta.php';
 
 
 /*

@@ -1,7 +1,12 @@
 @extends('_tpls.main.tpl')
 
 @section('title') Quote Submission @stop
-@section('meta') @stop
+
+@section('meta')
+	<meta name="title" content="Submit a quote!">
+	<meta name="keywords" content="submit, quote, submission, entry">
+	<meta property="og:title" content="Submit a quote!" />
+@stop
 
 @section('content')
 

@@ -1,11 +1,17 @@
 @extends('_tpls.main.tpl')
 
 @section('title') Topics @stop
-@section('meta') @stop
+@section('meta')
+	<meta name="title" content="Quote Topics">
+	<meta name="keywords" content="{{ meta_topicIndex($topics) }}">
+	<meta property="og:title" content="Quotes Topics" />
+@stop
 
 @section('content')
 	<h3> Quote Topics </h3>
 	<hr>
+
+	@include('_tpls.main._.social')
 
 	<p class="col-md-11"> Looking for a quote from your favorite topic? Our quote collections are organized by topic to help you find the perfect quote. Enjoy quotes on popular topics like: Love, Life, Friendship, Success, Wisdom. </p>
 

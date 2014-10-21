@@ -31,6 +31,7 @@ class LocalSeeder extends Seeder {
 		$this->quote_topic();
 		$this->quote_tag();
 		$this->author_profession();
+		$this->qotd();
 	}
 
 	public function users($count = 2)
@@ -80,12 +81,14 @@ class LocalSeeder extends Seeder {
 		{
 			$lastName = $f->lastName;
 			$firstName = $f->firstName;
+			$full = "{$firstName} {$lastName}";
 
 			$db->insert([
 				'id'				=> $index,
 				'nationality_id' 	=> array_rand($nationalities),
 				'lastname'			=> $lastName,
 				'firstname' 		=> $firstName,
+				'fullname'			=> $full,
 				'slug' => snake_case($firstName . $lastName),
 				'birth_date'		=> $f->dateTimeBetween(),
 				'death_Date'		=> $f->dateTimeBetween(),
@@ -311,6 +314,24 @@ class LocalSeeder extends Seeder {
 					'quote_id' => $quote
 					]);
 			}
+		}
+	}
+
+	public function qotd($count = 10)
+	{
+		$db = DB::table('qotd');
+		$db->truncate();
+
+		$quotes = DB::table('quotes')->lists('id');
+
+		foreach(range(0, 10) as $index)
+		{
+			$db->insert([
+				'id' => $index + 1,
+				'quote_id' => $quotes[$index],
+				'created_at' => now(),
+				'updated_at' => now()
+			]);
 		}
 	}
 

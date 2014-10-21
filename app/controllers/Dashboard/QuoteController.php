@@ -1,5 +1,6 @@
 <?php namespace Dashboard;
 
+use HuntQuote\Repositories\Author;
 use HuntQuote\Repositories\Quote;
 use HuntQuote\Repositories\Tag;
 use HuntQuote\Repositories\Topic;
@@ -8,11 +9,12 @@ class QuoteController extends \BaseController {
 
 
 
-	public function __construct(Quote $quote, Tag $tag, Topic $topic)
+	public function __construct(Quote $quote, Tag $tag, Topic $topic, Author $author)
 	{
 		$this->quote = $quote;
 		$this->tag= $tag;
 		$this->topic = $topic;
+		$this->author = $author;
 	}
 
 	/**
@@ -35,6 +37,7 @@ class QuoteController extends \BaseController {
 	public function create()
 	{
 		return \View::make('dashboard.quotes.create')
+			->with('authors', $this->author->all()->lists('fullname', 'id'))
 			->with('topics', $this->topic->all()->lists('name', 'id'))
 			->with('tags', $this->tag->all()->lists('name', 'id'));
 	}
@@ -47,11 +50,19 @@ class QuoteController extends \BaseController {
 	 */
 	public function store()
 	{
+		$inputs = \Input::only([
+			'author_id',
+			'content',
+			'photo',
+			'topics',
+			'tags'
+		]);
+
+		// dd($inputs);
+
 		try
 		{
-			$this->quote->create(\Input::only(['content', 'author_id', 'topics', 'tags']));
-
-			return \Redirect::to('dashboard/quotes')->withMessage('Quote Created');
+			$this->quote->create($inputs);
 		}
 		catch (ValidationException $e)
 		{
@@ -59,6 +70,9 @@ class QuoteController extends \BaseController {
 				->withError($e->getMessage())
 				->withInput();
 		}
+
+		return \Redirect::to('dashboard/quotes')
+			->withMessage('Quote Created');
 	}
 
 
@@ -71,7 +85,8 @@ class QuoteController extends \BaseController {
 	public function edit($id)
 	{
 		return \View::make('dashboard.quotes.edit')
-			->with('data', $this->quote->find($id))
+			->with('quote', $this->quote->find($id))
+			->with('authors', $this->author->all()->lists('fullname', 'id'))
 			->with('topics', $this->topic->all()->lists('name', 'id'))
 			->with('tags', $this->topic->all()->lists('name', 'id'));
 	}
@@ -85,15 +100,23 @@ class QuoteController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$inputs = \Input::only([
+			'content',
+			'author_id',
+			'tags',
+			'topics'
+		]);
+
 		try
 		{
-			$this->quote->update($id, \Input::only(['content', 'author_id', 'tags', 'topics']));
+			$this->quote->update($id, $inputs);
 
-			return \Redirect::to('dashboard/quotes')->withMessage('Quote updated');
+			return \Redirect::to('dashboard/quotes')
+				->withMessage('Quote updated');
 		}
 		catch (ValidationException $e)
 		{
-			return \Redirect::to('dashboard/quotes/' . $id . '/edit')
+			return \Redirect::to("dashboard/quotes/{$id}/edit")
 				->withErrors($e->getMessage());
 		}
 	}

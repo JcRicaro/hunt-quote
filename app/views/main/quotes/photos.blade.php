@@ -1,13 +1,21 @@
 @extends('_tpls.main.tpl')
 
 @section('title') Quote Pictures @stop
-@section('meta') @stop
+
+@section('meta')
+	<meta name="title" content="Picture Quotes from various authors">
+	<meta name="keywords" content="{{ meta_quotePhotos($quotes) }}">
+	<meta property="og:title" content="Picture Quotes from various authors" />
+@stop
 
 @section('content')
 	<h3> Picture Quotes </h3>
 	<hr>
 
+	@include('_tpls.main._.social')
+
 	<p> Can't think of the author's name but know their occupation? Our collection of authors by profession to find quotes by your favorite writer, president, poet, philosopher, musician and more. </p>
+
 
 	{{ $quotes->links() }}
 

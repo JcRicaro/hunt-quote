@@ -23,5 +23,15 @@ interface Quote extends AbstractInterface {
 	 * @return [type] [description]
 	 */
 	public function getRandomly();
+
+	/**
+	 * Paginate QOTD
+	 * @return
+	 */
+	public function paginateQotd($count, $orderCol = 'id', $orderBy = 'desc');
+
+	public function deleteQotd($id);
+
+	public function allQotd();
 	
 }

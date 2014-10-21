@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/', 'Main\Controller@index');
-
-Route::get('{alpha}', 'Main\AuthorController@alpha')
-	->where('alpha', '[a-zA-Z]{0,1}');
-
 /**
  * @link quotes/*
  */
@@ -95,6 +90,19 @@ Route::group(['prefix' => 'topics'], function()
 	]);
 });
 
+Route::group(['prefix' => 'nationalities'], function()
+{
+	Route::get('/', [
+		'as' => 'nationalities.index',
+		'uses' => 'Main\NationalityController@index'
+	]);
+
+	Route::get('{slug}-quotations', [
+		'as' => 'nationalities.show',
+		'uses' => 'Main\NationalityController@show'
+	]);
+});
+
 /**
  * Dashboard routes
  * @link dashboard/*
@@ -102,10 +110,31 @@ Route::group(['prefix' => 'topics'], function()
 Route::group(['prefix' => 'dashboard'], function()
 {
 	// Route::controller('/', 'Dashboard\Controller');
-	Route::resource('quotes', 'Dashboard\QuoteController');
 	Route::resource('professions', 'Dashboard\ProfessionController');
+	Route::resource('quotes', 'Dashboard\QuoteController');
 	Route::resource('authors', 'Dashboard\AuthorController');
+	Route::resource('qotd', 'Dashboard\QOTDController');
 	Route::resource('topics', 'Dashboard\TopicController');
 	Route::resource('tags', 'Dashboard\TagController');
 	Route::resource('nationalities', 'Dashboard\NationalityController');
 });
+
+Route::get('/', 'Main\Controller@index');
+
+Route::get('{alpha}', 'Main\AuthorController@alpha')
+	->where('alpha', '[a-zA-Z]{0,1}');
+
+Route::get('quote-of-the-day', [
+	'as'   => 'quotes.otd',
+	'uses' => 'Main\QuoteController@otd'
+]);
+
+Route::controller('/', 'PagesController', [
+	'getAbout' => 'pages.about',
+	'getInquire' => 'pages.inquire',
+	'getSubmit' => 'pages.submit',
+	'postSubmit' => 'pages.submission',
+	'getPrivacy' => 'pages.privacy',
+	'getTerms' => 'pages.terms',
+	'getSearch' => 'pages.search'
+]);
