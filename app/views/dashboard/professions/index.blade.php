@@ -22,7 +22,6 @@
 	</ol>
 @stop
 
-
 @section('content')
 	<div class="box box-solid">
 		<div class="box-header">
