@@ -27,6 +27,8 @@
 			</div>
 		</div>
 		<div class="box-body">
+			@include('_tpls.dashboard._.flash')
+			
 			<a href="{{ URL::to('dashboard/nationalities/create') }}" class="btn pull-right">
 				<i class="fa fa-plus"></i> Create
 			</a>

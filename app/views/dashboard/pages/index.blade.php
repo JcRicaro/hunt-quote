@@ -23,6 +23,7 @@
 			</h3>
 		</div>
 		<div class="box-body">
+			@include('_tpls.dashboard._.flash')
 			{{ Form::open(['route' => 'dashboard.pages.update', 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) }}
 			
 			<div class="form-group">

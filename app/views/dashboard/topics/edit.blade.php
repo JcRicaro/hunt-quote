@@ -34,6 +34,7 @@
 				Edit Topic
 			</h3>
 		</div>
+		@include('_tpls.dashboard._.flash')
 		{{ Form::open([
 			'url' 		=> 'dashboard/topics/' . $data->id,
 			'method' 	=> 'put',

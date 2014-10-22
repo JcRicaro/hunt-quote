@@ -33,6 +33,8 @@
 				{{ $data->links() }}
 			</div>
 		</div>
+		@include('_tpls.dashboard._.flash')
+		
 		<div class="box-body">
 			<a href="{{ URL::to('dashboard/professions/create') }}" class="btn pull-right">
 				<i class="fa fa-plus"></i> Create

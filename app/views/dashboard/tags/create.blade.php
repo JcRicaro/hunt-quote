@@ -24,6 +24,7 @@
 				New Tag
 			</h3>
 		</div>
+		@include('_tpls.dashboard._.flash')
 		{{ Form::open([
 				'url' 		=> 'dashboard/tags',
 				'method' 	=> 'post',

@@ -85,7 +85,7 @@ class TopicController extends \BaseController {
 		{
 			$this->topic->update($id, \Input::only(['name', 'is_holiday']));
 
-			return \Redirect::to('dashboard/topics')->withMesage('Topic updated');
+			return \Redirect::to('dashboard/topics')->withMessage('Topic updated');
 		}
 		catch (ValidationException $e)
 		{

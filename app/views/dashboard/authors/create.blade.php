@@ -24,6 +24,7 @@
 				New Author
 			</h3>
 		</div>
+		@include('_tpls.dashboard._.flash')
 		{{ Form::open([
 				'url' 		=> 'dashboard/authors',
 				'method' 	=> 'post',
