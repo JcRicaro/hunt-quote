@@ -5,7 +5,9 @@
 @section('meta')
 	<meta name="title" content="{{ $profession->name }} Quotes">
 	<meta name="keywords" content="{{ $profession->name }}, <?php meta_profession($authors) ?>">
+	<meta name="description" content="Find quotes by {{ $profession->name }}s here at HuntQuote!" />
 	<meta property="og:title" content="{{ $profession->name }} Quotes" />	
+	<meta property="og:description" content="Find quotes by {{ $profession->name }}s here at HuntQuote!" />	
 @stop
 
 @section('content')

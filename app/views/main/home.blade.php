@@ -1,10 +1,12 @@
 @extends('_tpls.main.tpl')
 
-@section('title') Home @stop
+@section('title') Awesome Quotes @stop
 @section('meta')
-	<meta name="title" content="Quote Topics">
+	<meta name="title" content="Awesome Quotes">
 	<meta name="keywords" content="{{ meta_home($popularTopics, $popularAuthors, $authorsWithBirthdays, $topicsToExplore, $authorsToExplore) }}">
-	<meta property="og:title" content="Quotes Topics" />
+	<meta name="description" content="Find your favorite authors' quotes or any favorite quote, by types, by authors, by nationality, or by their profession!">
+	<meta property="og:title" content="Awesome Quotes" />
+	<meta property="og:description" content="Find your favorite authors' quotes or any favorite quote, by types, by authors, by nationality, or by their profession!">
 @stop
 
 @section('content')

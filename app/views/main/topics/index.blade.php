@@ -4,7 +4,9 @@
 @section('meta')
 	<meta name="title" content="Quote Topics">
 	<meta name="keywords" content="{{ meta_topicIndex($topics) }}">
+	<meta name="description" content="Find your favorite authors' quotes according to topic" />
 	<meta property="og:title" content="Quotes Topics" />
+	<meta property="og:description" content="Find your favorite authors' quotes according to topic, whether it be seasonal or not!" />
 @stop
 
 @section('content')

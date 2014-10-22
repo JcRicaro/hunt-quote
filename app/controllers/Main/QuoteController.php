@@ -21,10 +21,7 @@ class QuoteController extends \BaseController {
 	 */
 	public function index()
 	{
-		$authors = $this->author->groupedAlphabetically();
-		
-		return \View::make('main.authors.index')
-			->with('authorsByLetter', $authors);
+		return \Redirect::route('authors.index');
 	}
 
 	/**

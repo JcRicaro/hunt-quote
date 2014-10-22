@@ -5,7 +5,9 @@
 @section('meta')
 	<meta name="title" content="{{ $quote->preview }}">
 	<meta name="keywords" content="<?php echo meta_quote($quote) ?>">
+	<meta name="description" content="{{ $quote->content }} by {{ $quote->author->getName() }}">
 	<meta property="og:title" content="{{ $quote->preview }}">
+	<meta property="og:description" content="{{ $quote->content }} by {{ $quote->author->getName() }}">
 @stop
 
 @section('content')

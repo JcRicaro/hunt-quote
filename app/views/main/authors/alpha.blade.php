@@ -4,7 +4,9 @@
 @section('meta')
 	<meta name="title" content="Authors starting with letter {{ strtoupper($character) }}">
 	<meta name="keywords" content="<?php meta_authorAlpha($authors) ?>">
+	<meta name="description" content="Find your favorite authors starting with letter {{ strtoupper($character) }}" />
 	<meta property="og:title" content="Authors starting with letter {{ strtoupper($character) }}" />
+	<meta property="og:description" content="Find your favorite authors starting with letter {{ strtoupper($character) }}" />
 @stop
 
 @section('content')

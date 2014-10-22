@@ -2,9 +2,11 @@
 
 @section('title') Quotes by Author Nationality @stop
 @section('meta')
-	<meta name="title" content="Quotes by Author Nationality">
+	<meta name="title" content="Authors by Nationality">
 	<meta name="keywords" content="{{ meta_nationalityIndex($nationalities) }}">
-	<meta property="og:title" content="Quotes by Author Nationality" />
+	<meta property="description" content="Find your favorite authors according to their nationality here at HuntQuote!" />
+	<meta property="og:title" content="Authors by Nationality" />
+	<meta property="og:description" content="Find your favorite authors according to their nationality here at HuntQuote!" />
 @stop
 
 @section('content')

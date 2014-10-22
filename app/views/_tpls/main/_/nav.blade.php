@@ -1,7 +1,7 @@
 <nav class="navbar navbar-gaws" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="{{ url('/') }}">
         <img src="{{ asset('assets/img/banner.png') }}" width="150px" class="navbar-logo">
       </a>
     </div>

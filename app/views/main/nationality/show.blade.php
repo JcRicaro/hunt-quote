@@ -4,7 +4,9 @@
 @section('meta')
 	<meta name="title" content="{{ $nationality->name }} authors">
 	<meta name="keywords" content="{{ meta_nationality($nationality) }}">
+	<meta name="description" content="Find your favorite {{ $nationality->name }} authors or authers from the {{ $nationality->name }} nation" />
 	<meta property="og:title" content="{{ $nationality->name }} authors" />
+	<meta property="og:description" content="Find your favorite {{ $nationality->name }} authors or authers from the {{ $nationality->name }} nation" />
 @stop
 
 @section('content')

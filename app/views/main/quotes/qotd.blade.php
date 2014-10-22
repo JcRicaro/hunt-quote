@@ -3,7 +3,10 @@
 @section('title') Quotes of the Day @stop
 
 @section('meta')
-
+	<meta name="title" content="Featured quotes daily">
+	<meta name="description" content="Get daily dose of philosophical, intellectual, lovely quotes by your favorites authors!" />
+	<meta property="og:title" content="Featured quotes daily">
+	<meta property="og:description" content="Get daily dose of philosophical, intellectual, lovely quotes by your favorites authors!" />
 @stop
 
 @section('content')

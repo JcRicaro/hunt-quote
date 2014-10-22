@@ -4,7 +4,9 @@
 @section('meta')
 	<meta name="title" content="Quote Topics">
 	<meta name="keywords" content="{{ meta_topic($topic) }}">
+	<meta name="description" content="Get all quotes falling under {{ $topic->name }}" />
 	<meta property="og:title" content="Quotes Topics" />
+	<meta property="og:description" content="Get all quotes falling under {{ $topic->name }}" />
 @stop
 
 @section('content')

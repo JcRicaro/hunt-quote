@@ -5,7 +5,9 @@
 @section('meta')
 	<meta name="title" content="Picture Quotes from various authors">
 	<meta name="keywords" content="{{ meta_quotePhotos($quotes) }}">
+	<meta name="description" content="Get typographical pictures or vintage, picture quotes from various authors here at HuntQuote!" />
 	<meta property="og:title" content="Picture Quotes from various authors" />
+	<meta property="og:description" content="Get typographical pictures or vintage, picture quotes from various authors here at HuntQuote!" />
 @stop
 
 @section('content')

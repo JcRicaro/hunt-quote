@@ -5,7 +5,9 @@
 @section('meta')
 	<meta name="title" content="Authors by Profession">
 	<meta name="keywords" content="<?php meta_professionIndex($professions) ?>">
+	<meta name="description" content="Find your favorite authors by their profession here at HuntQuote!" />
 	<meta property="og:title" content="Authors by Profession" />	
+	<meta property="og:description" content="Find your favorite authors by their profession here at HuntQuote!" />
 @stop
 
 @section('content')
