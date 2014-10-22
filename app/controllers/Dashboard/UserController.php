@@ -109,7 +109,7 @@ class UserController extends \BaseController {
 		}
 
 		return \Redirect::route('dashboard.users.edit', $id)
-			->with();
+			->withSuccess('User has been updated succesfully!');
 	}
 
 

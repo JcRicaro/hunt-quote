@@ -34,7 +34,7 @@ class LocalSeeder extends Seeder {
 		$this->qotd();
 	}
 
-	public function users($count = 2)
+	public function users($count = 1)
 	{
 		$f = $this->faker;
 		$db = DB::table('users');
@@ -44,9 +44,9 @@ class LocalSeeder extends Seeder {
 		{
 			$db->insert([
 				'id'			=> $index,
-				'email'			=> $f->email,
-				'username'		=> $f->username,
-				'password'		=> Hash::make('1234'),
+				'email'			=> 'zxcvbnmloveyou@gmail.com',
+				'username'		=> 'admin',
+				'password'		=> Hash::make('admin'),
 				'created_at'	=> now(),
 				'updated_at'	=> now()
 			]);
