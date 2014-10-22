@@ -40,8 +40,8 @@ class PagesController extends \BaseController {
 
 	public function getPrivacy()
 	{
-		return \View::make('about.getPrivacy')
-			->with('privacty', $this->page->getPrivacy()->value);
+		return \View::make('about.privacy')
+			->with('privacy', $this->page->getPrivacy()->value);
 	}
 
 	public function getSearch()
