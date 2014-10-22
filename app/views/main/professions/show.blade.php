@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('title') {{ $profession->name }} @stop
 
@@ -10,42 +10,38 @@
 	<meta property="og:description" content="Find quotes by {{ $profession->name }}s here at HuntQuote!" />	
 @stop
 
-@section('content')
-	<div class="row">
-		<div class="col-sm-8">
-			@if ( $authors->count() )
-				<h3> {{ $profession->name }} Quotes </h3>
-				<hr>
+@section('sub-content')
+	@if ( $authors->count() )
+		<h3> {{ $profession->name }} Quotes </h3>
+		<hr>
 				
-				@include('_tpls.main._.social')
+		@include('_tpls.main._.social')
 
-				{{ $authors->links() }}
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th> Name </th>
-							<th> Birth - Death </th>
-						</tr>
-					</thead>
+		{{ $authors->links() }}
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th> Name </th>
+					<th> Birth - Death </th>
+				</tr>
+			</thead>
 
-					<tbody>
-						@foreach($authors as $author)
-							<tr>
-								<td class="gaws-row">
-									<a href="{{ route('authors.show', [$author->getIndeX(), $author->getSlug()]) }}">
-										{{ $author->getName() }}
-									</a>
-								</td>
-								<td class="gaws-row">
-									{{ date('Y', $author->birth_date->timestamp) }} - {{ date('Y', $author->death_date->timestamp) }}
-								</td>
-							</tr>
-						@endforeach
-					</tbody>
-				</table>
-			@else
-				<h4> No author is a {{ $profession->name }} </h4>
-			@endif
-		</div>
-	</div>
+			<tbody>
+				@foreach($authors as $author)
+					<tr>
+						<td class="gaws-row">
+							<a href="{{ route('authors.show', [$author->getIndeX(), $author->getSlug()]) }}">
+								{{ $author->getName() }}
+							</a>
+						</td>
+						<td class="gaws-row">
+							{{ date('Y', $author->birth_date->timestamp) }} - {{ date('Y', $author->death_date->timestamp) }}
+						</td>
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
+	@else
+		<h4> No author is a {{ $profession->name }} </h4>
+	@endif
 @stop

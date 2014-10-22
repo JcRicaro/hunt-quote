@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('title') Authors @stop
 @section('meta')
@@ -9,7 +9,7 @@
 	<meta property="og:description" content="Find your favorite authors starting with letter {{ strtoupper($character) }}" />
 @stop
 
-@section('content')
+@section('sub-content')
 	@if ( $authors->count() )
 	
 		<h3> Quotes by '{{ strtoupper($character) }}' authors </h3>

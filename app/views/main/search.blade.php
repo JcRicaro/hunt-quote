@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('styles')
 	<style>
@@ -14,7 +14,7 @@
 
 @section('title') {{ $query }} @stop
 
-@section('content')
+@section('sub-content')
 	<div id="cse-search-results"></div>
 	<script type="text/javascript">
 	  var googleSearchIframeName = "cse-search-results";

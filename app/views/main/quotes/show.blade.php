@@ -25,6 +25,10 @@
 				@endif
 			</div>
 		</div>
+
+		<div class="col-md-4">
+			@include('_tpls.main._.ads')
+		</div>
 	</div>
 
 	@include('_tpls.main._.social')

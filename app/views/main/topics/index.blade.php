@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('title') Topics @stop
 @section('meta')
@@ -9,7 +9,7 @@
 	<meta property="og:description" content="Find your favorite authors' quotes according to topic, whether it be seasonal or not!" />
 @stop
 
-@section('content')
+@section('sub-content')
 	<h3> Quote Topics </h3>
 	<hr>
 

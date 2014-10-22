@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('title') Professions @stop
 
@@ -10,7 +10,7 @@
 	<meta property="og:description" content="Find your favorite authors by their profession here at HuntQuote!" />
 @stop
 
-@section('content')
+@section('sub-content')
 	<h3> Professions </h3>
 	<hr>
 

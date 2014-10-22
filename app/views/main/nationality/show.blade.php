@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('title') {{ $nationality->name }} authors @stop
 @section('meta')
@@ -9,7 +9,7 @@
 	<meta property="og:description" content="Find your favorite {{ $nationality->name }} authors or authers from the {{ $nationality->name }} nation" />
 @stop
 
-@section('content')
+@section('sub-content')
 	@if ( $nationality->authors->count() )
 		<h3> {{ $nationality->name }} authors </h3>
 		<hr>

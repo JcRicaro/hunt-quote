@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('title') Quotes by Author Nationality @stop
 @section('meta')
@@ -9,7 +9,7 @@
 	<meta property="og:description" content="Find your favorite authors according to their nationality here at HuntQuote!" />
 @stop
 
-@section('content')
+@section('sub-content')
 	@if ( $nationalities->count() )
 		<h3> Author by Nationality </h3>
 		<hr>

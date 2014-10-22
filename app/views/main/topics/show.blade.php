@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('title') {{ $topic->name }} @stop
 @section('meta')
@@ -9,7 +9,7 @@
 	<meta property="og:description" content="Get all quotes falling under {{ $topic->name }}" />
 @stop
 
-@section('content')
+@section('sub-content')
 
 	@if ( $quotes->count() )
 
@@ -23,7 +23,7 @@
 		@endif
 
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-12">
 
 			{{ $quotes->links() }}
 

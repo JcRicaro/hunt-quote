@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('title') Authors @stop
 @section('meta')
@@ -9,7 +9,7 @@
 	<meta property="og:description" content="Find great quotes by your favorite authors from Abraham Lincoln to Zsa Zsa Gabor." />
 @stop
 
-@section('content')
+@section('sub-content')
 	<h3> Favorite Authors </h3>
 	<hr>
 

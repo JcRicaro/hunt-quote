@@ -16,6 +16,8 @@
 					<li {{ HTML::nav('terms') }}> <a href="{{ route('pages.terms') }}"> Terms </a> </li>
 				</ul>
 			</div>
+
+			@include('_tpls.main._.ads')
 		</div>
 	</div>
 @stop

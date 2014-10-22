@@ -14,10 +14,10 @@
 				<ul class="list-unstyled footer-navigation">
 					<li> <a href="{{ route('authors.index') }}"> Authors </a> </li>
 					<li> <a href="{{ route('topics.index') }}"> Topics </a> </li>
-					<li> <a href="{{ route('quotes.submission') }}"> Submission </a> </li>
 					<li> <a href="{{ '/' }}"> Quote of the Day </a> </li>
 					<li> <a href="{{ route('quotes.photos') }}"> Pictures </a> </li>
 					<li> <a href="{{ route('professions.index') }}"> Professions </a> </li>
+					<li> <a href="{{ route('nationalities.index') }}"> Nationalities </a></li>
 				</ul>
 
 			</div>

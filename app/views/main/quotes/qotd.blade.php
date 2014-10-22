@@ -1,4 +1,4 @@
-@extends('_tpls.main.tpl')
+@extends('_tpls.main.ads')
 
 @section('title') Quotes of the Day @stop
 
@@ -9,7 +9,7 @@
 	<meta property="og:description" content="Get daily dose of philosophical, intellectual, lovely quotes by your favorites authors!" />
 @stop
 
-@section('content')
+@section('sub-content')
 	<h3> Quotes of the Day </h3>
 	<hr>
 
