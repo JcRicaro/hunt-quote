@@ -41,6 +41,9 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	{
 		$this->validate->forCreation($data);
 
+		$data['birth_date'] = date('Y-m-d', strtotime($data['birth_date']));
+		$data['death_date'] = date('Y-m-d', strtotime($data['death_date']));
+
 		$data['fullname'] = sprintf("%s %s",
 			$data['firstname'],
 			$data['lastname']
@@ -73,6 +76,14 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	public function update($id, array $data = array())
 	{
 		$this->validate->forUpdate($data);
+
+		$data['birth_date'] = date('Y-m-d', strtotime($data['birth_date']));
+		$data['death_date'] = date('Y-m-d', strtotime($data['death_date']));
+
+		$data['fullname'] = sprintf("%s %s",
+			$data['firstname'],
+			$data['lastname']
+		);
 
 		$data['slug'] = sprintf("%s_%s-%s",
 			$data['firstname'],

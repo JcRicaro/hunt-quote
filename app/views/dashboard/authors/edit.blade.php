@@ -56,6 +56,17 @@
 				{{ Form::label('nationality_id', 'Nationality') }}
 				{{ Form::select('nationality_id', $nationalities, $data->nationality->id, ['class' => 'form-control']) }}
 			</div>
+
+			<div class="form-group">
+				{{ Form::label('birth_date', 'Birth Date') }}
+				{{ Form::text('birth_date', $data->birth_date->format('Y-m-d'), ['class' => 'form-control', 'placeholder' => 'Enter date']) }}
+			</div>
+
+
+			<div class="form-group">
+				{{ Form::label('death_date', 'Death Date') }}
+				{{ Form::text('death_date', $data->death_date->format('Y-m-d'), ['class' => 'form-control', 'placeholder' => 'Enter date']) }}
+			</div>
 		</div>
 		<div class="box-footer">
 			<button type="submit" class="btn btn-primary">Submit</button>
@@ -66,15 +77,19 @@
 
 @section('styles')
 	{{ HTML::style('assets/admin-lte/css/chosen/chosen.min.css') }}
+	{{ HTML::style('assets/admin-lte/css/datepicker/datepicker3.css') }}
 @stop
 
 @section('scripts')
 	{{ HTML::script('assets/admin-lte/js/plugins/chosen/chosen.jquery.min.js') }}
+	{{ HTML::script('assets/admin-lte/js/plugins/datepicker/bootstrap-datepicker.js') }}
 
 	<script type="text/javascript">
 		jQuery(function($)
 		{
 			$(".chosen-select").chosen({max_selected_options: 5});		
+			$('input[name=birth_date]').datepicker();
+			$('input[name=death_date]').datepicker();
 		})
 	</script>
 @stop
