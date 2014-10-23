@@ -11,6 +11,11 @@
 |
 */
 
+App::missing(function(Exception $e)
+{
+	return View::make('_tpls.e.404');
+});
+
 /**
  * @link quotes/*
  */
