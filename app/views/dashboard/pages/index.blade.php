@@ -25,6 +25,60 @@
 		<div class="box-body">
 			@include('_tpls.dashboard._.flash')
 			{{ Form::open(['route' => 'dashboard.pages.update', 'method' => 'put', 'class' => 'form-horizontal', 'role' => 'form']) }}
+
+			<div class="form-group">
+				{{ Form::label('', ' Authors Page ', ['class' => 'control-label no-padding-right col-sm-2']) }}
+				<div class="col-sm-8">
+					<textarea name="authors" id="" cols="30" rows="10" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+						{{  $config['authors']->value }}
+					</textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('', ' Topics Page ', ['class' => 'control-label no-padding-right col-sm-2']) }}
+				<div class="col-sm-8">
+					<textarea name="topics" id="" cols="30" rows="10" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+						{{  $config['topics']->value }}
+					</textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('', ' Nationalities Page ', ['class' => 'control-label no-padding-right col-sm-2']) }}
+				<div class="col-sm-8">
+					<textarea name="nationalities" id="" cols="30" rows="10" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+						{{  $config['nationalities']->value }}
+					</textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('', ' Professions Page ', ['class' => 'control-label no-padding-right col-sm-2']) }}
+				<div class="col-sm-8">
+					<textarea name="professions" id="" cols="30" rows="10" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+						{{  $config['professions']->value }}
+					</textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('', ' Quote of the Day Page ', ['class' => 'control-label no-padding-right col-sm-2']) }}
+				<div class="col-sm-8">
+					<textarea name="qotd" id="" cols="30" rows="10" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+						{{  $config['qotd']->value }}
+					</textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('', ' Picture Quotes Page ', ['class' => 'control-label no-padding-right col-sm-2']) }}
+				<div class="col-sm-8">
+					<textarea name="pictures" id="" cols="30" rows="10" class="textarea" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+						{{  $config['pictures']->value }}
+					</textarea>
+				</div>
+			</div>
 			
 			<div class="form-group">
 				{{ Form::label('', ' About Us ', ['class' => 'control-label no-padding-right col-sm-2']) }}

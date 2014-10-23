@@ -17,7 +17,13 @@ class FillPagesTable extends Migration {
 			'inquire',
 			'submit',
 			'privacy',
-			'terms'
+			'terms',
+			'nationalities',
+			'authors',
+			'topics',
+			'professions',
+			'pictures',
+			'qotd'
 		];
 
 		foreach(range(0, count($keys) - 1) as $index)

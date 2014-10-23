@@ -25,6 +25,12 @@ class Page implements PageInterface {
 		$this->model->where('key', 'inquire')->update(['value' => $data['inquire']]);
 		$this->model->where('key', 'terms')->update(['value' => $data['terms']]);
 		$this->model->where('key', 'privacy')->update(['value' => $data['privacy']]);
+		$this->model->where('key', 'nationalities')->update(['value' => $data['nationalities']]);
+		$this->model->where('key', 'authors')->update(['value' => $data['authors']]);
+		$this->model->where('key', 'topics')->update(['value' => $data['topics']]);
+		$this->model->where('key', 'professions')->update(['value' => $data['professions']]);
+		$this->model->where('key', 'pictures')->update(['value' => $data['pictures']]);
+		$this->model->where('key', 'qotd')->update(['value' => $data['qotd']]);
 		// $this->model->where('key', 'submit')->update(['value' => $data['submit']]);
 	}
 
@@ -63,6 +69,47 @@ class Page implements PageInterface {
 			->first();
 	}
 
+	public function getNationalities()
+	{
+		return $this->model
+			->where('key', 'nationalities')
+			->first();
+	}
+
+	public function getProfessions()
+	{
+		return $this->model
+			->where('key', 'professions')
+			->first();
+	}
+
+	public function getPictures()
+	{
+		return $this->model
+			->where('key', 'pictures')
+			->first();
+	}
+
+	public function getAuthors()
+	{
+		return $this->model
+			->where('key', 'authors')
+			->first();
+	}
+
+	public function getTopics()
+	{
+		return $this->model
+			->where('key', 'topics')
+			->first();
+	}
+
+	public function getQotd()
+	{
+		return $this->model
+			->where('key', 'qotd')
+			->first();
+	}
 
 
 }

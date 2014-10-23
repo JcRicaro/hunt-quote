@@ -18,6 +18,12 @@ class PageController extends \BaseController {
 				'submit' => $this->page->getSubmit(),
 				'terms' => $this->page->getTerms(),
 				'privacy' => $this->page->getPrivacy(),
+				'nationalities' => $this->page->getNationalities(),
+				'authors' => $this->page->getAuthors(),
+				'topics' => $this->page->getTopics(),
+				'professions' => $this->page->getProfessions(),
+				'pictures' => $this->page->getPictures(),
+				'qotd' => $this->page->getQotd()
 			]);
 	}
 
@@ -28,7 +34,13 @@ class PageController extends \BaseController {
 			'inquire',
 			'submit',
 			'terms',
-			'privacy'
+			'privacy',
+			'nationalities',
+			'authors',
+			'topics',
+			'professions',
+			'pictures',
+			'qotd'
 		]);
 
 		$page = $this->page->update($inputs);
