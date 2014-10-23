@@ -15,7 +15,7 @@
 
 	@include('_tpls.main._.social')
 
-	<p> Looking for quotes by our most popular authors? Gather wisdom from the ages as you browse favorite quotes by famous authors like: Aristotle, Abraham Lincoln, Thomas Jeferson, Oscar Wilde, and William Shakespeare. </p>
+	<p> {{ $page }} </p>
 	
 	@foreach($authorsByLetter as $letter => $authors)
 		@if ( $letter === 'L' )

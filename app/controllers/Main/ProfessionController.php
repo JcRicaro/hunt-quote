@@ -1,15 +1,17 @@
 <?php namespace Main;
 
 use HuntQuote\Repositories\Profession;
+use HuntQuote\Repositories\Page;
 
 class ProfessionController extends \BaseController {
 
 	/**
 	 * Class constructor
 	 */
-	public function __construct(Profession $profession)
+	public function __construct(Profession $profession, Page $page)
 	{
 		$this->profession = $profession;
+		$this->page = $page;
 	}
 
 	/**
@@ -20,9 +22,11 @@ class ProfessionController extends \BaseController {
 	public function index()
 	{
 		$professions = $this->profession->all();
+		$page = $this->page->getProfessions()->value;
 
 		return \View::make('main.professions.index')
-			->with('professions', $professions);
+			->with('professions', $professions)
+			->with('page', $page);
 	}
 
 	/**

@@ -14,10 +14,16 @@
 		<h3> Author by Nationality </h3>
 		<hr>
 
+		@include('_tpls.main._.social')
+		<p> {{ $page }} </p>
+
 		<ul class="list-unstyled gp-list">
 			@foreach($nationalities as $nationality)
 				<li> <a href="{{ route('nationalities.show', $nationality->getSlug()) }}"> {{ $nationality->name }} Quotes </a> </li>
 			@endforeach
 		</ul>
+	@else
+		<h5> No nationalities yet. </h5>
+		<hr>
 	@endif
 @stop

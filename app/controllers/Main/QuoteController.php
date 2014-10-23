@@ -2,16 +2,18 @@
 
 use HuntQuote\Repositories\Quote;
 use HuntQuote\Repositories\Author;
+use HuntQuote\Repositories\Page;
 
 class QuoteController extends \BaseController {
 
 	/**
 	 * Class constructor
 	 */
-	public function __construct(Quote $quote, Author $author)
+	public function __construct(Quote $quote, Author $author, Page $page)
 	{
 		$this->quote = $quote;
 		$this->author = $author;
+		$this->page = $page;
 	}
 
 	/**
@@ -60,9 +62,11 @@ class QuoteController extends \BaseController {
 	public function photos()
 	{
 		$quotes = $this->quote->getWithPhotosPaginated(32);
+		$page = $this->page->getPictures()->value;
 
 		return \View::make('main.quotes.photos')
-			->with('quotes', $quotes);
+			->with('quotes', $quotes)
+			->with('page', $page);
 	}
 
 	/**
@@ -73,9 +77,11 @@ class QuoteController extends \BaseController {
 	public function otd()
 	{
 		$quotes = $this->quote->getQotds();
+		$page = $this->page->getQotd()->value;
 
 		return \View::make('main.quotes.qotd')
-			->with('quotes', $quotes);
+			->with('quotes', $quotes)
+			->with('page', $page);
 	}
 
 	public function submission()

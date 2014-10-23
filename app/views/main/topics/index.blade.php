@@ -4,9 +4,9 @@
 @section('meta')
 	<meta name="title" content="Quote Topics">
 	<meta name="keywords" content="{{ meta_topicIndex($topics) }}">
-	<meta name="description" content="Find your favorite authors' quotes according to topic" />
+	<meta name="description" content="{{ $page }}" />
 	<meta property="og:title" content="Quotes Topics" />
-	<meta property="og:description" content="Find your favorite authors' quotes according to topic, whether it be seasonal or not!" />
+	<meta property="og:description" content="{{ $page }}" />
 @stop
 
 @section('sub-content')
@@ -15,7 +15,7 @@
 
 	@include('_tpls.main._.social')
 
-	<p class="col-md-11"> Looking for a quote from your favorite topic? Our quote collections are organized by topic to help you find the perfect quote. Enjoy quotes on popular topics like: Love, Life, Friendship, Success, Wisdom. </p>
+	<p class="col-md-11"> {{ $page }} </p>
 
 	<div class="row">
 		<div class="col-md-9">

@@ -1,15 +1,17 @@
 <?php namespace Main;
 
 use HuntQuote\Repositories\Author;
+use HuntQuote\Repositories\Page;
 
 class AuthorController extends \BaseController {
 
 	/**
 	 * Class constructor
 	 */
-	public function __construct(Author $author)
+	public function __construct(Author $author, Page $page)
 	{
 		$this->author = $author;
+		$this->page = $page;
 	}
 
 	/**
@@ -20,9 +22,11 @@ class AuthorController extends \BaseController {
 	public function index()
 	{
 		$authors = $this->author->groupedAlphabetically();
+		$page = $this->page->getAuthors()->value;
 		
 		return \View::make('main.authors.index')
-			->with('authorsByLetter', $authors);
+			->with('authorsByLetter', $authors)
+			->with('page', $page);
 	}
 
 	/**

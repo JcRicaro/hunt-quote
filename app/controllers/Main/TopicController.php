@@ -1,15 +1,17 @@
 <?php namespace Main;
 
 use HuntQuote\Repositories\Topic;
+use HuntQuote\Repositories\Page;
 
 class TopicController extends \BaseController {
 
 	/**
 	 * Class constructor
 	 */
-	public function __construct(Topic $topic)
+	public function __construct(Topic $topic, Page $page)
 	{
 		$this->topic = $topic;
+		$this->page = $page;
 	}
 
 	/**
@@ -22,10 +24,12 @@ class TopicController extends \BaseController {
 		$topics = $this->topic->allWithoutHolidays();
 		$holidays = $this->topic->allHolidays();
 		// $tags = $topics->tags;
+		$page = $this->page->getTopics()->value;
 
 		return \View::make('main.topics.index')
 			->with('topics', $topics)
-			->with('holidays', $holidays);
+			->with('holidays', $holidays)
+			->with('page', $page);
 			// ->with('tags', $tags);
 	}
 
