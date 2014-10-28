@@ -1,4 +1,4 @@
-<div class="author-crumbs">
+<div class="author-crumbs screen-only">
 	<div class="container">
 		<div class="author-container">
 			<span class="s"> Authors: </span>

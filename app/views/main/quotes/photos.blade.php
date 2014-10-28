@@ -23,14 +23,24 @@
 
 	<div class="row photo-quote-list">
 		@foreach($quotes as $quote)
-			<div class="col-md-3 photo-quote-item">
-				<a href="{{ route('quotes.show', $quote->getSlug()) }}"
-					style="background-image: url({{ $quote->photoURL }});"
-					class="photo-quote"
-				>
-				</a>
+			<div class="col-md-3 col-xs-12 photo-quote-item">
+				<div class="panel panel-default">
+					<a href="{{ route('quotes.show', $quote->getSlug()) }}"
+						style="background-image: url({{ $quote->photoURL }});"
+						class="photo-quote"
+					>
+					</a>
+					<div class="panel-footer">
+						<div class="pw-widget pw-size-small">
+							<a class="pw-button-facebook"></a>
+							<a class="pw-button-twitter"></a>
+							<a class="pw-button-tumblr"></a>
+						</div>
+						<script src="http://i.po.st/static/v3/post-widget.js#publisherKey=[publisherKey]&retina=true">
+						</script>
+					</div>
+				</div>
 			</div>
 		@endforeach
 	</div>
-
 @stop

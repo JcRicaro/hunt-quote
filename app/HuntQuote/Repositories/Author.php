@@ -24,6 +24,14 @@ interface Author extends AbstractInterface {
 	public function groupedAlphabetically();
 
 	/**
+	 * Get the first, middle, and last position
+	 * in the array grouped by alphabetically
+	 * @param  array $authors
+	 * @return [type] [description]
+	 */
+	public function getAlphabetKeyPositions(array $authors);
+
+	/**
 	 * {self-explanatory}
 	 * @return [type] [description]
 	 */

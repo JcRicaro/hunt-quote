@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="{{ Request::url() }}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	@yield('meta')
 	<!--
 	<link href="http://fonts.googleapis.com/css?family=Ruda" rel="stylesheet">

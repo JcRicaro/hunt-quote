@@ -138,6 +138,25 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	}
 
 	/**
+	 * Get the first, middle, and last position
+	 * in the array grouped by alphabetically
+	 * @param  array $authors
+	 * @return [type] [description]
+	 */
+	public function getAlphabetKeyPositions(array $authors)
+	{
+		$count = count($authors);
+		$keys = array_keys( $authors );
+		$middle = ceil( $count / 2 );
+
+		return [
+			'first' => $keys[0],
+			'middle' => $keys[$middle],
+			'last' => $keys[$count - 1]
+		];
+	}
+
+	/**
 	 * Returns author, according to slug
 	 * 
 	 * @param  string $slug

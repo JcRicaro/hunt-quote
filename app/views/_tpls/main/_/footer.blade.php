@@ -1,7 +1,7 @@
 <footer>
-	<div class="container">
+	<div class="container" style="display: table;">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-3" style="display: relative;">
 				<div class="footer-logo-wrapper">
 					<img src="{{ asset('assets/img/logo.png') }}" class="footer-logo">
 				</div>

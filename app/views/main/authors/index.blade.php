@@ -18,11 +18,11 @@
 	<p> {{ $page }} </p>
 	
 	@foreach($authorsByLetter as $letter => $authors)
-		@if ( $letter === 'L' )
+		@if ( $letter === $keyPositions['middle'] )
 			</div>
 		@endif
 
-		@if ( $letter == 'A' || $letter == 'L' )
+		@if ( $letter === $keyPositions['first'] || $letter === $keyPositions['middle'] )
 			<div class="col-md-6">
 		@endif
 
@@ -36,7 +36,7 @@
 			@endforeach
 		</ul>
 
-		@if ( $letter == 'Y' )
+		@if ( $letter == $keyPositions['last'] )
 			</div>
 		@endif
 	@endforeach

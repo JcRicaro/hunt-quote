@@ -23,10 +23,12 @@ class AuthorController extends \BaseController {
 	{
 		$authors = $this->author->groupedAlphabetically();
 		$page = $this->page->getAuthors()->value;
+		$keyPositions = $this->author->getAlphabetKeyPositions($authors->toArray());
 		
 		return \View::make('main.authors.index')
 			->with('authorsByLetter', $authors)
-			->with('page', $page);
+			->with('page', $page)
+			->with('keyPositions', $keyPositions);
 	}
 
 	/**
