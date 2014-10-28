@@ -165,7 +165,7 @@ function meta_topic($topic)
 	foreach($topic->quotes as $quote)
 	{
 		$string .= sprintf("%s, ",
-			$quote->author->getName()
+			$quote->author['fullname']
 		);
 	}
 
@@ -269,6 +269,28 @@ function meta_nationalityIndex($nationalities)
 		'Author by Nationality',
 		'Authors',
 		'Author Quotes'
+	);
+
+	return $string;
+}
+
+function meta_tagIndex($tags)
+{
+	$string = '';
+
+	foreach($tags as $chunk) {
+		foreach($chunk as $tag)
+		{
+			$string .= sprintf("%s, ",
+				$tag->name
+			);
+		}
+	}
+
+	$string .= sprintf("%s, %s, %s",
+		"HuntQuote",
+		"Tags",
+		"By tag"
 	);
 
 	return $string;

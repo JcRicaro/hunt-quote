@@ -4,7 +4,7 @@
 @section('meta')
 	<meta name="title" content="Authors by Letter">
 	<meta name="keywords" content="<?php meta_authorIndex($authorsByLetter) ?>">
-	<meta name="description" content="Find great quotes by your favorite authors from Abraham Lincoln to Zsa Zsa Gabor." />
+	<meta name="description" content="{{ $page }}" />
 	<meta property="og:title" content="Authors by Letter" />
 	<meta property="og:description" content="Find great quotes by your favorite authors from Abraham Lincoln to Zsa Zsa Gabor." />
 @stop

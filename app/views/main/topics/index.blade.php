@@ -15,7 +15,7 @@
 
 	@include('_tpls.main._.social')
 
-	<p class="col-md-11"> {{ $page }} </p>
+	<p class="col-md-9"> {{ $page }} </p>
 
 	<div class="row">
 		<div class="col-md-9">

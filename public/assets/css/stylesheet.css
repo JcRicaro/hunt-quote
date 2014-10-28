@@ -281,6 +281,7 @@ footer .footer-copyright {
 }
 
 .panel-thumbnail {
+	display: block;
 	background-size: cover;
 	background-position: center center;
 	width: 100%;
@@ -379,4 +380,12 @@ a {
 	.mobile-only {
 		display: none;
 	}
-}	
+}
+
+a.panel-body:hover {
+	text-decoration: none;
+}
+
+.panel-footer {
+	cursor: default;
+}

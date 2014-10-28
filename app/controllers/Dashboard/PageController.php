@@ -23,7 +23,8 @@ class PageController extends \BaseController {
 				'topics' => $this->page->getTopics(),
 				'professions' => $this->page->getProfessions(),
 				'pictures' => $this->page->getPictures(),
-				'qotd' => $this->page->getQotd()
+				'qotd' => $this->page->getQotd(),
+				'tags' => $this->page->getTags()
 			]);
 	}
 
@@ -40,7 +41,8 @@ class PageController extends \BaseController {
 			'topics',
 			'professions',
 			'pictures',
-			'qotd'
+			'qotd',
+			'tags',
 		]);
 
 		$page = $this->page->update($inputs);

@@ -1,0 +1,1 @@
+<h5> No quotes by {{ $author->name }}. Back to <a href="{{ route('authors.index') }}">list</a>. </h5>

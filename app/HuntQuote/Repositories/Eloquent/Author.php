@@ -129,7 +129,7 @@ class Author extends AbstractEloquent implements AuthorInterface {
 	 */
 	public function groupedAlphabetically()
 	{
-		return $this->orderBy('lastname', 'asc')
+		return $this->orderBy('fullname', 'asc')
 			->get()
 			->groupBy(function($author)
 			{

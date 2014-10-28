@@ -26,4 +26,52 @@ class Tag extends AbstractEloquent implements TagInterface {
 
 		return $this->find($id)->delete();
 	}
+
+	/**
+	 * {self-explanatory}
+	 * @return [type] [description]
+	 */
+	public function groupedAlphabetically()
+	{
+		return $this->model
+			->orderBy('name', 'asc')
+			->get()
+			->groupBy(function($tag)
+			{
+				return substr($tag->name, 0, 1);
+			});
+	}
+
+	/**
+	 * Get the first, middle, and last position
+	 * in the array grouped by alphabetically
+	 * @param  array $tags
+	 * @return [type] [description]
+	 */
+	public function getAlphabetKeyPositions(array $tags)
+	{
+		$count = count($tags);
+		$keys = array_keys($tags);
+		$middle = ceil( $count / 2 );
+
+		return [
+			'first' => $keys[0],
+			'middle' => $keys[$middle],
+			'last' => $keys[$count - 1]
+		];
+	}
+
+	/**
+	 * Fetch a tag by its name
+	 * @param  [type] $name [description]
+	 * @return [type]       [description]
+	 */
+	public function getByName($name)
+	{
+		$tag = $this->model
+			->where('name', 'LIKE', "%{$name}%")
+			->first();
+
+		return $tag;
+	}
 }

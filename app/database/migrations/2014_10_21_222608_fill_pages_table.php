@@ -23,7 +23,8 @@ class FillPagesTable extends Migration {
 			'topics',
 			'professions',
 			'pictures',
-			'qotd'
+			'qotd',
+			'tags'
 		];
 
 		foreach(range(0, count($keys) - 1) as $index)

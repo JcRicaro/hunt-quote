@@ -1,25 +1,25 @@
 @extends('_tpls.main.ads')
 
-@section('title') {{ $topic->name }} @stop
+@section('title') {{ $tag->name }} @stop
 @section('meta')
-	<meta name="title" content="Quote Topics">
-	<meta name="keywords" content="{{ meta_topic($topic) }}">
-	<meta name="description" content="Get all quotes falling under {{ $topic->name }}" />
-	<meta property="og:title" content="Quotes Topics" />
-	<meta property="og:description" content="Get all quotes falling under {{ $topic->name }}" />
+	<meta name="title" content="{{$tag->name}} quotes">
+	<meta name="keywords" content="{{ '' }}">
+	<meta name="description" content="Get all tags falling under {{ $tag->name }}" />
+	<meta property="og:title" content="{{$tag->name}} quotes" />
+	<meta property="og:description" content="Get all quotes falling under {{ $tag->name }}" />
 @stop
 
 @section('sub-content')
 
 	@if ( $quotes->count() )
 
-		<h3> {{ $topic->name }} Quotes </h3>
+		<h3> {{ $tag->name }} Quotes </h3>
 		<hr>
 
 		@include('_tpls.main._.social')
 
 		@if ( $photos->count() )
-			@include('main.topics.show.carousel')
+			@include('main.tags.show.carousel')
 		@endif
 
 		<div class="row">
@@ -62,7 +62,7 @@
 		</div>
 
 	@else
-		<h4> No quotes posted under {{ $topic->name }} </h4>
+		<h4> No quotes posted under {{ $tag->name }} </h4>
 		<hr>
 		<h5> Return to <a href="{{ route('authors.index') }}">List</a>.
 		<div class="placeholder-div"></div>

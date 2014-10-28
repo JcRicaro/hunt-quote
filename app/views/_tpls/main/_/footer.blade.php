@@ -15,6 +15,7 @@
 					<li> <a href="{{ route('authors.index') }}"> Authors </a> </li>
 					<li> <a href="{{ route('topics.index') }}"> Topics </a> </li>
 					<li> <a href="{{ route('quotes.otd') }}"> Quote of the Day </a> </li>
+					<li> <a href="{{ route('tags.index') }}"> Tags </a> </li>
 					<li> <a href="{{ route('quotes.photos') }}"> Pictures </a> </li>
 					<li> <a href="{{ route('professions.index') }}"> Professions </a> </li>
 					<li> <a href="{{ route('nationalities.index') }}"> Nationalities </a></li>

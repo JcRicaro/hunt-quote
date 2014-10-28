@@ -108,6 +108,20 @@ Route::group(['prefix' => 'nationalities'], function()
 	]);
 });
 
+Route::group(['prefix' => 'tags'], function()
+{
+	Route::get('/', [
+		'as' => 'tags.index',
+		'uses' => 'Main\TagController@index'
+	]);
+
+	Route::get('{tag}', [
+		'as' => 'tags.show',
+		'uses' => 'Main\TagController@show'
+	]);
+
+});
+
 /**
  * Dashboard routes
  * @link dashboard/*

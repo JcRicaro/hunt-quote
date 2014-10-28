@@ -31,6 +31,7 @@ class Page implements PageInterface {
 		$this->model->where('key', 'professions')->update(['value' => $data['professions']]);
 		$this->model->where('key', 'pictures')->update(['value' => $data['pictures']]);
 		$this->model->where('key', 'qotd')->update(['value' => $data['qotd']]);
+		$this->model->where('key', 'tags')->update(['value' => $data['tags']]);
 		// $this->model->where('key', 'submit')->update(['value' => $data['submit']]);
 	}
 
@@ -108,6 +109,13 @@ class Page implements PageInterface {
 	{
 		return $this->model
 			->where('key', 'qotd')
+			->first();
+	}
+
+	public function getTags()
+	{
+		return $this->model
+			->where('key', 'tags')
 			->first();
 	}
 
