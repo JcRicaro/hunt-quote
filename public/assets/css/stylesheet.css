@@ -376,11 +376,16 @@ a {
 	}
 }
 
-@media (min-width: 500px) {
+.mobile-only { display: none; }
+@media (max-width: 500px) {
+	.mobile-only { display: block; }
+}
+
+/*@media (min-width: 500px) {
 	.mobile-only {
 		display: none;
 	}
-}
+}*/
 
 a.panel-body:hover {
 	text-decoration: none;

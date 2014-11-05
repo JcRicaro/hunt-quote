@@ -47,7 +47,7 @@ class PagesController extends \BaseController {
 	public function getSearch()
 	{
 		$query = Input::has('q')
-			? Input::get('query')
+			? Input::get('q')
 			: '';
 
 		return \View::make('main.search')

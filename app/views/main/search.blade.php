@@ -1,5 +1,7 @@
 @extends('_tpls.main.ads')
 
+@section('title') {{ $query or 'Search' }} @stop
+
 @section('styles')
 	<style>
 		#cse-hosted {
