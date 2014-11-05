@@ -1,10 +1,10 @@
 @extends('_tpls.dashboard.tpl')
 
-@section('title') Tags @stop
+@section('title') Quotes @stop
 
 @section('header')
 	<h1>
-		Tags
+		Quotes
 		<small>List of quotes</small>
 	</h1>
 @stop
